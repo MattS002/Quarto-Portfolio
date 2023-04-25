@@ -1,0 +1,45 @@
+---
+title: "Matthew Swanson, Ph.D."
+subtitle: "Industrial Organizational Psychologist | Data Analyst | DEI Practitioner | People Analytics | Psychometrician"
+fontsize: 20px
+listing:
+  id: project-listing
+  contents:   
+    - "Portfolio pages/NLPSentiment.qmd"
+    - "Portfolio pages/FactorialANOVA.qmd"
+    - "Portfolio pages/MLMEngageTeam.qmd"
+  type: grid
+  grid-columns: 3
+  fields: [image, date, title, author, description, reading-time, categories]
+---
+
+::: text-center
+# **Hi, I'm Matt!**
+:::
+
+I am a recent Ph.D. graduate from the University of Nebraska Omaha's Industrial Organizational (IO) Psychology program. My research focuses primarily on diversity, equity, and inclusion (DEI) in organizations, especially concealable identities (e.g., religious identity, LGBTQ+ identity, and disability), meaningful work, data analysis and statistical techniques, and authentic self-expression.\
+‍\
+I am excited to present my portfolio showcasing my academic and professional accomplishments. This portfolio reflects my expertise in research design, data analysis, consulting, as well as my commitment to continuous learning and self-development. Step into the world of IO psychology with me, where the science of human behavior and performance in the workplace meets the art of creating meaningful and impactful change. If you want to learn more about my journey thus far, feel free to head over to my about page!
+
+::: text-center
+# **Articles**
+:::
+
+Check out my current articles at IOATWORK:
+
+[Why Allyship Is Important For Transgender Employees](https://www.ioatwork.com/why-allyship-is-important-for-transgender-employees/)
+
+[When Will Employees Speak Up In Response to Abusive Leadership?](https://www.ioatwork.com/when-will-employees-speak-up-in-response-to-abusive-leadership/)
+
+When I was a graduate student, I created several department Newsletters:
+
+[The University of Nebraska Omaha's 2020 IO department newsletter](https://www.unomaha.edu/college-of-arts-and-sciences/psychology/_files/documents/IO%20PSYC/ionewsfall2020.pdf)
+
+[The University of Nebraska Omaha's 2021 IO department newsletter](https://www.unomaha.edu/college-of-arts-and-sciences/psychology/_files/documents/IO%20PSYC/ionewsfall2021.pdf)
+
+::: text-center
+## Featured Projects
+:::
+
+::: {#project-listing}
+:::

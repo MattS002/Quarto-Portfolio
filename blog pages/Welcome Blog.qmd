@@ -1,0 +1,19 @@
+---
+title: "Welcome To My Blog!"
+editor: visual
+date: 4/25/2023
+author: Matthew Swanson
+categories: ['Intro', '1st Post']
+---
+
+<div>
+
+::: {style="float: left; position: relative; top: 0px; padding: 20px;"}
+![](images/pexels-afta-putta-gunawan-810041.jpg){width="295"}
+:::
+
+Hello and welcome to my first post! As a passionate enthusiast of of Industrial Organizational Psychology, data analysis, and coding, I am thrilled to share my insights, experiences, and knowledge through this platform. Whether you're a fellow professional in the field or simply curious about these topics, this blog aims to provide engaging and informative content that will ignite your curiosity and spark insightful discussions. So, grab your favorite beverage, settle in, and let's embark on this exciting journey together!
+
+</div>
+
+I believe my next blog post will discuss the importance of contrast coding and its application to people analytics. Stay tuned for that!

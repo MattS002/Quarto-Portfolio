@@ -1,0 +1,152 @@
+---
+title: "Factorial Anova and Power Analysis in R"
+editor: visual
+author: Matthew Swanson
+categories: ['Factorial ANOVA', 'R', 'Power Analysis', 'Effect Size', 'Clinical Trial Data']
+warning: FALSE
+message: FALSE
+---
+
+::: text-center
+# **Project Goal**
+:::
+
+It is of interest to a client to analyze data from a clinical trial on tooth growth. It is of particular interest to ascertain how different dosage amounts and types of supplements influence tooth growth. First, I will need to load the data set and calculate data descriptives and run some ANOVAs.
+
+Loading the data:
+
+```{r}
+data("ToothGrowth")
+head(ToothGrowth)
+```
+
+Need cell means and variances next.
+
+```{r}
+library(dplyr)
+ToothGrowth %>%
+group_by(supp, dose)%>%
+summarize(group_mean = mean(len), n = n(), var = var(len)) 
+```
+
+::: text-center
+# **Factorial ANOVA**
+:::
+
+Glancing at these cell means indicates a potential pattern. Namely, that across supplement, as dosage increases, tooth length increases. It also appears that across dosage, the OJ supplement produces longer teeth growth than the VC supplement. However, to determine if these mean differences are significant, I need to conduct a factorial ANOVA.
+
+```{r}
+#Need to ensure that R reads factor variables as factors first
+
+ToothGrowth$supp <- as.factor(ToothGrowth$supp)
+ToothGrowth$dose <- as.factor(ToothGrowth$dose)
+FactorANOVA <- aov(len ~ dose*supp, ToothGrowth) #you can also just add in dose*supp and R understands to include the interaction and both main effects in the model - nice way to shorten code
+
+summary(FactorANOVA)
+
+#Calculating Marginal Means
+
+library(emmeans)
+
+Condition_Means <- emmeans(FactorANOVA, ~ supp*dose)
+Condition_Means
+
+Marginal_MeansSupp <- emmeans(FactorANOVA, ~ supp)
+Marginal_MeansSupp
+
+Marginal_MeansDose <- emmeans(FactorANOVA, ~ dose)
+Marginal_MeansDose
+```
+
+A quick glance at the output highlights that both the main effects of dose and supplement are significant as well as their interaction. Across supplement type, the means of tooth length were significantly different among three dosage conditions: 0.5 dosage (M = 10.61), 1.0 dosage (M = 19.74), and 2.0 dosage (M = 26.10), F(2,54) = 92.00, p \<.001. There was also a statistically significant difference in the average tooth length between supplement type, across dosage: OJ (M = 20.66) and VC condition (M = 16.96), F(1,54) = 15.57, p \<.001. The interaction between dosage amount and supplement type was significant, F(2,54) = 4.11, p =.02.
+
+::: text-center
+## **Simple Effects**
+:::
+
+Given the significant interaction, I know that the effects of one variable depends on the levels of the other variable. One way to understand this effect is to look at the simple effects.
+
+```{r}
+library(phia)
+
+lm1 <- lm(len ~ dose*supp, ToothGrowth)
+
+Test1 <- testInteractions(lm1, fixed = "dose", across = "supp")
+Test1
+
+Test2 <- testInteractions(lm1, fixed = "supp", across = "dose")
+Test2
+
+contrast(Condition_Means, "revpairwise", by= "dose", adjust = "none")
+```
+
+Note here the significance levels: for example, the effects of supplement within 0.5 & 1.0 dosage levels are significant. Additionally, the effects of dosage within OJ and VC supplement are also significant. Looking at the contrast estimates, it becomes clear that For both dosage levels of 0.5 and 1.0, teeth grow significantly less when the patient is also provided a vitamin C supplement, compared to the teeth of patients provided an orange juice supplement, t(54) = -3.23, p =.002 and t(54) = -3.65, p \<.001 respectively.
+
+::: text-center
+## **Effect Sizes**
+:::
+
+Now let's collect both biased and unbiased estimates of effect size for our three effects in this model. This will help clarify the magnitude of effect of both dosage and supplement type.
+
+```{r}
+library(lsr)
+library(effectsize)
+
+Eta <- etaSquared(FactorANOVA, type = 2, anova = TRUE)
+Eta
+
+omega_squared(FactorANOVA, partial = FALSE, ci = 0.95)
+omega_squared(FactorANOVA, partial = TRUE, ci = 0.95)
+```
+
+The eta squared value associated with the interaction between dosage and supplement is .03. In other words, the interaction term explains approximately 3% of the variance in tooth length. Its' respective partial eta squared value is .13, indicating that the interaction term explains about 13% of the unique variance in tooth length, accounting for any shared variance with dosage and supplement. The interaction term's omega squared and partial omega squared values are slightly smaller as these effect sizes have been corrected for bias but the interpretation stays the same.
+
+::: text-center
+# **Power Analysis**
+:::
+
+Now, I will calculate power for this analysis.
+
+```{r}
+library(pwr)
+
+f <- sqrt(0.031376 / (1-0.031376))
+pwr.anova.test(k = 6, n = 10, f = f, sig.level = .95)
+```
+
+I have about a 98% power level to detect the interaction effect in our data, should the effect truly exist. What about the main effect of supplement?
+
+```{r}
+f <- sqrt(0.05948365 / (1-0.05948365))
+pwr.anova.test(k = 2, n = 30, f = f, sig.level = .95)
+```
+
+I have a 99% power level to detect the effect of supplement, should the effect exist.
+
+::: text-center
+# **Visualizations**
+:::
+
+The client also requested some visualizations, so I will create a bar and line graph of the above group means.
+
+```{r}
+library(ggplot2)
+
+ggplot(ToothGrowth, aes(x =as.factor(dose), y = len, fill = as.factor(supp))) + 
+  stat_summary(fun='mean',geom='bar', position = "dodge") +
+  labs(x = "Dosage", y = "Tooth Length", fill = "Supplement Type", title = "Figure 1", subtitle = "Mean Tooth Length Scores by Dosage and Supplement")+
+  theme(plot.title = element_text(face = "bold"),
+        plot.subtitle = element_text(face = "italic")) +
+  scale_fill_manual(values = c("#D71920", "#002266"))
+
+interaction.plot(x.factor = ToothGrowth$dose, #x-axis variable
+                 trace.factor = ToothGrowth$supp, #variable for lines
+                 response = ToothGrowth$len, #y-axis variable
+                 fun = mean, #metric to plot
+                 ylab = "Tooth Length",
+                 xlab = "Dosage",
+                 col = c("pink", "blue"),
+                 lty = 1, #line type
+                 lwd = 2, #line width
+                 trace.label = "Supplement Type")
+```

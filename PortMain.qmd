@@ -1,0 +1,11 @@
+---
+title: "Portfolio Projects"
+editor: visual
+listing:
+  categories: true
+  contents: Portfolio pages
+  type: grid
+  fields: [image, title, author, description, reading-time, categories]
+---
+
+# Check out my portfolio and research projects!

@@ -1,0 +1,134 @@
+---
+title: "Using Multilevel Modeling To Understand Engagement, Autonomy, and Team Cohesion"
+editor: visual
+author: Matthew Swanson
+categories: ['Multilevel Modeling', 'R', 'lavaan', 'ICC1 & 2', 'Engagement', 'Team Cohesion', 'Inter-rater Reliability', 'Simple Slopes']
+warning: FALSE
+message: FALSE
+---
+
+::: text-center
+# **Project Goal**
+:::
+
+A company has collected employee data and wants to understand the factors that shape the engagement of their workers. They collected data on the pay structure, autonomy level, and team cohesion each employee has with the overall goal of relating these variables to individual level engagement. Unique to this data is the level 1 / level 2 structure. For example, pay, engagement, and job autonomy (all level 1 variables) are assessed at the individual level, while team cohesion (a level 2 variable) is assessed at the team level. Thus, individuals are nested in teams. My goal is to use these variables to predict engagement.
+
+::: text-center
+## **Preparing Data for Model Building**
+:::
+
+Variables need to be centered and scaled prior to entering them into a multilevel model.
+
+```{r, echo=-5}
+library(multilevel)
+library(readxl)
+library(robumeta)
+
+data <- read.csv("C:/Users/matts/Desktop/WebsiteData/Data/engage.csv")
+
+head(data)
+options(scipen=999)
+
+data$cohesion.grand.c <- scale(data$cohes, scale = FALSE)
+data$autonomy.grp.c <- group.center(data$jobauto, data$grpid)
+data$jobsat.grp.c <- group.center(data$jobsat, data$grpid)
+data$pay.grp.c <- group.center(data$pay, data$grpid)
+```
+
+::: text-center
+# **Running Multilevel Models to Predict Level 1 Engagement**
+:::
+
+Now that I have group and grand mean centered the data, I will begin building some models to predict engagement. First I will add the predictors into a model with engagement as the dependent variable. I also added in interactions between autonomy and pay and cohesion and pay to the model.
+
+```{r}
+Model1 <- lme(engage~ 1 + pay.grp.c + autonomy.grp.c + pay.grp.c:autonomy.grp.c + cohesion.grand.c + pay.grp.c:cohesion.grand.c, random = ~1 + pay.grp.c + autonomy.grp.c + pay.grp.c:autonomy.grp.c|grpid,
+data = data, control = lmeControl(opt = "optim"))
+
+summary(Model1)
+VarCorr(Model1)
+
+library(lme4)
+library(interactions)
+library(jtools)
+library(lmerTest)
+
+Mod1 <- lmer(engage ~ 1 + pay.grp.c + autonomy.grp.c + pay.grp.c:autonomy.grp.c + cohesion.grand.c + pay.grp.c:cohesion.grand.c + (1 + pay.grp.c + autonomy.grp.c + pay.grp.c:autonomy.grp.c|grpid), data = data, control = lmerControl(calc.derivs = FALSE))
+```
+
+Several significant results emerged from these models. Specifically, employee pay was significantly related to individual levels of work engagement b=0.384, t(696)=2.721, p=.007. Additionally, results suggest that for every unit increase in pay, work engagement will increase by a value of 0.384, when autonomy and team cohesion are zero. However, job autonomy was did not moderate the relationship between pay and work engagement, b=0.349, t(696)=1.642, p=.101.
+
+Regarding the level 2 predictor, team cohesion, results indicate that team cohesion was found to moderate the relationship between pay and work engagement, b=0.535, t(696)=3.218, p=.001.
+
+::: text-center
+# **Plotting The Multilevel Interaction**
+:::
+
+Given the significant interaction, I will now plot the interaction and calculate the simple slopes of this interaction to aid in interpretation.
+
+```{r}
+interact_plot(model = Mod1, pred = pay.grp.c, modx = cohesion.grand.c,
+x.label = "Pay",
+main.title = "Interaction Between Team Cohesion and Pay Predicting Engagement",
+y.label = "Engagement", legend.main = "Team Cohesion",
+colors = c("Green","Blue")) + theme_apa(legend.use.title = T)
+
+sim_slopes(model = Mod1, pred = pay.grp.c, modx = cohesion.grand.c)
+```
+
+The relationship between pay and work engagement is stronger for individuals with higher levels of team cohesion. The slope for pay will increase by 0.535 with every unit change of team cohesion. In other words, the simple effect of engagement on pay gets strengthened, or more positive, p=.001.
+
+Simple slopes analysis reveals a significant moderated relationship between pay and engagement when autonomy is at its mean (b=0.38, t=2.72, p=.01) and when autonomy is one standard deviation above its mean (b=0.83, t=4.19, p\<.01), but not for those who indicated having levels of autonomy at work that was at least one standard deviation below the mean (b-0.06, t=-0.31, p=.76).
+
+::: text-center
+# **Running Multilevel Models to Predict Level 1 Job Satisfaction**
+:::
+
+The client also collected data on job satisfaction and is interested in knowing if job satisfaction, at the individual level, also interacts with team-level cohesion in predicting work engagement. I also swapped dependent variables to test if pay was a significant predictor of job satisfaction.
+
+```{r}
+model2.1 <- lme(engage ~pay.grp.c, random = ~1 + pay.grp.c|grpid, data = data, control = lmeControl(opt = "optim"))
+summary(model2.1)
+
+model2.2 <- lme(jobsat ~ pay.grp.c, random = ~1 + pay.grp.c|grpid, data = data, control = lmeControl(opt = "optim"))
+summary(model2.2)
+
+model2.3 <- lme(engage ~ pay.grp.c + jobsat.grp.c, random = ~1 + pay.grp.c + jobsat.grp.c|grpid, data = data,control = lmeControl(opt = "optim"))
+summary(model2.3)
+```
+
+While both pay (b=0.421, t(698)=2.547, p=.011) and job satisfaction (b=0.377, t(698)=2.742, p=.006) significantly predicted work engagement, pay was not a significant predictor of job satisfaction (b=0.036, t(699)=.983, p=.326).
+
+::: text-center
+# **Effect Size**
+:::
+
+Now that I have determined which variables predict engagement, the question still remains of how strong these effects are. Given the multilevel nature of this data, I will analyze the ICC1 values which tells me the proportion of individual ratings that are due to group membership. I will also look at ICC2 values to establish the stability of mean ratings in discriminating between groups (participants are grouped by their work teams).
+
+```{r}
+mult.icc(data[, c("jobsat", "jobauto")], data$grpid)
+```
+
+ICC1 for both job satisfaction (ICC1=.017) and autonomy (ICC1=.018), both of which would be considered "small" effects. The proportion of variance in ratings that is due to between-target differences is small, suggesting that individuals rating are only slightly attributable to group membership.
+
+The ICC2 for job satisfaction (ICC2=.210) is larger than the ICC2 for autonomy (ICC2=.218), suggesting that the groups' mean ratings were more stable and reliable for ratings of autonomy than for ratings of job satisfaction. In other words, the mean ratings of autonomy were better able to distinguish between groups than the mean ratings of job satisfaction.
+
+::: text-center
+# **Inter-rater Reliability**
+:::
+
+When looking at the data, I noticed that the commitment scale was created by aggregating three commitment items into an overall scale. To double-check that employees tended to rate similarly across the three items (i.e., an individual rating a score of 4 on the first commitment item would likely rate similarly for commitment items 2 & 3) and that it is appropriate to use an aggregate commitment scale, I will assess inter-rater agreement. Note: rwg is the symbol used to denote this form of inter-rater agreement and will be utilized in the code and interpretation below.
+
+```{r}
+rwg.commit1.un = rwg(data$commitment1, data$grpid, ranvar = 2.00)
+summary(rwg.commit1.un)
+
+hist(rwg.commit1.un$rwg, xlab = "Estimate of rwg", ylab = "Frequency", main = "Histogram of 1st Commitment Item's rwg Values")
+
+rwgj.commit.un = rwg.j(data[, c(8:10)], data$grpid, ranvar = 2.00)
+summary(rwgj.commit.un)
+
+hist(rwgj.commit.un$rwg, xlab = "Estimate of rwg", ylab = "Frequency", main = "Histogram of Commitment Scale's rwg Values")
+```
+
+The mean rwg value for the first commitment item is 0.396 and the median is .433. Since this value is below the standard cutoff of .70, it is apparent that raters had low levels of agreement for the first commitment item. The mean rwg.j value for the commitment scale is .604 and the median is .683. While still below the cutoff score of .70 for high inter-rater agreement, the agreement level did increase when all three commitment items were considered, as compared to a single commitment item, helping support the usability of the composite score over a particular commitment item.

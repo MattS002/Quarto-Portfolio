@@ -1,0 +1,256 @@
+---
+title: "NLP Sentiment Analysis"
+editor: visual
+author: Matthew Swanson
+categories: ['Natural Language Processing', 'Sentiment Analysis', 'R', 'Visualizations', 'Tokenization']
+warning: FALSE
+message: FALSE
+---
+
+::: text-center
+# **Project Goal**
+:::
+
+For this project, I am working with a large scale qualitative data set of responses to a research question by adult employees in the United States. There are over 50,000 words housed in several hundred rows of participant responses and it is of interest to the researcher (me) to understand if there are unique words used in one particular condition. It was also of interest to determine if the characteristics of participant's shaped what words they utilized to respond to the experimental prompt.
+
+::: text-center
+# **Tokenization and Data Cleaning**
+:::
+
+I decided to use Natural Language Processing, in particular sentiment analysis, to analyze the words present in the data set. I also decided to set my tokenization parameter at the word level.
+
+First, I need to load in the data and set the tokenization of the text corpus.
+
+```{r, echo=-4}
+library(tidytext)
+library(readxl)
+library(tidyverse)
+HealthResp <- read_excel("C:/Users/matts/Desktop/WebsiteData/Data/Healthy Condition Responses - Text Analysis.xlsx")
+glimpse(HealthResp)
+HealthResp_tidy <- HealthResp %>%
+unnest_tokens(output = word, input = Healthy_Work_Condition, token = "words")
+head(HealthResp_tidy)
+```
+
+I can see that the tokenization was successful since each word has been separated as its own row, grouped at the participant level. Now lets look at some basic things such as word frequencies and counts.
+
+```{r}
+head(HealthResp_tidy %>%
+count(word, sort= TRUE), n = 10)
+```
+
+As revealed in the tibble above, the 10 most used words are articles and connectives, and likely will not be of use to my analysis. I want to remove these words but also take a conservative approach so that I don't remove too many words that might be of interest. The tidytext package has a data set called "stop_words" containing a lexicon of words comprised of article words such as "to", "and", "the" which I would like to remove.
+
+```{r}
+data("stop_words")
+
+HealthResp_tidy <- anti_join(HealthResp_tidy, stop_words)
+
+HealthResp_Freq <- HealthResp_tidy %>%
+  count(word, sort = TRUE) %>%
+  filter(word != "NA")
+
+head(HealthResp_Freq, n = 10)
+```
+
+Now the most frequent words better reflect words of interest to my sentiment analysis. Before moving forward, I visualized the frequency of words that occurred over 50 times in participant's responses.
+
+```{r}
+library(ggthemes)
+HealthResp_Freq %>%
+  filter(n > 50) %>%
+  filter(word != "NA") %>%
+  mutate(word = reorder(word, n)) %>%
+    ggplot(aes(word, n)) +
+    geom_bar(stat = "identity") +
+    xlab(NULL) +
+    coord_flip() +
+    ggtitle("Most Commonly Used Words\n in Healthy Condition") +
+    theme_clean()
+```
+
+I also created a word cloud visualization of these words, setting the parameters to a max of 50 words used in the visualization.
+
+```{r}
+library(wordcloud)
+library(RColorBrewer)
+
+HealthResp_Freq %>%
+with(wordcloud(word, n, max.words = 100, colors = brewer.pal(12, "Paired"), scale=c(3.5,0.25)))
+```
+
+You may have noticed that I have only been analyzing words from one condition, called healthy. It is now time to repeat the above analysis for the second condition, called unhealthy.
+
+```{r, echo= -1}
+UnhealthResp <- read_excel("C:/Users/matts/Desktop/WebsiteData/Data/Unhealthy Condition Responses - Text Analysis.xlsx")
+glimpse(UnhealthResp)
+
+UnhealthResp_tidy <- UnhealthResp %>%
+  unnest_tokens(output = word, input = Unhealthy_Work_Condition, token = "words") %>%
+    anti_join(stop_words, by = "word")
+
+UnhealthResp_Freq <- UnhealthResp_tidy %>%
+  count(word, sort = TRUE) %>%
+  filter(word != "NA")
+head(UnhealthResp_Freq, 10)
+```
+
+I will now generate some visualizations of this condition before comparing the two conditions.
+
+```{r}
+UnhealthResp_Freq %>%
+  filter(n > 50) %>%
+  filter(word != "NA") %>%
+  mutate(word = reorder(word, n)) %>%
+    ggplot(aes(word, n)) +
+    geom_bar(stat = "identity") +
+    xlab(NULL) +
+    coord_flip() +
+    ggtitle("Most Commonly Used Words\n in Unhealthy Condition") +
+    theme_clean()
+
+UnhealthResp_Freq %>%
+with(wordcloud(word, n, max.words = 100, colors = brewer.pal(9, "Set1"), scale=c(3.5,0.25)))
+```
+
+I've looked at each condition separately, now I will merge the two cleaned data sets back together and run analyses on this new data set.
+
+```{r}
+names(HealthResp_tidy)
+names(UnhealthResp_tidy) #Both data sets now have the same names for all variables in the same order
+
+wordfreq <- bind_rows(mutate(HealthResp_tidy, condition = "Healthy"),mutate(UnhealthResp_tidy, condition = "Unhealthy"))
+
+wordfreqtotal <- wordfreq %>%
+  count(condition, word) %>%
+  group_by(condition) %>%
+  mutate(proportion = n / sum(n)) %>%
+  select(condition, word, proportion) %>%
+  spread(condition, proportion) %>%
+    filter(Healthy > .002 | Unhealthy > .002)
+
+head(wordfreqtotal, 10)
+```
+
+This new data frame contains three columns: the first column contains the utilized words, the second column is the proportion that a particular word appears across all words used in the healthy condition, the third column is the same as the second column except the proportion is compared to words used in the unhealthy condition. Like above, it is important to visualize these words in conjunction to each other.
+
+```{r}
+ggplot(data = wordfreqtotal, mapping = aes(x = Healthy, y = Unhealthy, label = word)) +
+  scale_x_log10() + scale_y_log10() +
+  geom_text(alpha = .7, size = 3) +
+  geom_abline(lty = 2) +
+  theme_few()
+```
+
+Words closer to the diagonal line appear at similar rates in both conditions while words farther out to the top-left or bottom-right occur more in the unhealthy or healthy condition, respectively. For example, words like coworker, manager, job, and COVID are right on the diagonal line, indicating that they occurred for similar proportions in both conditions. This makes sense as the original prompt presented to participants asked about their job experiences in 2020-21. However, words like care, supportive, and understanding occurred more frequently in the healthy condition while words like angry, uncomfortable, and bad occurred more often in the unhealthy condition.
+
+::: text-center
+# **Sentiment Analysis**
+:::
+
+Now that I have a good feel about the sorts of words that participants used to describe their work experiences across and within conditions, I want to analyze the word tokens for emotional valance (i.e., the general perception of positive or negative contained within the words used in each condition).
+
+```{r}
+library(textdata)
+
+nrc <- get_sentiments("nrc")
+AFINN <- get_sentiments("afinn")
+BING <- get_sentiments("bing")
+
+sort(unique(nrc$sentiment)) #Use this to see the unique codes that are present in the nrc sentiment column
+
+wordfreq <- bind_rows(mutate(HealthResp_tidy, condition = "Healthy"),
+  mutate(UnhealthResp_tidy, condition = "Unhealthy"))%>%
+    count(condition, word) %>%
+    group_by(condition) %>%
+  mutate(proportion = n / sum(n))
+```
+
+The nrc, afinn, and bing sentiments compare a corpus of words to their predefined emotions or word valance lexicons. For example, evaluating corpus sentiments using the nrc column evaluates the degree of emotions or feelings like anger, anticipation, and disgust present in the analyzed corpus. You can find more detailed information about the nrc sentiment data frame [here](http://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm).
+
+Because I want to provide evidence that the experimental conditions produced differently valanced words in either condition, determining how positive or negative the overall words used in either condition is important. I will first analyze by a particular emotion and then will use all three popular sentiment lexicons to get a more complete understanding of the sentiments that participants had in both conditions.
+
+```{r}
+#Look at the proportion of fear based words per condition
+
+condition_fear <- nrc %>%
+  filter(sentiment == "fear") %>%
+    inner_join(wordfreq, by = "word") %>%
+    arrange(desc(proportion))
+head(condition_fear, 20)
+```
+
+Just by looking at the fear emotion alone, I have determined that both conditions use fear words pretty regularly. This likely captures some of the COVID anxiety that participants described in their responses across both conditions. However, looking at the proportion of these words, the most used fear word, "unhealthy", occurs three or more times as much as any other word and occurred at this rate in the unhealthy condition. While expected, this does provide evidence that participants are at least paying attention to the instruction prompts in their respective conditions.
+
+::: text-center
+## **Visualization**
+:::
+
+Now I will expand this analysis to all sentiment categories contained in the nrc lexicon and provide some visualizations of this data.
+
+```{r}
+#Distribution of sentiments across both conditions using nrc (this uses positive/negative/ and 8 emotion words)
+
+dist_sentiments <- nrc %>%
+  inner_join(wordfreq, by = "word") %>%
+  group_by(condition, sentiment) %>%
+  summarize(n = sum(n)) %>%
+  mutate(prop = n/sum(n)) %>%
+  arrange(desc(prop))
+dist_sentiments
+
+ggplot(data = dist_sentiments, mapping = aes(x = condition, y = prop, fill = sentiment)) +
+geom_bar(stat = "identity")
+```
+
+Results of this sentiment analysis support the effectiveness of the experiment: that is, participants in the healthy condition provided a greater proportion of positively-valanced words than participants in the unhealthy condition (28.3% vs. 19.7% of words), and participants provided a greater proportion of negatively-valanced words in the unhealthy condition than those in the healthy condition (18.7% vs. 10.8%). Glancing at the ggplot also highlights a greater proportion of anger, disgust, fear and sadness words in the unhealthy condition and a greater proportion of anticipation, joy, and trust words in the healthy condition.
+
+For the sake of robustness, I will also analyse the corpus of words using the BING and AFINN lexicons. The results should converge on the same point but may be slightly different as different words are used to create each specific lexicon.
+
+```{r}
+#Look at different sentiment lexicons - BING (just positive/negative)
+
+dist_sentimentsbing <- BING %>%
+  inner_join(wordfreq, by = "word") %>%
+  group_by(condition, sentiment) %>%
+  summarize(n = sum(n)) %>%
+  mutate(prop = n/sum(n))
+dist_sentimentsbing
+
+ggplot(data = dist_sentimentsbing, mapping = aes(x = condition, y = prop, fill = sentiment)) +
+geom_bar(stat = "identity")
+
+#AFINN lexicon - This uses a scale ranging from 5- -5 with higher values indicating more positively associated words; 0 is neutral
+
+dist_sentimentsAFINN <- AFINN %>%
+  inner_join(wordfreq, by = "word") %>%
+  group_by(condition, value) %>%
+  summarize(n = sum(n)) %>%
+  mutate(prop = n/sum(n))
+  dist_sentimentsAFINN
+
+ggplot(data = dist_sentimentsAFINN, mapping = aes(x = condition, y = prop, fill = value)) +
+geom_bar(stat = "identity")
+```
+
+Just as I predicted, the results converge on the same point! An additional piece of information gleamed from the AFINN sentiment analysis is that no participant in either condition utilized verbiage that could be classified as extremely positive (a score of 5 in AFINN) or extremely negative (a score of -5 in AFINN).
+
+::: text-center
+### **Additional Visualizations**
+:::
+
+```{r}
+ggplot(dist_sentimentsAFINN, aes(x = value, fill = condition)) + 
+  geom_density(alpha = 0.5) + 
+  theme_gdocs() +
+  ggtitle("AFINN Score Densities")
+
+library(reshape2)
+
+wordfreq %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment, sort = TRUE) %>%
+  acast(word ~ sentiment, value.var = "n", fill = 0) %>%
+  comparison.cloud(colors = c("red", "blue"),
+                   max.words = 200, scale=c(0.50,0.50), title.size = 1.5)
+```

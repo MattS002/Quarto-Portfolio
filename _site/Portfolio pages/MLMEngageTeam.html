@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.333">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Matthew Swanson">
+
+<title>Matt’s Portfolio Website - Using Multilevel Modeling To Understand Engagement, Autonomy, and Team Cohesion</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/Logo.gif" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Matt’s Portfolio Website</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../Resume.html" rel="" target="">
+ <span class="menu-text">Resume/CV</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../PortMain.html" rel="" target="">
+ <span class="menu-text">Portfolio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../Mainblog.html" rel="" target="">
+ <span class="menu-text">Personal Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../DataViz.html" rel="" target="">
+ <span class="menu-text">Data Viz Portfolio</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/matthew-swanson-phd-335942137" rel="" target=""><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/MattS002" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:mattswnsn53@gmail.com" rel="" target=""><i class="bi bi-envelope" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#project-goal" id="toc-project-goal" class="nav-link active" data-scroll-target="#project-goal"><strong>Project Goal</strong></a></li>
+  <li><a href="#preparing-data-for-model-building" id="toc-preparing-data-for-model-building" class="nav-link" data-scroll-target="#preparing-data-for-model-building"><strong>Preparing Data for Model Building</strong></a></li>
+  <li><a href="#running-multilevel-models-to-predict-level-1-engagement" id="toc-running-multilevel-models-to-predict-level-1-engagement" class="nav-link" data-scroll-target="#running-multilevel-models-to-predict-level-1-engagement"><strong>Running Multilevel Models to Predict Level 1 Engagement</strong></a></li>
+  <li><a href="#plotting-the-multilevel-interaction" id="toc-plotting-the-multilevel-interaction" class="nav-link" data-scroll-target="#plotting-the-multilevel-interaction"><strong>Plotting The Multilevel Interaction</strong></a></li>
+  <li><a href="#running-multilevel-models-to-predict-level-1-job-satisfaction" id="toc-running-multilevel-models-to-predict-level-1-job-satisfaction" class="nav-link" data-scroll-target="#running-multilevel-models-to-predict-level-1-job-satisfaction"><strong>Running Multilevel Models to Predict Level 1 Job Satisfaction</strong></a></li>
+  <li><a href="#effect-size" id="toc-effect-size" class="nav-link" data-scroll-target="#effect-size"><strong>Effect Size</strong></a></li>
+  <li><a href="#inter-rater-reliability" id="toc-inter-rater-reliability" class="nav-link" data-scroll-target="#inter-rater-reliability"><strong>Inter-rater Reliability</strong></a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Using Multilevel Modeling To Understand Engagement, Autonomy, and Team Cohesion</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Multilevel Modeling</div>
+    <div class="quarto-category">R</div>
+    <div class="quarto-category">lavaan</div>
+    <div class="quarto-category">ICC1 &amp; 2</div>
+    <div class="quarto-category">Engagement</div>
+    <div class="quarto-category">Team Cohesion</div>
+    <div class="quarto-category">Inter-rater Reliability</div>
+    <div class="quarto-category">Simple Slopes</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Matthew Swanson </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="project-goal" class="level1 text-center">
+<h1><strong>Project Goal</strong></h1>
+</section>
+<p>A company has collected employee data and wants to understand the factors that shape the engagement of their workers. They collected data on the pay structure, autonomy level, and team cohesion each employee has with the overall goal of relating these variables to individual level engagement. Unique to this data is the level 1 / level 2 structure. For example, pay, engagement, and job autonomy (all level 1 variables) are assessed at the individual level, while team cohesion (a level 2 variable) is assessed at the team level. Thus, individuals are nested in teams. My goal is to use these variables to predict engagement.</p>
+<section id="preparing-data-for-model-building" class="level2 text-center">
+<h2 class="anchored" data-anchor-id="preparing-data-for-model-building"><strong>Preparing Data for Model Building</strong></h2>
+</section>
+<p>Variables need to be centered and scaled prior to entering them into a multilevel model.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(multilevel)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(robumeta)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  level1_id grpid      engage      cohes      jobsat        pay     jobauto
+1         1     1  0.76164141 -0.5461742  0.73576787 -0.2145807 -0.10330841
+2         2     1 -0.05155921 -0.5461742  0.09589171 -1.1725662  0.01494606
+3         3     1  1.60837420 -0.5461742  0.47694372 -0.9820727 -0.04202197
+4         4     1  1.23486381 -0.5461742  0.58489184 -0.4141129 -0.42891177
+5         5     1  6.73776145 -0.5461742 -0.83047804  1.9041059  0.68604898
+6         6     1  6.54714955 -0.5461742  1.58131185  0.2765618  1.19430414
+  commitment1 commitment2 commitment3
+1           4           5           4
+2           5           5           5
+3           1           2           2
+4           3           4           3
+5           5           5           5
+6           3           4           4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen=</span><span class="dv">999</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>cohesion.grand.c <span class="ot">&lt;-</span> <span class="fu">scale</span>(data<span class="sc">$</span>cohes, <span class="at">scale =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>autonomy.grp.c <span class="ot">&lt;-</span> <span class="fu">group.center</span>(data<span class="sc">$</span>jobauto, data<span class="sc">$</span>grpid)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>jobsat.grp.c <span class="ot">&lt;-</span> <span class="fu">group.center</span>(data<span class="sc">$</span>jobsat, data<span class="sc">$</span>grpid)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>pay.grp.c <span class="ot">&lt;-</span> <span class="fu">group.center</span>(data<span class="sc">$</span>pay, data<span class="sc">$</span>grpid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="running-multilevel-models-to-predict-level-1-engagement" class="level1 text-center">
+<h1><strong>Running Multilevel Models to Predict Level 1 Engagement</strong></h1>
+</section>
+<p>Now that I have group and grand mean centered the data, I will begin building some models to predict engagement. First I will add the predictors into a model with engagement as the dependent variable. I also added in interactions between autonomy and pay and cohesion and pay to the model.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Model1 <span class="ot">&lt;-</span> <span class="fu">lme</span>(engage<span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> pay.grp.c <span class="sc">+</span> autonomy.grp.c <span class="sc">+</span> pay.grp.c<span class="sc">:</span>autonomy.grp.c <span class="sc">+</span> cohesion.grand.c <span class="sc">+</span> pay.grp.c<span class="sc">:</span>cohesion.grand.c, <span class="at">random =</span> <span class="sc">~</span><span class="dv">1</span> <span class="sc">+</span> pay.grp.c <span class="sc">+</span> autonomy.grp.c <span class="sc">+</span> pay.grp.c<span class="sc">:</span>autonomy.grp.c<span class="sc">|</span>grpid,</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">data =</span> data, <span class="at">control =</span> <span class="fu">lmeControl</span>(<span class="at">opt =</span> <span class="st">"optim"</span>))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed-effects model fit by REML
+  Data: data 
+       AIC      BIC    logLik
+  3599.774 3678.179 -1782.887
+
+Random effects:
+ Formula: ~1 + pay.grp.c + autonomy.grp.c + pay.grp.c:autonomy.grp.c | grpid
+ Structure: General positive-definite, Log-Cholesky parametrization
+                         StdDev    Corr                
+(Intercept)              0.4298969 (Intr) py.gr. atnm..
+pay.grp.c                0.7669658 -0.169              
+autonomy.grp.c           0.6277085 -0.215  0.131       
+pay.grp.c:autonomy.grp.c 1.2852694  0.317  0.288  0.117
+Residual                 2.3189244                     
+
+Fixed effects:  engage ~ 1 + pay.grp.c + autonomy.grp.c + pay.grp.c:autonomy.grp.c +      cohesion.grand.c + pay.grp.c:cohesion.grand.c 
+                               Value Std.Error  DF   t-value p-value
+(Intercept)                2.7311089 0.1061344 696 25.732554  0.0000
+pay.grp.c                  0.3836225 0.1410103 696  2.720528  0.0067
+autonomy.grp.c             0.6181183 0.1337924 696  4.619980  0.0000
+cohesion.grand.c           0.1544943 0.1241618  48  1.244298  0.2194
+pay.grp.c:autonomy.grp.c   0.3487103 0.2123779 696  1.641933  0.1011
+pay.grp.c:cohesion.grand.c 0.5352599 0.1663569 696  3.217540  0.0014
+ Correlation: 
+                           (Intr) py.gr. atnm.. chsn.. py.grp.c:t..
+pay.grp.c                  -0.074                                  
+autonomy.grp.c             -0.083  0.070                           
+cohesion.grand.c            0.007 -0.003 -0.001                    
+pay.grp.c:autonomy.grp.c    0.166  0.182  0.012  0.014             
+pay.grp.c:cohesion.grand.c -0.001  0.001  0.008 -0.112  0.032      
+
+Standardized Within-Group Residuals:
+       Min         Q1        Med         Q3        Max 
+-2.4868889 -0.6959695 -0.1058310  0.5644816  3.9079997 
+
+Number of Observations: 750
+Number of Groups: 50 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">VarCorr</span>(Model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>grpid = pdLogChol(1 + pay.grp.c + autonomy.grp.c + pay.grp.c:autonomy.grp.c) 
+                         Variance  StdDev    Corr                
+(Intercept)              0.1848114 0.4298969 (Intr) py.gr. atnm..
+pay.grp.c                0.5882365 0.7669658 -0.169              
+autonomy.grp.c           0.3940179 0.6277085 -0.215  0.131       
+pay.grp.c:autonomy.grp.c 1.6519175 1.2852694  0.317  0.288  0.117
+Residual                 5.3774103 2.3189244                     </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(interactions)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jtools)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmerTest)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>Mod1 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(engage <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> pay.grp.c <span class="sc">+</span> autonomy.grp.c <span class="sc">+</span> pay.grp.c<span class="sc">:</span>autonomy.grp.c <span class="sc">+</span> cohesion.grand.c <span class="sc">+</span> pay.grp.c<span class="sc">:</span>cohesion.grand.c <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">+</span> pay.grp.c <span class="sc">+</span> autonomy.grp.c <span class="sc">+</span> pay.grp.c<span class="sc">:</span>autonomy.grp.c<span class="sc">|</span>grpid), <span class="at">data =</span> data, <span class="at">control =</span> <span class="fu">lmerControl</span>(<span class="at">calc.derivs =</span> <span class="cn">FALSE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Several significant results emerged from these models. Specifically, employee pay was significantly related to individual levels of work engagement b=0.384, t(696)=2.721, p=.007. Additionally, results suggest that for every unit increase in pay, work engagement will increase by a value of 0.384, when autonomy and team cohesion are zero. However, job autonomy was did not moderate the relationship between pay and work engagement, b=0.349, t(696)=1.642, p=.101.</p>
+<p>Regarding the level 2 predictor, team cohesion, results indicate that team cohesion was found to moderate the relationship between pay and work engagement, b=0.535, t(696)=3.218, p=.001.</p>
+<section id="plotting-the-multilevel-interaction" class="level1 text-center">
+<h1><strong>Plotting The Multilevel Interaction</strong></h1>
+</section>
+<p>Given the significant interaction, I will now plot the interaction and calculate the simple slopes of this interaction to aid in interpretation.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interact_plot</span>(<span class="at">model =</span> Mod1, <span class="at">pred =</span> pay.grp.c, <span class="at">modx =</span> cohesion.grand.c,</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="at">x.label =</span> <span class="st">"Pay"</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="at">main.title =</span> <span class="st">"Interaction Between Team Cohesion and Pay Predicting Engagement"</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="at">y.label =</span> <span class="st">"Engagement"</span>, <span class="at">legend.main =</span> <span class="st">"Team Cohesion"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="at">colors =</span> <span class="fu">c</span>(<span class="st">"Green"</span>,<span class="st">"Blue"</span>)) <span class="sc">+</span> <span class="fu">theme_apa</span>(<span class="at">legend.use.title =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="MLMEngageTeam_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sim_slopes</span>(<span class="at">model =</span> Mod1, <span class="at">pred =</span> pay.grp.c, <span class="at">modx =</span> cohesion.grand.c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>JOHNSON-NEYMAN INTERVAL 
+
+When cohesion.grand.c is OUTSIDE the interval [-2.10, -0.19], the slope of
+pay.grp.c is p &lt; .05.
+
+Note: The range of observed values of cohesion.grand.c is [-2.23, 1.69]
+
+SIMPLE SLOPES ANALYSIS 
+
+Slope of pay.grp.c when cohesion.grand.c = -0.83100000291645215177994 (- 1 SD): 
+
+   Est.   S.E.   t val.      p
+------- ------ -------- ------
+  -0.06   0.20    -0.31   0.76
+
+Slope of pay.grp.c when cohesion.grand.c =  0.00000000000000001276756 (Mean): 
+
+  Est.   S.E.   t val.      p
+------ ------ -------- ------
+  0.38   0.14     2.72   0.01
+
+Slope of pay.grp.c when cohesion.grand.c =  0.83100000291645215177994 (+ 1 SD): 
+
+  Est.   S.E.   t val.      p
+------ ------ -------- ------
+  0.83   0.20     4.19   0.00</code></pre>
+</div>
+</div>
+<p>The relationship between pay and work engagement is stronger for individuals with higher levels of team cohesion. The slope for pay will increase by 0.535 with every unit change of team cohesion. In other words, the simple effect of engagement on pay gets strengthened, or more positive, p=.001.</p>
+<p>Simple slopes analysis reveals a significant moderated relationship between pay and engagement when autonomy is at its mean (b=0.38, t=2.72, p=.01) and when autonomy is one standard deviation above its mean (b=0.83, t=4.19, p&lt;.01), but not for those who indicated having levels of autonomy at work that was at least one standard deviation below the mean (b-0.06, t=-0.31, p=.76).</p>
+<section id="running-multilevel-models-to-predict-level-1-job-satisfaction" class="level1 text-center">
+<h1><strong>Running Multilevel Models to Predict Level 1 Job Satisfaction</strong></h1>
+</section>
+<p>The client also collected data on job satisfaction and is interested in knowing if job satisfaction, at the individual level, also interacts with team-level cohesion in predicting work engagement. I also swapped dependent variables to test if pay was a significant predictor of job satisfaction.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>model2<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lme</span>(engage <span class="sc">~</span>pay.grp.c, <span class="at">random =</span> <span class="sc">~</span><span class="dv">1</span> <span class="sc">+</span> pay.grp.c<span class="sc">|</span>grpid, <span class="at">data =</span> data, <span class="at">control =</span> <span class="fu">lmeControl</span>(<span class="at">opt =</span> <span class="st">"optim"</span>))</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model2<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed-effects model fit by REML
+  Data: data 
+       AIC      BIC    logLik
+  3768.164 3795.868 -1878.082
+
+Random effects:
+ Formula: ~1 + pay.grp.c | grpid
+ Structure: General positive-definite, Log-Cholesky parametrization
+            StdDev    Corr  
+(Intercept) 0.2572344 (Intr)
+pay.grp.c   0.8923049 0.552 
+Residual    2.8579445       
+
+Fixed effects:  engage ~ pay.grp.c 
+                Value Std.Error  DF   t-value p-value
+(Intercept) 2.9035266 0.1105163 699 26.272382  0.0000
+pay.grp.c   0.4368898 0.1639982 699  2.663991  0.0079
+ Correlation: 
+          (Intr)
+pay.grp.c 0.14  
+
+Standardized Within-Group Residuals:
+       Min         Q1        Med         Q3        Max 
+-2.1116006 -0.6941114 -0.1975845  0.4728133  6.5971460 
+
+Number of Observations: 750
+Number of Groups: 50 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>model2<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">lme</span>(jobsat <span class="sc">~</span> pay.grp.c, <span class="at">random =</span> <span class="sc">~</span><span class="dv">1</span> <span class="sc">+</span> pay.grp.c<span class="sc">|</span>grpid, <span class="at">data =</span> data, <span class="at">control =</span> <span class="fu">lmeControl</span>(<span class="at">opt =</span> <span class="st">"optim"</span>))</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model2<span class="fl">.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed-effects model fit by REML
+  Data: data 
+       AIC      BIC    logLik
+  2168.444 2196.148 -1078.222
+
+Random effects:
+ Formula: ~1 + pay.grp.c | grpid
+ Structure: General positive-definite, Log-Cholesky parametrization
+            StdDev     Corr  
+(Intercept) 0.13429577 (Intr)
+pay.grp.c   0.03052776 0.003 
+Residual    1.00544251       
+
+Fixed effects:  jobsat ~ pay.grp.c 
+                  Value  Std.Error  DF    t-value p-value
+(Intercept) -0.06326777 0.04133513 699 -1.5306053  0.1263
+pay.grp.c    0.03569705 0.03633069 699  0.9825591  0.3262
+ Correlation: 
+          (Intr)
+pay.grp.c 0     
+
+Standardized Within-Group Residuals:
+        Min          Q1         Med          Q3         Max 
+-2.80428971 -0.67306262  0.02052851  0.70766759  2.69852694 
+
+Number of Observations: 750
+Number of Groups: 50 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>model2<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="fu">lme</span>(engage <span class="sc">~</span> pay.grp.c <span class="sc">+</span> jobsat.grp.c, <span class="at">random =</span> <span class="sc">~</span><span class="dv">1</span> <span class="sc">+</span> pay.grp.c <span class="sc">+</span> jobsat.grp.c<span class="sc">|</span>grpid, <span class="at">data =</span> data,<span class="at">control =</span> <span class="fu">lmeControl</span>(<span class="at">opt =</span> <span class="st">"optim"</span>))</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model2<span class="fl">.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed-effects model fit by REML
+  Data: data 
+      AIC      BIC    logLik
+  3758.69 3804.851 -1869.345
+
+Random effects:
+ Formula: ~1 + pay.grp.c + jobsat.grp.c | grpid
+ Structure: General positive-definite, Log-Cholesky parametrization
+             StdDev    Corr         
+(Intercept)  0.3136581 (Intr) py.gr.
+pay.grp.c    0.9135909  0.425       
+jobsat.grp.c 0.5947158 -0.321  0.388
+Residual     2.7700579              
+
+Fixed effects:  engage ~ pay.grp.c + jobsat.grp.c 
+                 Value Std.Error  DF   t-value p-value
+(Intercept)  2.9035266 0.1104472 698 26.288815  0.0000
+pay.grp.c    0.4211243 0.1653490 698  2.546882  0.0111
+jobsat.grp.c 0.3767563 0.1374256 698  2.741530  0.0063
+ Correlation: 
+             (Intr) py.gr.
+pay.grp.c     0.133       
+jobsat.grp.c -0.079  0.175
+
+Standardized Within-Group Residuals:
+       Min         Q1        Med         Q3        Max 
+-2.1932653 -0.6760609 -0.1646372  0.4790537  6.6411560 
+
+Number of Observations: 750
+Number of Groups: 50 </code></pre>
+</div>
+</div>
+<p>While both pay (b=0.421, t(698)=2.547, p=.011) and job satisfaction (b=0.377, t(698)=2.742, p=.006) significantly predicted work engagement, pay was not a significant predictor of job satisfaction (b=0.036, t(699)=.983, p=.326).</p>
+<section id="effect-size" class="level1 text-center">
+<h1><strong>Effect Size</strong></h1>
+</section>
+<p>Now that I have determined which variables predict engagement, the question still remains of how strong these effects are. Given the multilevel nature of this data, I will analyze the ICC1 values which tells me the proportion of individual ratings that are due to group membership. I will also look at ICC2 values to establish the stability of mean ratings in discriminating between groups (participants are grouped by their work teams).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mult.icc</span>(data[, <span class="fu">c</span>(<span class="st">"jobsat"</span>, <span class="st">"jobauto"</span>)], data<span class="sc">$</span>grpid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Variable       ICC1      ICC2
+1   jobsat 0.01743368 0.2102011
+2  jobauto 0.01826727 0.2182050</code></pre>
+</div>
+</div>
+<p>ICC1 for both job satisfaction (ICC1=.017) and autonomy (ICC1=.018), both of which would be considered “small” effects. The proportion of variance in ratings that is due to between-target differences is small, suggesting that individuals rating are only slightly attributable to group membership.</p>
+<p>The ICC2 for job satisfaction (ICC2=.210) is larger than the ICC2 for autonomy (ICC2=.218), suggesting that the groups’ mean ratings were more stable and reliable for ratings of autonomy than for ratings of job satisfaction. In other words, the mean ratings of autonomy were better able to distinguish between groups than the mean ratings of job satisfaction.</p>
+<section id="inter-rater-reliability" class="level1 text-center">
+<h1><strong>Inter-rater Reliability</strong></h1>
+</section>
+<p>When looking at the data, I noticed that the commitment scale was created by aggregating three commitment items into an overall scale. To double-check that employees tended to rate similarly across the three items (i.e., an individual rating a score of 4 on the first commitment item would likely rate similarly for commitment items 2 &amp; 3) and that it is appropriate to use an aggregate commitment scale, I will assess inter-rater agreement. Note: rwg is the symbol used to denote this form of inter-rater agreement and will be utilized in the code and interpretation below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>rwg.commit1.un <span class="ot">=</span> <span class="fu">rwg</span>(data<span class="sc">$</span>commitment1, data<span class="sc">$</span>grpid, <span class="at">ranvar =</span> <span class="fl">2.00</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(rwg.commit1.un)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    grpid                rwg             gsize   
+ Length:50          Min.   :0.0000   Min.   :15  
+ Class :character   1st Qu.:0.2345   1st Qu.:15  
+ Mode  :character   Median :0.4333   Median :15  
+                    Mean   :0.3962   Mean   :15  
+                    3rd Qu.:0.5571   3rd Qu.:15  
+                    Max.   :0.7952   Max.   :15  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(rwg.commit1.un<span class="sc">$</span>rwg, <span class="at">xlab =</span> <span class="st">"Estimate of rwg"</span>, <span class="at">ylab =</span> <span class="st">"Frequency"</span>, <span class="at">main =</span> <span class="st">"Histogram of 1st Commitment Item's rwg Values"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="MLMEngageTeam_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>rwgj.commit.un <span class="ot">=</span> <span class="fu">rwg.j</span>(data[, <span class="fu">c</span>(<span class="dv">8</span><span class="sc">:</span><span class="dv">10</span>)], data<span class="sc">$</span>grpid, <span class="at">ranvar =</span> <span class="fl">2.00</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(rwgj.commit.un)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    grpid               rwg.j            gsize   
+ Length:50          Min.   :0.0000   Min.   :15  
+ Class :character   1st Qu.:0.5202   1st Qu.:15  
+ Mode  :character   Median :0.6825   Median :15  
+                    Mean   :0.6040   Mean   :15  
+                    3rd Qu.:0.7884   3rd Qu.:15  
+                    Max.   :0.8996   Max.   :15  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(rwgj.commit.un<span class="sc">$</span>rwg, <span class="at">xlab =</span> <span class="st">"Estimate of rwg"</span>, <span class="at">ylab =</span> <span class="st">"Frequency"</span>, <span class="at">main =</span> <span class="st">"Histogram of Commitment Scale's rwg Values"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="MLMEngageTeam_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The mean rwg value for the first commitment item is 0.396 and the median is .433. Since this value is below the standard cutoff of .70, it is apparent that raters had low levels of agreement for the first commitment item. The mean rwg.j value for the commitment scale is .604 and the median is .683. While still below the cutoff score of .70 for high inter-rater agreement, the agreement level did increase when all three commitment items were considered, as compared to a single commitment item, helping support the usability of the composite score over a particular commitment item.</p>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© 2023, Matthew Swanson</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ Made using Quarto
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/MattS002">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/matthew-swanson-phd-335942137">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>

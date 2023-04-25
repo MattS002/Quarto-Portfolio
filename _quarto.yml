@@ -1,0 +1,52 @@
+project:
+  type: website
+
+website:
+  title: "Matt's Portfolio Website"
+  site-url: https://matthew-swanson.com
+  description: "This is Matthew Swanson's personal portfolio and blog."
+  reader-mode: true
+  navbar:
+    logo: "/images/Logo.gif"
+    background: dark
+    search: true
+    pinned: true
+    right:
+      - text: "Home"
+        href: index.qmd
+      - text: "About"
+        href: about.qmd
+      - text: "Resume/CV"
+        href: Resume.qmd
+      - text: "Portfolio"
+        href: PortMain.qmd
+      - text: "Personal Blog"
+        href: Mainblog.qmd
+      - text: "Data Viz Portfolio"
+        href: DataViz.qmd
+      - icon: linkedin
+        href: https://www.linkedin.com/in/matthew-swanson-phd-335942137
+      - icon: github
+        href: https://github.com/MattS002
+      - icon: envelope
+        href: "mailto:mattswnsn53@gmail.com" 
+  page-footer:
+    background: dark
+    left: " © 2023, Matthew Swanson" 
+    right: 
+      - text: "Made using Quarto"
+      - icon: github
+        href: https://github.com/MattS002
+      - icon: linkedin 
+        href: https://www.linkedin.com/in/matthew-swanson-phd-335942137
+
+format:
+  html:
+    theme:
+      light: minty
+      dark: solar
+    css: styles.css
+    toc: true
+
+editor: visual
+

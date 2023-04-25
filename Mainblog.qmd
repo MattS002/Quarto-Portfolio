@@ -1,0 +1,10 @@
+---
+title: "Matthew Swanson's Blog"
+subtitle: "This blog is a personal amalgamation of my thoughts and insights on IO psychology topics, data analysis, and coding. I may throw a book review in here every once in a while 😊"
+editor: visual
+listing:
+  categories: true
+  contents: blog pages
+  type: grid
+  fields: [image, date, title, author, description, reading-time, categories]
+---

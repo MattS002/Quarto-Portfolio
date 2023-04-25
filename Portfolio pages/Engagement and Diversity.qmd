@@ -1,0 +1,301 @@
+---
+title: "Engagement and Diversity"
+editor: visual
+author: Matthew Swanson
+categories: ['Engagement', 'Diversity', 'R', 'Visualizations', 'Confirmatory Factor Analysis']
+warning: FALSE
+message: FALSE
+---
+
+::: text-center
+# **Project Goal**
+:::
+
+The overarching goal of this project is to better understand the demographic makeup of this company using their HR data and to assess how engaged employees are.
+
+::: text-center
+## **About This Data**
+:::
+
+This HR data set was provided on Kaggle [here](https://www.kaggle.com/datasets/koluit/human-resource-data-set-the-company?select=2021.06_job_profile_mapping.txt). Data is housed in four text files:
+
+-   A job profile map containing job metadata (job title, department, compensation, etc.)
+
+-   A company data file that contains more detail about employees (i.e., start/end dates, location, salary, bonus pay, etc.)
+
+-   A diversity text file that contains employee demographics
+
+-   An engagement survey text file which contains results of an employee survey questionnaire (due to reading issues, I converted this text file to a csv file)
+
+First, I want to clean and match up the data and provide some general oversights on the demographic makeup of the employees at this company.
+
+::: text-center
+# **Employee Demographics**
+:::
+
+First, the data needs to be read in and then matched up using indicator keys in the data sets.
+
+```{r, echo= c(-7, -8, -9, -10)}
+library(readxl)
+library(dplyr)
+library(tidyverse)
+library(psych)
+library(ggplot2)
+library(ggpubr)
+ProfileData <- read.delim("C:/Users/matts/Desktop/WebsiteData/Data/Diversity Engagement Data/2021.06_job_profile_mapping.txt")
+CompanyData <- read.csv("C:/Users/matts/Desktop/WebsiteData/Data/Diversity Engagement Data/CompanyData .csv")
+DiversityData <- read.delim("C:/Users/matts/Desktop/WebsiteData/Data/Diversity Engagement Data/Diversity.txt")
+EngagementData <- read.delim("C:/Users/matts/Desktop/WebsiteData/Data/Diversity Engagement Data/EngagementSurvey.txt")
+
+Merge1 <- merge(CompanyData, DiversityData, by.x = "EmployeeID")
+MasterData <- merge(Merge1, EngagementData, by.x = "EmployeeID")
+names <- c('level', 'Department', 'Gender', 'Gender.Identity', 'Race.Ethnicity', 'Veteran', 'Disability', 'Education', 'Sexual.Orientation')
+MasterData[,names] <- lapply(MasterData[,names], factor)
+```
+
+Now to calculate some general demographic statistics.
+
+```{r}
+mean(MasterData$Age)
+sd(MasterData$Age)
+MasterData %>%
+  group_by(Veteran) %>%
+  summarise(n = n()) %>%
+  mutate(freq = n / sum(n))
+MasterData %>%
+  group_by(Disability) %>%
+  summarise(n = n()) %>%
+  mutate(freq = n / sum(n))
+MasterData %>%
+  group_by(Race.Ethnicity) %>%
+  summarise(n = n()) %>%
+  mutate(freq = n / sum(n))
+MasterData %>%
+  group_by(Gender.Identity) %>%
+  summarise(n = n()) %>%
+  mutate(freq = n / sum(n))
+MasterData %>%
+  group_by(Sexual.Orientation) %>%
+  summarise(n = n()) %>%
+  mutate(freq = n / sum(n))
+MasterData %>%
+  group_by(Education) %>%
+  summarise(n = n()) %>%
+  mutate(freq = n / sum(n))
+```
+
+From this output, I can tell that the average employee is 44 years of age, typically not a veteran (approx. %5 of employees are a veteran), and did not report a disability (approx. 5% of employees reported a disability status). Further, the organization is 55% White with Asian employees making up the second most frequent demographic at 26%. Employees are about evenly split between male and female (around 44% each), most identify as heterosexual (64%), and about 67% have at least an undergraduate degree.
+
+The client is particularly interested in the gender and racial makeup of each level of their organization (i.e., individual contributor, manager, director, etc.) and asked to have some visualizations made up.
+
+```{r}
+LevelG <- MasterData %>%
+  group_by(level, Gender.Identity) %>%
+  filter(Gender.Identity != "Prefer not to say")%>%
+  summarise(n = n()) %>%
+  mutate(freq = n / sum(n))
+LevelR <- MasterData %>%
+  group_by(level, Race.Ethnicity) %>%
+  filter(Race.Ethnicity != "")%>%
+  summarise(n = n()) %>%
+  mutate(freq = n / sum(n))
+
+ggdotchart(LevelG, x = "level", y = "freq",
+           color = "Gender.Identity",                                
+           sorting = "asc", sort.by.groups = TRUE,                      
+           add = "segments",                            
+           add.params = list(color = "lightgray", size = 2), 
+           group = "Gender.Identity",                                
+           dot.size = 4,                                 
+           ggtheme = theme_pubclean()
+           )+
+  font("x.text", size = 8, vjust = 0.5)
+
+ggplot(LevelR, aes(fill=Race.Ethnicity, y=freq, x=level)) + 
+    geom_bar(position="stack", stat="identity") +
+  geom_text(aes(label = scales::percent(freq, accuracy = 1)),
+            position = position_stack(vjust = .5), size = 1.5) +
+  scale_x_discrete(guide=guide_axis(n.dodge=4)) 
+```
+
+Of particular note is that only White and Asian employees currently hold executive and C-suite positions (CSuite, SVP, & VP positions).
+
+::: text-center
+# **Employee Engagement**
+:::
+
+Now that I have a sense of the demographic breakdown of the employees at this company, my next goal is to better understand how engaged the employees feel at work and if these engagement perceptions significantly differ depending on employee's identities. First, I was asked to create a composite engagement variable and assess the reliability and validity of the scale. However, looking at the items, I doubt that the items will play together since the "engagement" items cover topics such as perspectives on DEI, market survivability of their company, compensation, and engagement.
+
+Note: none of the engagement items were reverse coded so there is no need to reverse score any items.
+
+```{r}
+library(psych)
+#Create composite engagement score
+MasterData %>%
+  rowwise()%>%
+  mutate(Engagement = mean(c(E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18, E19)))-> MasterData
+#Create engagement scale Reliability Analysis
+EngagementScale <- select(MasterData, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18, E19)
+psych::alpha(EngagementScale)
+```
+
+::: text-center
+# **Confirmatory Factor Analysis**
+:::
+
+Indeed, analyses support my contention that combining all "engagement" items into one scale does not make sense from a measurement standpoint. Already there is strong evidence that there is a lack of reliability here from a composite scale perspective. Cronbach's alpha for this scale is unacceptable, sitting at α= .01 (I would accept values above .70). I also ran a confirmatory factor analysis and none of the items loaded together onto a global latent factor of engagement; all factor loadings are less than .255. I would like to see loadings of at least .40 and realistic CFI and TLI values (within 0-1 with values close to 1 without exceeding 1).
+
+```{r}
+library(lavaan)
+CFA1  <- 'Engage =~ E1 + E2 + E3 + E4 + E5 + E6 + E7 + E8 + E9 + E10 + E11 + E12 + E13 + E14 + E15 + E16 + E17 + E18 + E19'
+CFAOut <- cfa(CFA1, data=MasterData) 
+summary(CFAOut, fit.measures=TRUE, standardized=TRUE)
+```
+
+Thus, I will focus on three items that the client was interested in understanding their employee's perspectives on.
+
+::: text-center
+# **Item Analysis & Visualizations**
+:::
+
+The three items of interest are:
+
+-   I feel engaged in my work (E2)
+
+-   The company cares about Diversity, Equity, and Inclusion (E5)
+
+-   I believe there are good career opportunities for me at the company (E11)
+
+First I calculated means and standard deviations for these three items and then broke the means up by gender, race, and sexual orientation.
+
+Note: greater scores on these items indicate greater agreement with the item.
+
+```{r}
+ShortData <- subset(MasterData,Sexual.Orientation != "Missing" & Race.Ethnicity != "", select=c('Race.Ethnicity','Gender.Identity','Sexual.Orientation', 'E2', 'E5', 'E11'))
+
+describe(ShortData)
+
+ShortData %>%
+  group_by(Race.Ethnicity) %>%
+  summarise_at(vars(c("E2", "E5", "E11")), list(mean = mean))
+ShortData %>%
+  group_by(Gender.Identity) %>%
+  summarise_at(vars(c("E2", "E5", "E11")), list(mean = mean))
+ShortData %>%
+  group_by(Sexual.Orientation) %>%
+  summarise_at(vars(c("E2", "E5", "E11")), list(mean = mean))
+```
+
+There are a lot of calculated means so I will first visualize them and then conduct a few ANOVAs to test for significant mean differences.
+
+Starting with question E2, which is "I feel engaged in my work":
+
+```{r}
+ggplot(ShortData, aes(x=Race.Ethnicity, y=E2, fill=Race.Ethnicity)) + 
+    geom_bar(position=position_dodge(), stat="identity") +
+  scale_x_discrete(guide=guide_axis(n.dodge=6)) +
+  theme(axis.text.x = element_text(size = 5)) +
+  labs(y = "I feel engaged in my work")
+
+ggplot(ShortData, aes(x=Gender.Identity, y=E2, fill=Gender.Identity)) + 
+    geom_bar(position=position_dodge(), stat="identity") +
+  scale_x_discrete(guide=guide_axis(n.dodge=2)) +
+  theme(axis.text.x = element_text(size = 10)) +
+  labs(y = "I feel engaged in my work")
+
+ggplot(ShortData, aes(x=Sexual.Orientation, y=E2, fill=Sexual.Orientation)) + 
+    geom_bar(position=position_dodge(), stat="identity") +
+    theme(axis.text.x = element_text(size = 10)) +
+  labs(y = "I feel engaged in my work")
+```
+
+Glancing at the graphs, there does not seem to be a lot of variability for this question. Most participants across race, gender, and sexual orientation felt positively about how engaged they feel at work. The exception here may be that Native Hawaiian or Other Pacific Islanders may feel less engaged than other groups of people. I will not know if these differences are significant until I run an ANOVA.
+
+Next, question E5, "The company cares about Diversity, Equity, and Inclusion":
+
+```{r}
+ggplot(ShortData, aes(x=Race.Ethnicity, y=E5, fill=Race.Ethnicity)) + 
+    geom_bar(position=position_dodge(), stat="identity") +
+  scale_x_discrete(guide=guide_axis(n.dodge=6)) +
+  theme(axis.text.x = element_text(size = 5)) +
+  theme(axis.title.y = element_text(size = 8)) +
+  labs(y = "The company cares about Diversity, Equity, and Inclusion")
+
+ggplot(ShortData, aes(x=Gender.Identity, y=E5, fill=Gender.Identity)) + 
+    geom_bar(position=position_dodge(), stat="identity") +
+  scale_x_discrete(guide=guide_axis(n.dodge=2)) +
+  theme(axis.text.x = element_text(size = 10)) +
+  theme(axis.title.y = element_text(size = 8)) +
+  labs(y = "The company cares about Diversity, Equity, and Inclusion")
+
+ggplot(ShortData, aes(x=Sexual.Orientation, y=E5, fill=Sexual.Orientation)) + 
+    geom_bar(position=position_dodge(), stat="identity") +
+    theme(axis.text.x = element_text(size = 10)) +
+  theme(axis.title.y = element_text(size = 8)) +
+  labs(y = "The company cares about Diversity, Equity, and Inclusion")
+```
+
+Similar to question E2, most participants felt that their company does care about diversity, equity, and inclusion, with the exceptions potentially being American Indians or Alaska Natives and Native Hawaiians or Other Pacific Islanders.
+
+Lastly, question E11, "I believe there are good career opportunities for me at the company":
+
+```{r}
+ggplot(ShortData, aes(x=Race.Ethnicity, y=E11, fill=Race.Ethnicity)) + 
+    geom_bar(position=position_dodge(), stat="identity") +
+  scale_x_discrete(guide=guide_axis(n.dodge=6)) +
+  theme(axis.text.x = element_text(size = 5)) +
+  theme(axis.title.y = element_text(size = 8)) +
+  labs(y = "I believe there are good career opportunities for me at the company")
+
+ggplot(ShortData, aes(x=Gender.Identity, y=E11, fill=Gender.Identity)) + 
+    geom_bar(position=position_dodge(), stat="identity") +
+  scale_x_discrete(guide=guide_axis(n.dodge=2)) +
+  theme(axis.text.x = element_text(size = 10)) +
+  theme(axis.title.y = element_text(size = 8)) +
+  labs(y = "I believe there are good career opportunities for me at the company")
+
+ggplot(ShortData, aes(x=Sexual.Orientation, y=E11, fill=Sexual.Orientation)) + 
+    geom_bar(position=position_dodge(), stat="identity") +
+    theme(axis.text.x = element_text(size = 10)) +
+  theme(axis.title.y = element_text(size = 8)) +
+  labs(y = "I believe there are good career opportunities for me at the company")
+```
+
+Pretty similar across the board with the exception of Native Hawaiian or Other Pacific Islanders who do not agree that there are good opportunities for them at their company.
+
+::: text-center
+## **Factorial ANOVA**
+:::
+
+Now I will run three ANOVAs with each engagement item as the dependent variable and the three identity variables, race, gender, and sexual orientation, as predictors in each model.
+
+```{r}
+E2Model <- aov(E2 ~ Race.Ethnicity + Gender.Identity + Sexual.Orientation, ShortData)
+summary(E2Model)
+E5Model <- aov(E5 ~ Race.Ethnicity + Gender.Identity + Sexual.Orientation, ShortData)
+summary(E5Model)
+E11Model <- aov(E11 ~ Race.Ethnicity + Gender.Identity + Sexual.Orientation, ShortData)
+summary(E11Model)
+
+#Does identity interact in predicting perceptions of the DEI culture at their company?
+E5INTModel <- aov(E5 ~ Race.Ethnicity*Gender.Identity*Sexual.Orientation, ShortData)
+summary(E5INTModel)
+```
+
+Note that I have not contrast coded these variables which would aid greatly in interpretation of significant effects. However, since none of the main effects are significant (likely due to small cell sizes in some categories), I will not go back and contrast code these main effects. However, I do show how to contrast code and the interpretation of those effects in a different project already uploaded to my portfolio if you are interested.
+
+Results across the board indicate that race, gender, and sexual orientation were not significant predictors of perceptions of engagement, DEI culture, and career opportunities, all *ps* \> .05. Also, identity does not interact in predicting perceptions of the DEI culture, all *ps* \> .05.
+
+```{r}
+mean(ShortData$E2)
+mean(ShortData$E5)
+mean(ShortData$E11)
+```
+
+::: text-center
+# **Recommendations**
+:::
+
+Looking at the overall means of those three items and considering that each item was rated on a scale of 1-5 with 5 representing a "strongly agree" anchor, it seems that across the board, employees feel relatively neutral when asked about their engagement levels, the DEI culture of the company, and the career opportunities at their company. These perceptions did not significantly differ across racial, gender, and sexual orientation groups. However, glancing back at the bar charts that displayed the spread of employees across industry level, it is clear that only White and Asian employees work in the executive and C-Suite roles at this company, which certainly limits the voices of other groups of people in major decision making roles.
+
+Thus, my recommendation is to collect more effective data. For example, psychometric engagement scales should be utilized to obtain reliable and valid engagement scores in this company; the current data collection process contains many items that have nothing to do with engagement nor do they load onto the same latent factor of engagement, even though they are classified as engagement items in this company's data. Next, qualitative data should be collected, allowing for employees to voice their concerns and provide nuance to these items. Last, some work should be done to look at the current selection procedure for management and executive positions at this company. There could be a case for adverse impact if the company is not careful with their hiring strategy.

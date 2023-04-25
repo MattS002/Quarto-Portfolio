@@ -1,0 +1,176 @@
+---
+title: "Resume / CV"
+editor: visual
+page-layout: full
+---
+
+::: text-center
+# **Education**
+:::
+
++------------------------------------------------+-----------------------------------------------+-------------------------------------------------------+
+| **2019 - 2022**\                               | **2016 - 2018**\                              | **2013 - 2016**\                                      |
+| UNIVERSITY OF NEBRASKA OMAHA\                  | UNIVERSITY OF Akron\                          | KENT STATE UNIVERSITY\                                |
+| Ph.D. in Industrial Organizational Psychology\ | M.A. in Industrial Organizational Psychology\ | B.S. in Psychology\                                   |
+| GPA = 4.00                                     | GPA = 3.78                                    | GPA = 3.75                                            |
++------------------------------------------------+-----------------------------------------------+-------------------------------------------------------+
+| ![](images/uno-icon-color.png){width="142"}    | ![](images/UAWordmark_blue.png)               | ![](images/Process_FC_gold-white-bolt-white_MAIN.png) |
++------------------------------------------------+-----------------------------------------------+-------------------------------------------------------+
+
+::: text-center
+# **Experience**
+:::
+
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ### WORK EXPERIENCE:                         | **2022 - Present**                                                                                                                                                                          |
+|                                              |                                                                                                                                                                                             |
+|                                              | **Writer - IOATWORK**                                                                                                                                                                       |
+|                                              |                                                                                                                                                                                             |
+|                                              | -   Translated academic research to an applied audience via monthly research article reviews                                                                                                |
+|                                              | -   Assessed and reported research designs and advanced statistics to a practitioner audience                                                                                               |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![](images/Maverick%202019.JPG){width="800"} | **2019 - 2021**                                                                                                                                                                             |
+|                                              |                                                                                                                                                                                             |
+|                                              | **External Consultant - The Center for Applied Psychological Services**                                                                                                                     |
+|                                              |                                                                                                                                                                                             |
+|                                              | -   Acted as project lead and managed data collection procedures (both for large- and small-scale data sets)                                                                                |
+|                                              | -   Analyzed big data using Excel, SPSS, and R to create and present technical reports                                                                                                      |
+|                                              | -   Utilized dashboard/visualization toolsets (Tableau) for data presentation and analysis                                                                                                  |
+|                                              | -   Served as the expert for people analytics and data reporting                                                                                                                            |
+|                                              | -   Developed Knowledge, Skills, & Ability-linked items for evidence-based employee selection                                                                                               |
+|                                              | -   Conducted a variety of data analyses (Regression, Validity, Frequencies, Data Visualization)                                                                                            |
+|                                              | -   Worked with law enforcement to develop officer promotional exams                                                                                                                        |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                              | **2017 - 2019**                                                                                                                                                                             |
+|                                              |                                                                                                                                                                                             |
+|                                              | **IO Analyst, Client Solutions & Program Management - Corporate College**                                                                                                                   |
+|                                              |                                                                                                                                                                                             |
+|                                              | -   Conducted job analyses and redesigned hiring procedures and evaluative criteria                                                                                                         |
+|                                              | -   Developed over 70 evidence-based training courses targeting workplace competencies such as Diversity, Equity, and Inclusion, change management, and accountability                      |
+|                                              | -   Ensured data quality and proper collection standards Converted data into business insights through predictive modeling                                                                  |
+|                                              | -   Created predictive models to assess satisfaction, turnover, and organizational climate & culture                                                                                        |
+|                                              | -   Improved the frontline and leadership talent of dozens of clients via organizational training                                                                                           |
+|                                              | -   Worked with companies like American Greetings, Cleveland Cavalier and Oatey to address absenteeism and training issues, resulting in healthier work environments and improved retention |
+|                                              | -   Trained a small team on how to evaluate and score evaluations                                                                                                                           |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                              | **2017 - 2017**                                                                                                                                                                             |
+|                                              |                                                                                                                                                                                             |
+|                                              | **Consultant - Center for Organizational Research**                                                                                                                                         |
+|                                              |                                                                                                                                                                                             |
+|                                              | -   Conducted data analyses and compiled results into professional reports                                                                                                                  |
+|                                              | -   Customized tests, measures, survey, and selection systems                                                                                                                               |
+|                                              | -   Created and validated surveys to assess perceptions of success for client's internal projects                                                                                           |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
++-------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| ### TEACHING AND PROFESSIONAL ACTIVITIES: | **2019 - 2022**                                                                                                                     |
+|                                           |                                                                                                                                     |
+|                                           | **Teaching Assistant - University of Nebraska Omaha**                                                                               |
+|                                           |                                                                                                                                     |
+|                                           | -   Developed course content, taught graduate-level R coding, and graded coursework                                                 |
+|                                           | -   Lectured weekly for graduate-level analysis of variance (ANOVA)                                                                 |
++-------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| ![](images/Mav2.PNG){width="750"}         | **2020 - 2023**                                                                                                                     |
+|                                           |                                                                                                                                     |
+|                                           | **Conference Reviewer**                                                                                                             |
+|                                           |                                                                                                                                     |
+|                                           | -   Reviewed submissions, provided feedback, and determined application status for research submitted to the following conferences: |
+|                                           |     -   Midwest Academy of Management                                                                                               |
+|                                           |                                                                                                                                     |
+|                                           |     -   Society for the Psychological Study of Social Issues                                                                        |
+|                                           |                                                                                                                                     |
+|                                           |     -   Reviewer for APS Student Research & Grant Award                                                                             |
++-------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
+|                                           | **2023 - 2023**                                                                                                                     |
+|                                           |                                                                                                                                     |
+|                                           | **Journal Editor**                                                                                                                  |
+|                                           |                                                                                                                                     |
+|                                           | -   Served as Guest Editor for a special edition of the Journal of Social Issues                                                    |
++-------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
+
++--------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+| ### RESEARCH EXPERIENCE: | **2019 - Present**                                                                                                               |
+|                          |                                                                                                                                  |
+|                          | **Lab Researcher - Diversity and Inclusion Research Lab**                                                                        |
+|                          |                                                                                                                                  |
+|                          | -   Provided input to research methodology and presentation efforts                                                              |
+|                          | -   Developed empirical work to test questions regarding diversity and inclusion at work                                         |
+|                          | -   Analyzed data sets using R, SPSS, SAS, and Python, and wrote empirical findings for both academic and practitioner audiences |
++--------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+| ![](images/Mav.jpg)      | **2019 - 2021**                                                                                                                  |
+|                          |                                                                                                                                  |
+|                          | **External Research Consultant - Tri-Faith**                                                                                     |
+|                          |                                                                                                                                  |
+|                          | -   Served as a research consultant to Tri-Faith's research initiatives                                                          |
+|                          | -   Helped align project ideas with research questions                                                                           |
++--------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+|                          | **2015 - 2016**                                                                                                                  |
+|                          |                                                                                                                                  |
+|                          | **Research Assistant - Emotion, Stress, and Relationships Lab**                                                                  |
+|                          |                                                                                                                                  |
+|                          | -   Oversaw clinical trials targeted at developing a language-based psychotherapy                                                |
++--------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+
+::: text-center
+# Conference Presentations & Posters
+:::
+
+Folberg, A., Votruba, A., Marshburn, C., **Swanson, M.,** Crawford, D., Kaiser, C. (2023). *Reimagining Resolution: Addressing Racism in Academic Institutions with Conflict Resolution.* Interactive discussion to be presented at the annual conference for the Society for the Psychological Study of Social Issues, Denver, CO.
+
+\
+Ximenes, M., Folberg, A., **Swanson, M. A.,** Dueland, L., Stepanek, S., Ryan C. (2023). *The Role of Conservatism in Evaluations of Diversity Statements.* Poster to be presented at the Midwestern Psychological Association, Chicago, IL.
+
+**\
+Swanson, M. A**.(2022). *Can I Remain True to Myself at Work? An Experimental Study of Psychologically Safe versus Unsafe Workplaces on LGBTQ+ and Heterosexual Perceptions of Authenticity, Belongingness, Vigilance, and Resiliency*. Poster presented at the Student Research and Creative Activity Fair, Omaha, NE. 
+
+\
+Stepanek, S., Dueland, L., Folberg, A. M., **Swanson, M. A.,** & Ryan, C. S. (2021).*Whites (vs. Blacks) and conservatives exhibit less interest in applying for jobs that request diversity statements in application materials.* Poster presented at the annual conference of the Association for Psychological Science, Virtual. 
+
+\
+‍**Swanson, M. A.**(2021). *Essential Meaningful Work: A Multistage Proposal for the Development and Validation of the Essential Meaningful Work Inventory (EMWI).* Poster presented at the annual conference of the Association for Psychological Science, Virtual. 
+
+\
+Crawford, D., **Swanson, M. A.,** Dueland, L. B., Stepanek, S., & Ryan, C. (2021). *A Missing Component of Diversity Training and Diversity Initiatives: Conflict Management Training.* Poster presented at the annual conference for the Society for the Psychological Study of Social Issues, Virtual.
+
+*\
+‍*Dodds, B. L., Ryan, C. S., **Swanson, M. A.** (2021). *The Relationships of Perceived Parental Social Support to Vigilance and Resilience among LGBTQ and Straight Cisgender Adults.* Poster presented at the University of Nebraska Omaha's University Honors Program, Omaha, NE. 
+
+\
+Dueland, L. B., Folberg, A. M., **Swanson, M. A.,** & Ryan, C. S. (2020). *Perceptions of Requests for Diversity Statements in Job Advertisements.* Poster presented at the annual meeting of the Society for the Psychological Study of Social Issues, Denver, CO. (Conference cancelled) 
+
+\
+Crawford, D., **Swanson, M. A.,** Dueland, L. B., Stepanek, S., & Ryan, C. (2020).*Conflict management techniques within diversity initiatives: A critical missing link.* Interactive discussion facilitated at the Society for the Psychological Study of Social Issues Conference, Denver, CO. (Conference cancelled) 
+
+Dueland, L. B., Folberg, A., **Swanson, M. A.,** & Ryan, C. (2020). Reactions to selection processes involving diversity statements. Poster presented at the Society for Industrial Organizational Psychology Conference, Austin, TX.(Conference cancelled) 
+
+\
+‍**Swanson,M. A.** (2015) *The Effects of Positive Teacher-Child Relationships on School Achievement and Motivation in Adolescence.* Poster presented at the Undergraduate Research Conference, Kent, OH.
+
+::: text-center
+# Skills & Coursework
+:::
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------+
+| ## **Skills** {.text-center}                                                                                                                              | ## **Coursework** {.text-center}                                         |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------+
+| **Statistical Analysis Software:** R, SPSS,PROCESS, SAS, Excel, Mplus, LIWC, SQL                                                                          | -   African American Psychology                                          |
+|                                                                                                                                                           | -   Diversity in Organizations                                           |
+| -   Experience using SQL, R, Python, SAS, Mplus, and SPSS for predictive data modeling and analyses                                                       | -   Groups and Teams                                                     |
+| -   Expertise in qualitative data collection and analysis procedures using natural language processing and textual analysis with programs like R and LIWC | -   Industrial Motivation and Morale                                     |
+| -   Wed design using HMTL, YAML and CSS                                                                                                                   | -   Leadership                                                           |
+|                                                                                                                                                           | -   Learning                                                             |
+| **Data Collection Software:** Qualtrics, Survey Monkey, Cloud Research                                                                                    | -   Multilevel Modeling in R                                             |
+|                                                                                                                                                           | -   Research Methods                                                     |
+| -   Data sets ranged from a few dozen to over 50,000 sampled individuals                                                                                  | -   Social Psychology                                                    |
+|                                                                                                                                                           | -   Structural Equation Modeling                                         |
+|                                                                                                                                                           | -   Advanced Psychological Tests and Measurements                        |
+|                                                                                                                                                           | -   Industrial Organizational Psychology                                 |
+|                                                                                                                                                           | -   Multivariate and Computational Methods in Psychology                 |
+|                                                                                                                                                           | -   Organizational Psychology                                            |
+|                                                                                                                                                           | -   Performance Feedback and Evaluations                                 |
+|                                                                                                                                                           | -   Personnel Selection and Advanced App Test ISS                        |
+|                                                                                                                                                           | -   Psychological Research: Quantitative and Computational Methods 1     |
+|                                                                                                                                                           | -   Psychological Research: Quantitative and Computational Methods 2     |
+|                                                                                                                                                           | -   Role of Attitudes and Values in Industrial Organizational Psychology |
+|                                                                                                                                                           | -   Training                                                             |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------+

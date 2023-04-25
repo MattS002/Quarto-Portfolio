@@ -1,0 +1,94 @@
+---
+title: "Between and Within Repeated Measures ANOVA in R"
+editor: visual
+author: Matthew Swanson
+categories: ['Repeated Measures ANOVA', 'R', 'Emmeans']
+warning: FALSE
+message: FALSE
+---
+
+::: text-center
+# **Project Goal**
+:::
+
+A researcher is interested in how memory for a list of words can be influenced by instructions on how to process the words. She assigns participants to one of three instruction conditions (COND): no instructions (coded as 1), rote memorization (told to just rehearse each word, coded as 2), and image (told to form an image for each word, coded as 3). Participants are presented with a list of 30 words and the researcher records the number out of 30 words that each participant recalls correctly. Because she is interested in practice effects, she presents each subject with two lists, one after another, and records performance on each list (LIST1 and LIST2).
+
+First, I will read in the data and check the data type (i.e., is the data wide or long?).
+
+```{r, echo=-7}
+library(readxl)
+library(dplyr)
+library(ez)
+library(tidyr)
+library(tidyverse)
+
+Data <- read_excel("C:/Users/matts/Desktop/WebsiteData/Data/Repeated Measures Data 2.xlsx")
+head(Data)
+
+#Need to convert data set to long format - it is currently in wide format
+
+#Changing data to long format - we want to gather by list as this is the repeated variable
+DataLong <- Data %>%
+gather(key = "list", value = "score", list1, list2)
+DataLong$list <- as.factor(DataLong$list)
+DataLong$cond <- as.factor(DataLong$cond)
+DataLong$subjid <- as.factor(DataLong$subjid)
+head(DataLong)
+```
+
+Now, let's double check that the design is balanced.
+
+```{r}
+DataLong %>%
+group_by(list, cond) %>%
+summarise(n = n(), sd = sd(score), var = var(score))
+```
+
+::: text-center
+# **Model Building**
+:::
+
+We have a balanced design. Now let's analyze the data. We are interested in how memory for a list of words can be influenced by instructions on how to process the words.
+
+```{r}
+library(rstatix)
+Repeated <- ezANOVA(DataLong, dv = score, wid = subjid, within = list, between = cond, detailed = TRUE, return_aov = TRUE, type = 3)
+Repeated
+
+#Additional ways to estimate this model
+Model <- aov(score ~ list*cond + Error(subjid/list), DataLong)
+#summary(Model)
+
+#SphereCorr <- anova_test(DataLong, dv = score, wid = subjid, within = list, between = cond)
+#SphereCorr
+
+library(ggpubr)
+
+bxp <- ggboxplot(DataLong, x = "list", y = "score",color = "cond", palette = "jco")
+bxp
+```
+
+Since the interaction term is significant, F(2,27) = 5.94, p = .047, that means that values in one factor depend, in part, on the values in the other factor so we must look at pairwise comparisons (simple effects and simple effects comparison). As denoted in the figure and output, there are some significant mean memory score differences between list 1 and list 2 of words for each condition.
+
+::: text-center
+## **Marginal Means**
+:::
+
+Let's directly calculate these means and the marginal means to aid in our interpretation of this data.
+
+```{r}
+library(emmeans)
+
+#the pairs function comes from the emmeans package - verbiage should feel similar to emmeans commands in SPSS
+SimpleCond <- emmeans(Model, pairwise ~ cond, adjust = "bonferroni")
+SimpleCond
+
+SimpleList <- emmeans(Model, pairwise ~ list, adjust = "bonferroni")
+SimpleList
+```
+
+::: text-center
+# **Solution**
+:::
+
+Let's interpret a few of these results. Across lists, participants told to form an image of the words in the mind recalled significantly greater words (M = 16.4) than those who practice rote memorization of the words (M = 12.2), t(27) = -2.86, p = 03. Additionally, the practice effect has strongest for participants in the rote memory condition as more words were recalled in the second list (M = 14.9) as compared to the first list (M = 9.4), t(27) = -7.43, p \<.001. In other words, participants recalled more words overall when asked to assign an image to each word, however, they learned the best (i.e., the practice effect was the strongest) when they were asked to recall words via rote memory.
