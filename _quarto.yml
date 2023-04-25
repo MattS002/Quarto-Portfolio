@@ -6,6 +6,7 @@ website:
   site-url: https://matthew-swanson.com
   description: "This is Matthew Swanson's personal portfolio and blog."
   reader-mode: true
+  google-analytics: "G-N8XM3M8B8C"
   navbar:
     logo: "/images/Logo.gif"
     background: dark
