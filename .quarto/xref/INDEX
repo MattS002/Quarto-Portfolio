@@ -1,0 +1,50 @@
+{
+  "index.qmd": {
+    "index.html": "83383460"
+  },
+  "about.qmd": {
+    "about.html": "3e706af6"
+  },
+  "Resume.qmd": {
+    "Resume.html": "802d5f11"
+  },
+  "Mainblog.qmd": {
+    "Mainblog.html": "1e6b804b"
+  },
+  "blog pages/Mainblog.qmd": {
+    "Mainblog.html": "06d0207e"
+  },
+  "blog pages/Welcome Blog.qmd": {
+    "Welcome Blog.html": "66e297a1"
+  },
+  "Portfolio pages/Repeated Measures.qmd": {
+    "Repeated Measures.html": "60afdae9"
+  },
+  "PortMain.qmd": {
+    "PortMain.html": "67b35d98"
+  },
+  "Portfolio pages/NLPSentiment.qmd": {
+    "NLPSentiment.html": "43cf159d"
+  },
+  "Portfolio pages/BWRepeart.qmd": {
+    "BWRepeart.html": "62fb6baa"
+  },
+  "Portfolio pages/FactorialANOVA.qmd": {
+    "FactorialANOVA.html": "4e34bd37"
+  },
+  "Portfolio pages/FactorPower.qmd": {
+    "FactorPower.html": "1d7f320c"
+  },
+  "DataViz.qmd": {
+    "DataViz.html": "78ff75ed"
+  },
+  "Portfolio pages/Turnover.qmd": {
+    "Turnover.html": "3cf411d1"
+  },
+  "Portfolio pages/Engagement and Diversity.qmd": {
+    "Engagement and Diversity.html": "d3f94655"
+  },
+  "Portfolio pages/MLMEngageTeam.qmd": {
+    "MLMEngageTeam.html": "30b05777"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "listingMap": {
+    "Mainblog.qmd": [
+      "B3049D40",
+      "post",
+      "blog-pages/*.qmd",
+      "Matt's Portfolio Website Code/blog pages/*.qmd",
+      "blog pages"
+    ],
+    "blog pages\\Mainblog.qmd": [
+      "post",
+      "Welcome Blog.qmd",
+      "blog-pages/*.qmd"
+    ],
+    "PortMain.qmd": [
+      "Portfolio pages"
+    ],
+    "index.qmd": [
+      "Portfolio Pages/NLPSentiment.qmd",
+      "Portfolio-Pages/NLPSentiment.qmd",
+      "Portfolio pages/NLPSentiment.qmd",
+      "Portfolio pages/FactorialANOVA.qmd",
+      "Portfolio pages/MLMEngageTeam.qmd"
+    ]
+  }
+}
