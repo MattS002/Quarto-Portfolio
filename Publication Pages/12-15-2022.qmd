@@ -1,0 +1,20 @@
+---
+title: "Can I Remain True to Myself at Work? An Experimental Study of Psychologically Safe Versus Unsafe Workplaces on LGBTQ and Straight Perceptions of Authenticity, Vigilance, Belongingness, and Well-Being"
+author: 
+- name: Matthew A. Swanson
+  orcid: 0000-0002-6785-2297
+date: '12-15-2022'
+categories: 
+  - Authenticity
+  - Psychological Safety
+  - Vigilance
+  - Well-being
+description: 'Dissertation'
+---
+
+[{{< fa solid file-lines >}} Publication](https://www.proquest.com/dissertations-theses/can-i-remain-true-myself-at-work-experimental/docview/2770014140/se-2){.btn target="_blank"}
+
+
+## Abstract
+
+Researchers and managers have begun to consider ways to increase employee authenticity as greater authenticity has been linked to better well-being and mental health, lower stress, and fewer negative life events at work. However, authenticity can conflict with workplace values and norms. Further, the role of identity, such as sexual orientation, is less clear in shaping authentic self-expression at work. I experimentally manipulated psychological safety and evaluated subsequent judgments of authenticity, vigilance, well-being, and belongingness. Participants were straight (n = 294) and LGBTQ (n = 272) workers recruited through Prolific Academic who were randomly assigned to either a psychologically safe or unsafe condition. Using a narrative identity primer, participants were asked to describe in detail an experience at their current job that was either “healthy” or “unhealthy” with a focus on how the participant felt and the significance of the event to the participant. Results indicated that psychologically safe (vs. unsafe) environments facilitated greater authenticity and lower vigilance which, in turn, related to greater well-being and belongingness. Further, these relationships were largely the same for LGBTQ and straight participants. However, qualitative accounts revealed that LGBTQ and straight participants paid attention to different aspects of the work environment when determining how psychologically safe (or unsafe) the environment was. Both LGBTQ and straight participants drew upon experiences with leadership, workplace support and abuse, safety, and COVID-19 in their depictions of psychologically safe or unsafe workplaces. Yet, for LGBTQ participants, it was largely the treatment of their sexual identities that shaped experiences with psychological safety. Thus, while the path to psychological safety differs for LGBTQ and straight employees, psychological safety appears to be similarly important in facilitating employee authenticity.

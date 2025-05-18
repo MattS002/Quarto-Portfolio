@@ -1,0 +1,25 @@
+---
+title: "Essential Meaningful Work: A Multistage Proposal for the Development and Validation of the Essential Meaningful Work Inventory (EMWI) "
+author: 
+- name: Matthew A. Swanson
+  orcid: 0000-0002-6785-2297
+date: '5-26-2021'
+categories: 
+  - Meaningful Work
+  - Essential Workers
+  - Scale Development
+  - Generalizable Research
+
+description: 'Meaningful Work Inventory'
+---
+
+## Abstract
+
+**Introduction.** Meaningful work is becoming a ubiquitous component of managerial and motivational discourse, reflecting a shift in societal perceptions regarding how to best motivate employees beyond pay and reward systems (Michaelson, 2020). Meaningfulness is subjective and eudaimonic(Bailey et al., 2019). That is, the pursuit of meaningfulness at work is often viewed as an inherent need that employees are motivated to fulfill (Lips-Wiersma & Morris, 2009). Most meaningful work research utilizes data from WEIRD(i.e., white, educated, industrialized, rich, democratic) participants, hold mid-to-upper-level job positions within their organization, or are white-collar employees (Bailey et al., 2019). The generalizability of empirical findings to frontline and essential workers is questionable at best. Indeed, research has demonstrated that white-collar employees likely differ in their sources of meaningful work from blue-and pink-collar employees (Lips-Wiersma et al., 2016). Several researchers have even gone so far as to suggest that meaningful work is best fostered for employees in white-collar positions (Lysovaet al., 2019). The lack of consideration is reflected within current meaningful work inventories which largely ignore employee samples that are not “professional” or white-collar. The importance of understanding how frontline and essential workers perceive meaningfulness in their work has been underscored by the COVID-19 pandemic. Essential and frontline employees have had to navigate increasingly anxiety-provoking situations, often with little to no support from leadership and society at large as resources dry up and teams are spread thin (Adams & Walls, 2020). Indeed, the pandemic has exasperated the issues that many frontline and essential workers have been facing for decades (Guerrero et al., 2020). Further, many essential and frontline workers are immigrants or come from lower SES families and face barriers and challenges that often go unseen by the general public (Kerwin& Warren, 2020). Understanding meaningful work from the perspectives of frontline and essential workers may help identify ways (in addition to improving financial rewards) to attract and retain people in these positions.
+
+**Goals.** The goals of the proposed research are to:
+
+1.  Identify factors important to the development of meaningful work for frontline and essential workers.
+2.  Create and validate a scale to evaluate meaningful work directly for frontline and essential workers.
+
+![Poster Presented at the 2021 Association for Psychological Science Conference](images/APS%20Meaningful%20Poster.jpg){fig-align="center"}
