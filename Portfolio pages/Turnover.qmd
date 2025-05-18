@@ -5,6 +5,9 @@ author: Matthew Swanson
 categories: ['Survival Analysis', 'Turnover', 'R', 'Visualizations', 'survminer']
 warning: FALSE
 message: FALSE
+format: 
+  html: 
+    page-layout: full
 ---
 
 ::: text-center
@@ -60,7 +63,7 @@ library(readxl)
 library(dplyr)
 library(tidyverse)
 library(psych)
-TurnData <- read.csv("C:/Users/matts/Desktop/WebsiteData/Data/turnover.csv")
+TurnData <- read.csv("C:/Users/matts/OneDrive/Desktop/002 Matt Desktop/WebsiteData/Data/turnover.csv")
 
 
 #Need to change string data to factors

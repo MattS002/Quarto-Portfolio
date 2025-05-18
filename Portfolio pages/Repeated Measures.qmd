@@ -26,7 +26,7 @@ library(ez)
 library(tidyr)
 library(tidyverse)
 
-Data <- read_excel("C:/Users/matts/Desktop/WebsiteData/Data/Repeated Measures Data.xlsx")
+Data <- read_excel("C:/Users/matts/OneDrive/Desktop/002 Matt Desktop/WebsiteData/Data/Repeated Measures Data.xlsx")
 head(Data)
 ```
 

@@ -1,0 +1,175 @@
+---
+title: "Psychometric Properties of Self Esteem via SEM and IRT"
+editor: visual
+author: Matthew Swanson
+categories: ['Structural Equation Modeling', 'Item Response Theory', 'R', 'lavaan']
+format: 
+  html: 
+    page-layout: full
+---
+
+::: text-center
+# **Project Goal**
+:::
+
+The data for this project was downloaded from Kaggle [here](https://www.kaggle.com/datasets/lucasgreenwell/rosenberg-self-esteem-scale-responses?select=data.csv) and originally housed on [OpenPsychometrics.org](https://openpsychometrics.org/). The data set contains approximately 48,000 participants who took the Rosenberg Self-Esteem Scale. Participant's gender, age, and country were also collected. This scale contains 10 items, of which five items are positively worded (Q1, Q2, Q4, Q6, & Q7) and five items are negatively worded (Q3, Q5, & Q8-10) on a 1-4 scale (anchors ranged from strongly disagree (1) to strongly agree (4)).
+
+For this data, I will first compute descriptive values for the data set and then I will look at the psychometric properties of this data using both structural equation modeling (SEM) and Item Response Theory (IRT) principals.
+
+::: text-center
+# **Data Descriptive Analysis**
+:::
+
+First, I will load in the data and check for missing values. (Data file location is hidden from code chunk)
+
+```{r}
+library(dplyr)
+Data <- read.csv("C:/Users/matts/OneDrive/Desktop/002 Matt Desktop/WebsiteData/SelfEsteem Data/data.csv", na.strings = "")
+sum(is.na(Data))
+```
+
+No cells have been flagged as missing. However, the data originally coded all missing values as "0" so I will need to filter these values out to get complete responses before moving on to calculating data descriptives.
+
+Note: Original results suggest that there are four missing values in the data, however, looking at the rows that contain these four values, it becomes clear that r detected the country code of NA (Nambia) and incorrectly read those values as missing. I specified that the data be read in with the argument na.strings = "" to solve this problem and reloaded the data in.
+
+```{r}
+library(psych)
+str(Data) #checking for numeric status
+Data_new <- Data[apply(Data!=0, 1, all),]
+#Get means, sd, and range
+describe(Data_new)
+```
+
+Glancing at the age row suggests that age ranged from 1 - 100,000 years of age, which is, of course, impossible. Thus, I will filter for a reasonable adult age range (18 - 100). This step is important as participants who reported being a single year old or 100,000 years old likely did not pay attention to other items in this scale and so I want to remove their responses.
+
+```{r}
+Data_new <- Data_new %>%
+  filter(between(age, 18, 100))
+describe(Data_new)
+Data_new %>%
+  count(Data_new$gender)
+```
+
+Looking at the means, most items hover around the mid point of the scale (between scores of 2-3). The average age of participants is 30 with a standard deviation of about 12 years and 59% of participants identify as female, 40% identify as male, and about 1% identify as non-binary.
+
+::: text-center
+## **Item Correlations**
+:::
+
+Now to calculate correlations between scale items and visualize them.
+
+```{r}
+library(Hmisc)
+library(corrplot)
+Correlation <- rcorr(as.matrix(Data_new[, 1:10]))
+Correlation
+
+corrplot.mixed(Correlation$r, tl.pos = 'lt')
+```
+
+Perhaps unsurprising, it appears as though negatively worded items negatively correlate with positively worded items and all items correlate with each other. Now that I have a sense of the data and how the items play with each other, I am going to use both SEM and IRT principals to assess the psychometric properties of this scale.
+
+::: text-center
+# **Structural Equation Modeling**
+:::
+
+SEM is preferred here over CFA as SEM relaxes assumptions around cross loadings and error terms, which aid in reproducing more accurate fit statistics. SEM also allows for the estimation of paths between latent variables. First, I am going to run a simple SEM using the lavaan package where by all 10 self-esteem items are loaded onto a latent factor of general self-esteem.
+
+```{r}
+library(lavaan)
+library(semPlot)
+Data_new <- Data_new %>%
+  filter(gender != "3")
+
+SEM1Fac <- 'SE =~ Q1 + Q2 + Q3 + Q4 + Q5 + Q6 + Q7 + Q8 + Q9 + Q10'
+fitSEM1 <- sem(SEM1Fac, Data_new, estimator = "MLR")
+summary(fitSEM1, standardized = TRUE, fit.measures = TRUE)
+semPaths(fitSEM1, what = "std", edge.label.cex = 0.7, esize = 1,
+intercepts = FALSE,rotation = 4, edge.color = 1, asize = 2.5,
+sizeMan = 5, mar = c(1, 1.5, 1.5, 3), fade = FALSE)
+```
+
+While all items do significantly load onto the latent factor of self-esteem and have decently sized factor loadings (all factor loadings are greater than .58), model fit does not meet acceptable standards. (cite acceptable standards). Since items 4 and 8 have the lowest loadings, I will drop those two items and test if model fit improves.
+
+```{r}
+SEM1.8Fac <- 'SE =~ Q1 + Q2 + Q3 + Q5 + Q6 + Q7 + Q9 + Q10'
+fitSEM1.8 <- sem(SEM1.8Fac, Data_new, estimator = "MLR")
+summary(fitSEM1.8, standardized = TRUE, fit.measures = TRUE)
+semPaths(fitSEM1.8, what = "std", edge.label.cex = 0.7, esize = 1,
+intercepts = FALSE,rotation = 4, edge.color = 1, asize = 2.5,
+sizeMan = 5, mar = c(1, 1.5, 1.5, 3), fade = FALSE)
+```
+
+Model fit worsened. Thus, the SEM model with all ten items is retained.
+
+Lastly, I want to test that there is truly just one latent factor contained in these 10 items. For the sake of exploratory analyses, I will break items into two separate factors: one factor will contain the five positively worded items and a second factor will contain the five negatively worded items.
+
+```{r}
+SEM2Fac <- 'PosSE =~ Q1 + Q2 + Q4 + Q6 + Q7
+            NegSE =~ Q3 + Q5 + Q8 + Q9 + Q10'
+fitSEM2 <- sem(SEM2Fac, Data_new, estimator = "MLR")
+summary(fitSEM2, standardized = TRUE, fit.measures = TRUE)
+semPaths(fitSEM2, what = "std", edge.label.cex = 0.7, esize = 1,
+intercepts = FALSE,rotation = 4, edge.color = 1, asize = 2.5,
+sizeMan = 5, mar = c(1, 1.5, 1.5, 3), fade = FALSE)
+```
+
+While model fit may have slightly improved, it still does not fit industry standards nor was this model originally conceived to possess two factors. Thus, I will retain the 10 item single factor self-esteem scale. Since I have gender data collected as well, I will conduct a multigroup SEM to determine how or if parameter estimates differ for men and women.
+
+::: text-center
+## **Multigroup SEM**
+:::
+
+To determine if men and women differ in how they responded to the self-esteem items, first I need to add in a grouping variable to the model I settled on above (the single factor, 10 item self-esteem scale). All loadings and parameters of the structural model are set to be free with each subsequent model imposing a constraint on aspects of the model. Model fit changes of .01 ∆CFI/TLI and .015 ∆RMSEA suggests evidence for differences between men and women. This first model with zero constraints imposed on the data structure is considered the configural model. The fit for this model will be the same as the model estimated above, however, it will provide estimates for the model for both men and women.
+
+```{r}
+Configural <- sem(SEM1Fac, group = "gender", data = Data_new, 
+                  estimator = "MLR")
+#summary(Configural, standardized = TRUE, fit.measures = TRUE)
+
+```
+
+To test for metric invariance, that is, that the relationship between the ten items and the latent self-esteem factor are the same for men and women, I will set factor loadings to be invariant. The model fit from the model will be compared to the configural model and detriments in fit greater than the change values above will provide evidence that men and women differ in how strongly each item loads onto the latent factor.
+
+```{r}
+Metric <- sem(SEM1Fac, group = "gender", group.equal = c("loadings"), 
+              data = Data_new, estimator = "MLR")
+summary(Metric, standardized = TRUE, fit.measures = TRUE)
+```
+
+Model fit for the metric model is:
+
+This is
+
+Next, I will also hold item intercepts invariate to test for scalar invariance. Scalar invariance suggests that item responses are equivalent at the absolute level of the self-esteem trait.
+
+```{r}
+Scalar <- sem(SEM1Fac, group = "gender", group.equal = c("loadings", "intercepts"), data = Data_new, estimator = "MLR")
+summary(Scalar, standardized = TRUE, fit.measures = TRUE)
+```
+
+Model fit for the scalar model is:
+
+This indicates that
+
+Last, I will add item uniqueness (also called item residual) as the next invariate parameter as a test for strict invariance. Evidence of strict invariance would indicate that each item's residual is equal across gender groups.
+
+```{r}
+Strict <- sem(SEM1Fac, group = "gender", group.equal = c("loadings", "intercepts", "residuals"), data = Data_new, estimator = "MLR")
+summary(Strict, standardized = TRUE, fit.measures = TRUE)
+```
+
+Model fit for the strict model is:
+
+I have been comparing each model using model fit indicies but there is another way to compare models that compares AIC, BIC, and Chi-Square test of differences. This route also provides probability estimates for each parameter restriction.
+
+::: text-center
+### **Nested Model Comparison**
+:::
+
+Just as with model fit indicies, the more restrictive model will be compared to a less restrictive model. Using the four models I computed above, the code is relatively simple using the compareFit function in the semTools package.
+
+```{r}
+library(semTools)
+summary(compareFit(Configural, Metric))
+```

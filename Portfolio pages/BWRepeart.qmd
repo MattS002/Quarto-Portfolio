@@ -22,7 +22,7 @@ library(ez)
 library(tidyr)
 library(tidyverse)
 
-Data <- read_excel("C:/Users/matts/Desktop/WebsiteData/Data/Repeated Measures Data 2.xlsx")
+Data <- read_excel("C:/Users/matts/OneDrive/Desktop/002 Matt Desktop/WebsiteData/Data/Repeated Measures Data 2.xlsx")
 head(Data)
 
 #Need to convert data set to long format - it is currently in wide format

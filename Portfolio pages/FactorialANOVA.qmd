@@ -20,7 +20,7 @@ First, the data needs to be cleaned:
 ```{r, echo=-3}
 library(readxl)
 library(dplyr)
-Data <- read_excel("C:/Users/matts/Desktop/WebsiteData/Data/Religion Data 2.xlsx")
+Data <- read_excel("C:/Users/matts/OneDrive/Desktop/002 Matt Desktop/WebsiteData/Data/Religion Data 2.xlsx")
 
 Data <- subset(Data, PARTYID!= 1 & PARTYID!= 2 & PARTYID!= 3 & PARTYID!= 4 & PARTYID!= 5 & PARTYID!= 9)
 Data <- subset(Data, ATTEND!= 9)

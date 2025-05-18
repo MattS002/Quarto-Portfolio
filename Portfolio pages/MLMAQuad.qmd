@@ -1,0 +1,127 @@
+---
+title: "Testing for Quadratic Effects in Multilevel Meta-Analysis"
+editor: visual
+author: Matthew Swanson
+categories: ['Multilevel Meta-Analysis', 'R', 'Quadratic Effects', 'Organizational Training', 'Engagement', 'Data Science']
+warning: FALSE
+message: FALSE
+format: 
+  html: 
+    page-layout: full
+---
+
+::: text-center
+# **Project Goal**
+:::
+
+As described in the overall goal of [this project](/Portfolio%20pages/MLMAEffect.qmd), the hospital is interested in understanding what the effect they could reasonably expect to have when implementing a new teamwork training course into their workforce. Using data from previously published literature, 30 studies were identified across ten research papers. Each of these studies evaluated participant teamwork skills prior to the implementation of the training, right after the training, and several months later. I have previously demonstrated how to find the overall effect for a comparison of pre to post scores and the overall effect comparing pre to follow-up scores. However, what about a model that considers the three time points in each study? It is reasonable to expect that teamwork scores will increase right after training (as compared to pre scores) and then plateau or even weaken over time (but still remain significantly greater than pre scores). To test for this, we will have to change the shape of the data a bit and add in a quadratic term. First, I will load in the data.
+
+```{r, echo=-7}
+library(readxl)
+library(dplyr)
+library(ez)
+library(tidyr)
+library(tidyverse)
+library(janitor)
+library(metafor)
+
+QuadData <- read_excel("C:/Users/matts/OneDrive/Desktop/MLMA Quad Data.xlsx")
+head(QuadData)
+```
+
+## Hedges' *g*
+
+For the sake of this example, I am going to recalculate Hedges' *g* for each of these comparisons in order to demonstrate again how to calculate meta-analytic effects using a dataset that has a slightly different set up than I have shown previously. I will also need to create the quadratic term by multiplying the number of months since the post test by itself.
+
+```{r}
+# set correlation = .5
+ri <- .5
+QuadData$ri <- ri
+
+#compute effect size  for pre vs. post
+QuadDataPP <- escalc(measure = "SMCR", 
+         m1i= Mean_pre, 
+         m2i = Mean_post,
+         sd1i = SD1, 
+         sd2i = SD2, 
+         ni = N,
+        ri = ri,
+        flip = TRUE,
+        data = QuadData)
+
+#compute effect size  for pre vs. follow
+QuadDataPF <- escalc(measure = "SMCR", 
+         m1i= Mean_pre, 
+         m2i = Mean_follow,
+         sd1i = SD1, 
+         sd2i = SD3, 
+         ni = N,
+        ri = ri,
+        flip = TRUE,
+        data = QuadData)
+
+QuadFull <- merge(QuadDataPP, QuadDataPF, by = c('Study_ID', 'Effect_ID'), all.x = TRUE)
+QuadFull <- unite(QuadFull, yi, c(yi.x, yi.y), na.rm = TRUE)
+QuadFull <- unite(QuadFull, vi, c(vi.x, vi.y), na.rm = TRUE)
+QuadFull <- unite(QuadFull, N, c(N.x), na.rm = TRUE)
+QuadFull <- unite(QuadFull, Months_since_post, c(Months_since_post.x), na.rm = TRUE)
+
+QuadFull <- QuadFull %>%
+  mutate_at(c('yi', 'vi', 'N', 'Months_since_post'), as.numeric)
+
+#Create quadratic term
+QuadFull <- QuadFull %>%
+  mutate(Quad_Term = Months_since_post * Months_since_post)
+
+QuadFull <- QuadFull |> mutate(df = N - 1)
+
+
+#compute standard error for Cohen's d using sampling variance
+QuadFull <- QuadFull |> mutate(std_error_d = sqrt(vi / N))
+
+#convert Cohen's d to Hedges' g: effect size & standard error & variance
+
+##correction factor J
+QuadFull <- QuadFull |> mutate(j =  1 - (3 / (4 * df - 1)))
+
+##Hedges' g: effect size
+QuadFull <- QuadFull |> mutate(hedges_g =  yi * j)
+##Hedges' g: std error
+QuadFull <- QuadFull |> mutate(std_error_g =  std_error_d * j)
+#Hedges' g: variance 
+QuadFull <- QuadFull |>  mutate(var_g = vi * j) 
+head(QuadFull)
+```
+
+## Plotting Linear and Quadratic Trends
+
+I calculated Hedges' *g* for each comparison of interest and ensured that each value is read into a single dataset by using the unite function. Of course I could clean this dataset further by removing more of the duplicate columns of data that are created by combining two data frames, but for now I will move on and build a MLMA model that includes the quadratic term. The I will also plot this model.
+
+```{r}
+# | warning: false
+#Creating MLMA Quad Model
+
+MLMAQuad <- rma.mv(yi = hedges_g, 
+                        V = var_g,
+                        mods = ~ Months_since_post + Quad_Term,
+                        random = ~ 1 | Study_ID/Effect_ID, 
+                        data = QuadFull)
+MLMAQuad
+
+#figure
+ggplot(QuadFull, aes(x=Months_since_post, y=hedges_g)) + 
+  geom_point(aes(size = N), color="black", shape=21, stroke =1.5, fill="white")+
+  geom_smooth(show.legend= F, color="#40B0A6", method = "lm", formula = y~x, fill = "#40B0A6")+
+  geom_smooth(show.legend= F, color="#E1BE6A", method = "lm", formula = y~poly(x,2), fill = "#E1BE6A")+
+  geom_hline(yintercept = 0, color = "black", linetype=2)+
+  coord_cartesian((xlim = c(0, 12))) +
+  theme_classic() +
+  labs(y="Standardized Mean Difference", x="Months Since Post-Test") +
+  theme(legend.position = "none",
+        axis.title.x = element_text(margin = unit(c(5, 0, 0, 0), "mm")),
+        axis.title.y = element_text(margin = unit(c(0, 5, 0, 0), "mm")),
+        axis.text.x=element_text(colour="black"),
+        axis.text.y=element_text(colour="black")) 
+```
+
+Results of this analysis indicates that there was no significant linear (*p* = .070) or quadratic effect (*p* = .061) of training over time. In other words, the significant improvement in training outcomes from pre to post assessment time points (as standardized mean difference) did not continue to improve over time, nor did post and follow-up time points differ from each other (when compared to pre training scores) as the quadratic trend line was not significant.

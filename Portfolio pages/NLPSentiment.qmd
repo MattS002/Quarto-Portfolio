@@ -25,7 +25,7 @@ First, I need to load in the data and set the tokenization of the text corpus.
 library(tidytext)
 library(readxl)
 library(tidyverse)
-HealthResp <- read_excel("C:/Users/matts/Desktop/WebsiteData/Data/Healthy Condition Responses - Text Analysis.xlsx")
+HealthResp <- read_excel("C:/Users/matts/OneDrive/Desktop/002 Matt Desktop/WebsiteData/Data/Healthy Condition Responses - Text Analysis.xlsx")
 glimpse(HealthResp)
 HealthResp_tidy <- HealthResp %>%
 unnest_tokens(output = word, input = Healthy_Work_Condition, token = "words")
@@ -82,7 +82,7 @@ with(wordcloud(word, n, max.words = 100, colors = brewer.pal(12, "Paired"), scal
 You may have noticed that I have only been analyzing words from one condition, called healthy. It is now time to repeat the above analysis for the second condition, called unhealthy.
 
 ```{r, echo= -1}
-UnhealthResp <- read_excel("C:/Users/matts/Desktop/WebsiteData/Data/Unhealthy Condition Responses - Text Analysis.xlsx")
+UnhealthResp <- read_excel("C:/Users/matts/OneDrive/Desktop/002 Matt Desktop/WebsiteData/Data/Unhealthy Condition Responses - Text Analysis.xlsx")
 glimpse(UnhealthResp)
 
 UnhealthResp_tidy <- UnhealthResp %>%
