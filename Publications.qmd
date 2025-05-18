@@ -1,0 +1,20 @@
+---
+title: "Publications"
+description: "My publications can be explored on this page, complete with a focus on major publication details."
+author: "Matthew Swanson"
+
+
+listing: 
+  contents:
+  - "Publication Pages/1-22-2024.qmd"
+  - "Publication Pages/12-15-2022.qmd"
+  - "Publication Pages/5-26-2021.qmd"
+  - "Publication Pages/8-02-2021.qmd"
+  sort: date desc
+  type: default
+  categories: false
+  sort-ui: [title, date]
+  filter-ui: false
+  fields: [title, author, categories, date]
+  image-align: left
+---

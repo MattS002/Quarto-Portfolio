@@ -1,0 +1,299 @@
+---
+title: "Using Multilevel Meta-Analysis to Better Understand Complex Business Research"
+editor: visual
+author: Matthew Swanson
+categories: ['Multilevel Meta-Analysis', 'R', 'Organizational Training', 'Engagement', 'Data Science']
+warning: FALSE
+message: FALSE
+bibliography: references.bib
+format: 
+  html: 
+    page-layout: full
+---
+
+::: text-center
+# **Project Goal**
+:::
+
+As practitioners of data science and IO psychology, we are sometimes tasked with understanding the effects of a particular training program or yearly event. In a perfect world, we would begin prepping the organization for evaluation work and would draft up timelines for evaluation and would work with the organization to identify potential samples. We would also identify any relevant data that has already been collected and potentially work that information into the evaluation schedules. Next, and dependent upon the type and length of training to be evaluated, the evaluation schedule would be enacted and data would be collected and analyzed (likely over the course of several training cycles to evaluate longitudinal impacts) and presented to the organization. However, what happens when the organization does not have the time and money to wait for the outcome of the evaluation cycle? For example, imagine a hospital struggling with teamwork among their frontline staff.
+
+In this example, communication among frontline staff has broken down and become siloed, which has led to several critical errors while admitting patients. The hospital wants to implement team training that targets team cohesion and problem solving/conflict resolution. Currently, there is a very popular training course on the market that claims to target these outcomes that the hospital is considering (the hospital also does not have the time and money to develop their own in-house training). However, the training is expensive so the hospital has hired a consultant to review the literature on this training and present their findings on the effects reported in research conducted on this training course.
+
+There are a few ways the consultant could go about reviewing and presenting the literature that has been conducted on this teamwork training course. First, the consultant could identify research most relevant to the organization (ex. finding research that evaluates that training course using similar samples) and create summary sheets for each article. These summaries then provide the organization some initial information on the types of research that has been conducted on the training course, the range of effect sizes found, and some common outcomes that training participation has been related to. However, one draw back to this approach is that the consultant cannot speak to the average effect size across these studies and the consultant runs the risk of missing the forest for the trees, especially when there exists a large amount of literature evaluating the training. Additionally, it seems unlikely that the hospital has the time or desire to read summaries of dozens of relevant studies. As such, the consultant may select focal articles to present (which can obfuscate the understanding of the training's efficacy), or the consultant may look to places where relevant research has been summarized before, typically in the form of a meta-analysis.
+
+Without going into to much detail, meta-analysis is a statistical approach that combines effect sizes from multiple separate research studies [@deeks2019]. Meta-analysis typically takes the form of a fixed-effect model (which assumes that studies share an effect size) or a random-effects model (which assumes a distribution of effect sizes) (see [@borenstein2010] for more details on the common meta-analysis models). However, and pertinent to this example, these models assume independence of effect sizes. In other words, that the effect sizes come from discrete samples or participants. This becomes a challenge for training research that often samples the same participants multiple times (i.e., baseline test, pre-test, post-test, follow-up test). Because of this challenge, researchers will often select a single effect size, average across effect sizes, or they do not conduct meta-analysis with the studies [@morris2023].
+
+::: text-center
+# **The Data**
+:::
+
+Typically for training evaluation research, research studies will report the means, standard deviations, and sample sizes for each group at each data collection time point. As it pertains to the goals of this project, I have identified 10 research studies that have evaluated the teamwork training course. Each of these 10 studies evaluated three groups of participants three times: a baseline pre test assessment, a post test assessment that occurred right after the training event was completed, and then a follow-up test that occurred anywhere from 1 to 12 months after the training event. I will discuss the groups of participants when I test for the effect of moderators [here](/Portfolio%20pages/MLMAMod.qmd). The means and standard deviations calculated at each time point represents an average training "effectiveness" metric that has been decided upon by the researchers who conducted the research contained in these 10 studies (i.e., it is shared metric of training effectiveness). *Note: I created this data set for the purpose of this demonstration.* Much greater detail on how to synthesize research and how to locate, code, and describe potential studies can be found in [The Handbook of Research Synthesis and Mata-Analysis](https://www.russellsage.org/publications/handbook-research-synthesis-and-meta-analysis) by Cooper, Hedges, and Valentine (2019).
+
+For the sake of this project, there will be no attrition between time points, but please recognize that this is relatively rare within this type of research. Consultants will have to make decisions over how to treat sample attrition as the analyses require a single sample size for each group.
+
+In this project, I will demonstrate how to calculate the meta-analytic effects for the differences between the pre and (separately) the post and follow-up time points and illustrate the information that can be gleaned from this approach.
+
+First, I will load in the data.
+
+```{r, echo=-7}
+library(readxl)
+library(dplyr)
+library(ez)
+library(tidyr)
+library(tidyverse)
+library(janitor)
+library(metafor)
+
+Data <- read_excel("C:/Users/matts/OneDrive/Desktop/002 Matt Desktop/WebsiteData/Data/MLMA example data.xlsx")
+head(Data)
+```
+
+::: text-center
+# **Multilevel Meta Analysis**
+:::
+
+Recent development in meta-analysis has provided an avenue for handling multiple effect sizes from the same group: multilevel meta-analysis (MLMA). The key difference between MLMA and other meta-analyses is that MLMA partitions effect size variation across three levels: within and between study variation (also discussed as heterogeneity), and the individual effect size sampling error. The benefit of implementing MLMA here is that an unbiased estimate of the population effect can be calculated using data from all participants across each time point, which also addresses issues of effect size independence.
+
+Notation of the formulas underpinning each level of a MLMA is as follows:
+
+*Formula for Level 1:* $$
+\hat\theta_{ij} = \theta_{ij} + \epsilon_{ij}
+$$
+
+*Formula for Level 2:* $$
+\theta_{ij} = \kappa_{j} + \zeta_{(2)ij}
+$$
+
+*Formula for Level 3:* $$
+\kappa_{j} = \mu + \zeta_{(3)j}
+$$
+
+whereby $\hat\theta_{ij}$ represents an estimation of the true effect $\theta_{ij}$. This estimation occurs for each effect size, *i*, nested in group *j*. $\kappa_{j}$ represents the average effect size within each group and μ represents the average population effect [@harrer2021]. Lastly, $\zeta_{(2)ij}$ refers to the within-level heterogeneity (level 2) and $\zeta_{(3)j}$ represents the between-level heterogeneity (level 3). As demonstrated by [@harrer2021], these three formulas can be combined to form the three-level meta-regression model: $$
+\hat\theta_{ij} = \mu + \zeta_{(2)ij} + \zeta_{(3)j} + \epsilon_{ij}
+$$
+
+Here, $\mu$ represents the overall average population effect (See @cheung2014 for more details on the development of MLMA formulas).
+
+::: text-center
+## **Calculating Effect Sizes for Pre vs. Post Time Points**
+:::
+
+With this information, standardized mean differences can be calculated for each time point comparison (e.g., pre vs. post time point differences, pre vs. follow-up time point differences). These standardized mean differences are still biased estimates so they will need to be converted to Hedges' *g*, which is an unbiased estimate [@borenstein2019].
+
+Given that the same group of participants provide data at multiple time points in each study, we will assume a correlation of *r* = .50, as recommended by @morris2002. Note that if the correlation between time points is provided in the studies themselves, OR if access to the raw data is provided, the consultant should calculate the correlations themselves and avoid the assumption of *r* = .50.
+
+There is also an important correction factor that has to be calculated as well when calculating calculating Hedges *g*. This correction factor, *J*, is applied to the formula and is notated as:
+
+$$
+J(n-1)= 1-\frac{3}{4_{df}-1}
+$$
+
+where $J(n-1)$ is the number of pairs. *J* is calculated for each effect and multiplied by the standardized mean difference (SMD), which produces *g*. We also use these correction factors to calculate an unbiased estimate of variance [@borenstein2019].
+
+I will demonstrate with the code below how to calculate these values using the data I have just loaded. I will need to add in a row of data for the correlations between time points (if I could not gather that information from the studies themselves). Reminder: since I am using standardized mean differences in my calculation of the meta effect, decisions have to be made for which comparisons to look at. Of course, all time points can be compared to each other but this becomes tedious and often not informative. Thus, I will note here that pre scores will be compared to both post and follow-up time points (I will touch on quadratic effects later on). Of course, the consultant could evaluate the effect size for post to follow-up time points but as both of these time points occur after the training events, this information is largely irrelevant to the hospital's goals of understanding the potential effect of this training.
+
+```{r}
+# set correlation = .5
+ri <- .5
+Data$ri <- ri
+
+#Comparing Pre and Post Time Points
+
+#compute effect size  for pre vs. post
+Data <- escalc(measure = "SMCR", 
+         m1i= Mean_pre, 
+         m2i = Mean_post,
+         sd1i = SD1, 
+         sd2i = SD2, 
+         ni = N,
+        ri = ri,
+        flip = TRUE,
+        data = Data)
+
+Data <- Data |> mutate(df = N - 1)
+
+
+#compute standard error for Cohen's d using sampling variance
+Data <- Data |> mutate(std_error_d = sqrt(vi / N))
+
+#Need to convert Cohen's d to Hedges' g
+
+##correction factor J
+Data <- Data |> mutate(j =  1 - (3 / (4 * df - 1)))
+
+##Hedges' g: effect size
+Data <- Data |> mutate(hedges_g =  yi * j)
+##Hedges' g: std error
+Data <- Data |> mutate(std_error_g =  std_error_d * j)
+#Hedges' g: variance 
+Data <- Data |>  mutate(var_g = vi * j) 
+head(Data)
+```
+
+As you can see from the dataset, we now have calculated Hedge's *g* and its accompanying standard error and variance for each pre and post comparison contained in these 10 research studies. For additional information on the choices I make for the code and what each argument entails, I suggest reviewing the CRAN repository for the metafor package. Since I compared pre to post scores, I added the argument "flip = true" so that the effect sizes would be in the expected direction (assuming that the training has some positive effect).
+
+Now I will run the initial comparison of pre and post scores using the values I just prepared above. I will call this model "Pre_V_Post" in the code.
+
+```{r}
+#Pre Vs. Post Comparison
+options(scipen = 999)
+
+#Calculating MLMA effect
+Pre_v_Post <- rma.mv(yi = hedges_g, 
+                        V = var_g, 
+                        test = "knha",
+                        random = ~ 1 | Study_ID/Effect_ID,
+                        data = Data)
+summary(Pre_v_Post)
+
+
+confint.rma.mv(Pre_v_Post)
+predict.rma(Pre_v_Post)
+round(Pre_v_Post$tau2, 4)
+Pre_v_Post$sigma2
+
+funnel(Pre_v_Post, xlab = "Standardized Mean Difference")
+
+forest(Pre_v_Post, header = c("Effect Number", "Weight (%)   SMD   [95% CI]"), slab = paste(Effect_ID), mlab = "Pooled Estimate",  order = "obs", xlab = "Standardized Mean Difference (95% CI)", digits = 2L, cex = 1, shade = "zebra", showweights = TRUE)
+```
+
+Results from this model indicate an overall positive and significant mean effect size, *g* = 1.02, 95% Confidence Interval (CI)\[0.210, 1.834\]. Given that the effect is positive, we can conclude that there is meta-analytic evidence that training outcomes improved immediately upon completion of the training. I also presented the SMDs and effect sizes used in this calculation via a funnel plot and as a forest plot. The forest plot visually displays the SMD for each effect size used in this model as well as their 95% CI ranges and the weight each effect contributes to the pooled estimate. Model results also indicate significant heterogeneity, *Q*(29) = 3191.64, *p* \<.001.
+
+## Heterogeneity
+
+One key benefit to random-effects meta-analyses is that the variability in the average effect size can be quantified by assessing the heterogeneity present in the effect. MLMA builds on this and allows for assessing both the between- and within-level heterogeneity. Heterogeneity has historically been represented by *Q*, which compares of the observed variance to what is expected due to sampling error [@morris2023]. That said, current best practices have moved away from only reporting *Q* and have instead adopted the I^2^ statistic, which denotes the proportion of variance between and within studies attributable to the true heterogeneity of effect size. Additionally, I will report the variance for each level, τ^2^.
+
+### Calculate I^2^
+
+```{r}
+options(scipen = 999)
+W <- diag(1/Pre_v_Post$vi)
+X <- model.matrix(Pre_v_Post)
+P <- W - W %*% X %*% solve(t(X) %*% W %*% X) %*% t(X) %*% W
+100 * sum(Pre_v_Post$sigma2) / (sum(Pre_v_Post$sigma2) + (Pre_v_Post$k-Pre_v_Post$p)/sum(diag(P)))
+#variance attribution (between & within)
+100 * Pre_v_Post$sigma2 / (sum(Pre_v_Post$sigma2) + (Pre_v_Post$k-Pre_v_Post$p)/sum(diag(P)))
+```
+
+Using the information we just calculated, as well as information provided in the output of the model itself, we can understand quite a bit regarding the variance in the pre vs. post effect. First, and as mentioned above, results from the MLMA indicate significant heterogeneity, *Q*(29) = 3191.64, *p* \<.001. Using the sigma 2.1 and 2.2 values and matrix multiplication output, I have also identified that both the between-level variance I^2^ = 15.36%, τ^2^ = 0.526, and at the within-study level, I^2^ = 84.44%, τ^2^ = 2.893. We can also grab confidence intervals for τ^2^ values using the confint.rma.mv function in the metafor package, which I will run in the next chunk of code.
+
+I also know that approximately 99.80% of the total variance is due to heterogeneity and approximately 0.20% of the total variance is attributable to sampling variance. These results indicate that almost all of the variance in the effect is attributable to heterogeneity, and thus likely dependent on the presence of moderators. Another way to quantify this degree of uncertainty in the pre vs. post effect size is by calculating the prediction interval surrounding this effect.
+
+### Prediction Interval
+
+The prediction interval provides an estimate of the range of possible values expected in a population.
+
+```{r}
+confint.rma.mv(Pre_v_Post)
+predict.rma(Pre_v_Post)
+```
+
+The prediction interval for this SMD effect ranges from -2.846 to 4.890, suggesting that any new study conducted with this sample population could expect to find negative effects (i.e., participants perform worse on training outcomes after engaging in the training), no effects, or positive effects (i.e., participants perform better on training outcomes after engaging in the training). Of course, these SMD values are also exceptionally large, which are questionable at best and likely are driven by error and the high degree of heterogeneity present in this effect [@borenstein2019].
+
+## Testing for Outliers and Publication Bias
+
+Outliers should also be assessed as well as testing for publication bias.
+
+```{r}
+##outliers -- dfbeta 
+dfbetas.rma.mv(Pre_v_Post) |> mutate(influence = if_else(intrcpt > .99 | intrcpt < -.99, 'TRUE', '0'))
+```
+
+First, I ran the dfbetas.rma.rv function, which tests if the removal of any *single* effect (there are 30 effects contained in this model) changes the beta value of the intercept by more than $|1|$. As you can see in the output, the removal of any single effect does not influence the intercept beta by the absolute value of 1, thus all 30 effects can be retained in the model (i.e., no strong evidence that any effects are outliers from the sample).
+
+Publication bias can occur when the studies that are included in a meta-analysis tend to favor one type of effect (i.e., significant findings), thus potentially obfuscating the "true" effect as significant findings tend to get published over non-significant or uninteresting findings. I will test for publication bias using both a multivariate version of Egger's test and the three-parameter selection model (3PSM). Egger's test is typically a linear regression that tests if there is symmetry between effect size and sample size. A significant Egger's test suggests that effect sizes depend on sample size, which can provide some evidence of selection bias [@pustejovsky2019]. The 3PSM test estimates three parameters ($\mu$, τ^2^, and 𝛿~2~) using maximum likelihood estimation. Each 3PSM model has a single cut point at alpha level .025 and a significant likelihood ratio test indicates that non-significant findings are less likely to be published than significant findings. @carter2019 provides more information for this test.
+
+```{r}
+#compute adjusted SE for Egger's regression test per Pustejovsky and Rodgers (2019)
+Data <- Data |> mutate(se_cor = sqrt(4/N))
+
+#Small study effect (Egger's test)
+rma.mv(yi = hedges_g ~ 1 + se_cor, 
+                   V = var_g,
+                   test = "knha",
+                   digits = 3,
+                   random = ~ 1 | Study_ID/Effect_ID,
+                   data = Data)
+
+##Selection effects (3PSM)
+
+###aggregate effects
+Aggregate_Eff_PrevPost <- Data %>% group_by(Study_ID) %>% mutate(agg_effect = mean(hedges_g)) %>% ungroup 
+
+###compute univariate model
+Pre_v_Post_Agg <- rma(yi = agg_effect, 
+                   vi = var_g,
+                   digits = 3,
+                   data = Aggregate_Eff_PrevPost)
+Pre_v_Post_Agg  
+
+#3PSM test
+selmodel(Pre_v_Post_Agg, type="stepfun", steps=c(.025))
+```
+
+Results of the Egger's test do not indicate non-symmetry, *b* = 1.590, *SE* = 0.823, *p* = .064, however results of the 3PSM selection bias may, in fact, be influencing results of the pre vs. post MLMA model, *X*^2^(1) = 13.652, *p* \< .001. Thus, there is some evidence that publication bias is an issue here (remember that this dataset has been generated) and the validity of these MLMA models is at risk. One additional piece of information from the output I will point out is the adjusted effect size that is calculated alongside these analyses. The effect size decreased from *g* = 1.022 to *g* = 1.019 in the adjusted model. A difference of .003 in effect size is considered trivial in the literature [@borenstein2019], but it is wise to be cautious when interpreting this model. Additional research is needed to build confidence in this effect, especially given the high degree of heterogeneity and wide prediction interval affiliated with this effect.
+
+## Pre vs. Follow-up Time Points
+
+Let's do this again and compare pre to follow-up scores. I will just provide a brief overview of the results as the same information I covered above applies for this model.
+
+```{r}
+#Comparing Pre and Follow Time Points
+
+#compute effect size  for pre vs. follow
+Data2 <- escalc(measure = "SMCR", 
+         m1i= Mean_pre, 
+         m2i = Mean_follow,
+         sd1i = SD1, 
+         sd2i = SD3, 
+         ni = N,
+        ri = ri,
+        flip = TRUE,
+        data = Data)
+
+Data2 <- Data2 |> mutate(df = N - 1)
+
+
+#compute standard error for Cohen's d using sampling variance
+Data2 <- Data2 |> mutate(std_error_d = sqrt(vi / N))
+
+#convert Cohen's d to Hedges' g: effect size & standard error & variance
+
+##correction factor J
+Data2 <- Data2 |> mutate(j =  1 - (3 / (4 * df - 1)))
+
+##Hedges' g: effect size
+Data2 <- Data2 |> mutate(hedges_g =  yi * j)
+##Hedges' g: std error
+Data2 <- Data2 |> mutate(std_error_g =  std_error_d * j)
+#Hedges' g: variance 
+Data2 <- Data2 |>  mutate(var_g = vi * j) 
+head(Data2)
+```
+
+All necessary information has now been calculated to do this comparison.
+
+```{r}
+#Pre vs. follow-Up Comparison
+options(scipen = 999)
+
+#Calculating MLMA effect
+Pre_v_Follow <- rma.mv(yi = hedges_g, 
+                        V = var_g, 
+                        test = "knha",
+                        random = ~ 1 | Study_ID/Effect_ID,
+                        data = Data2)
+summary(Pre_v_Follow)
+
+
+confint.rma.mv(Pre_v_Follow)
+predict.rma(Pre_v_Follow)
+round(Pre_v_Follow$tau2, 4)
+Pre_v_Follow$sigma2
+
+funnel(Pre_v_Follow, xlab = "Standardized Mean Difference")
+
+forest(Pre_v_Follow, header = c("Effect Number", "Weight (%)   SMD   [95% CI]"), slab = paste(Effect_ID), mlab = "Pooled Estimate",  order = "obs", xlab = "Standardized Mean Difference (95% CI)", digits = 2L, cex = 1, shade = "zebra", showweights = TRUE)
+```
+
+Results from this model indicate a non-significant effect, *g* = 0.550, 95% CI \[-0.155, 1.255\]. I will touch upon adding moderators to MLMA models and testing for quadratic effects (ex. testing for an initial improvement in training outcomes that then decrease over time) in separate projects that can be found on my website.

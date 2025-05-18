@@ -1,0 +1,80 @@
+---
+title: "Performing Moderation Analysis Within Multilevel Meta-Analysis"
+editor: visual
+author: Matthew Swanson
+categories: ['Multilevel Meta-Analysis', 'R', 'Organizational Training', 'Moderation', 'Engagement', 'Data Science']
+warning: FALSE
+message: FALSE
+format: 
+  html: 
+    page-layout: full
+---
+
+::: text-center
+# **Project Goal**
+:::
+
+![](images/EmployeeGroup1.jpg)
+
+Continuing the evaluation of teamwork training effects as discussed in my project on multilevel meta-analysis (MLMA), which can be found [here](/Portfolio pages/MLMAEffect.qmd), I consider how these MLMA effects may depend on the presence of moderators. Specifically, I am interested in understanding if the positive training effects found when comparing pre and post-test scores *depends*, in part, on the employee group assessed. In the data set for this project, there is a variable called "Mod1" which is a categorical variable denoting the employee group that is providing the data for each effect. The key for this variable is as follows: 1 = frontline staff, 2 = care management staff, 3 = top-level management staff.
+
+::: text-center
+# *Data Preparation*
+:::
+
+First, I will rename and add labels for the moderating variable from the dataset I created when calculating Hedges *g* using the pre vs. post standardized mean difference. I will save these changes as a new dataset.
+
+```{r}
+library(readr)
+library(dplyr)
+library(ez)
+library(tidyr)
+library(tidyverse)
+library(janitor)
+library(metafor)
+
+Data <- read_csv("C:/Users/matts/OneDrive/Desktop/002 Matt Desktop/WebsiteData/Data/PreVPostAggData.csv")
+
+DataMod <- Data %>%
+  rename(Employee_Group = Mod1) %>%
+  mutate(Employee_Group = factor(Employee_Group, levels = c(1,2,3),
+                                 labels = c("Frontline", "CareManage", "TopManage")))
+str(DataMod)
+```
+
+You will notice in this dataset that each row of data already has yi, vi, and Hedges *g* values calculated. I did this step [here](/Portfolio pages/MLMAEffect.qmd) and would have to be conducted prior to adding any moderating variables to the meta models. Also note that these values correspond to pre vs. post standardized mean differences; if I wanted to add a moderator to a MLMA model that compares the effect sizes for pre and follow-up time points, I would have to calculate the yi, vi, and Hedges *g* for this comparison prior to any moderation analyses.
+
+::: text-center
+# *MLMA Moderation Analysis*
+:::
+
+I will now add in the moderating variable, Employee_Group, to the MLMA model that compares scores between the pre and post time points. I will also run a model that does not include the intercept as that aids in interpreting the effect sizes for each level of the moderator.
+
+```{r}
+PrevPost_EmployTypeMod <- rma.mv(yi = hedges_g, 
+                        V = var_g,
+                        mods = ~ factor(Employee_Group),
+                        random = ~ 1 | Study_ID/Effect_ID, 
+                        data = DataMod)
+PrevPost_EmployTypeMod
+
+##moderator w/o intercept
+PrevPost_EmployTypeMod_Nointer <- rma.mv(yi = hedges_g, 
+            V = var_g,
+            mods =  ~0 + factor(Employee_Group),
+            random = ~ 1 | Study_ID/Effect_ID, 
+            data = DataMod)
+
+PrevPost_EmployTypeMod_Nointer
+```
+
+I tested for the moderating effect of employee group (i.e., frontline staff, care management staff, & top-level management staff) on the standardized mean difference between pre and post-test scores. Results of the test of moderators reveals that employee group did not significantly moderate the pre vs. post difference, *Q~m~*(2) = 5.077, *p* = .079.
+
+##Pairwise Comparisons
+
+Although the omnibus test indicates no difference in levels of employee group as a moderating factor explaining variance in the pre vs. post score difference, I will provide some code here to run pairwise comparisons of the each of the three levels of this moderator for the sake of illustration. This is also useful if a specific comparison between levels of the moderator needs to be reported on.
+
+```{r}
+pairmat(PrevPost_EmployTypeMod_Nointer, btt = 1:3)
+anova(PrevPost_EmployTypeMod_Nointer, X=pairmat(btt=1:3))
+```

@@ -1,0 +1,27 @@
+---
+title: "Leveraging DEI Policies and Training to Navigate Conflict in Organizations"
+author: 
+- Danielle Crawford
+- Laura Brooks Dueland
+- name: Matthew A. Swanson
+  orcid: 0000-0002-6785-2297
+- Sarah Stepanek
+- Carey S. Ryan
+date: '8-02-2021'
+categories: 
+  - Conflict Management
+  - DEI Policy
+  - Organizational Training
+  - Organizational Climate
+  - Training Evaluation
+
+description: 'Conflict Management Within Organziations'
+---
+
+## Abstract
+
+**Introduction.** Although greater workforce diversity brings potential benefits, such as the availability of varied perspectives, it can also lead to greater conflict, undermining employee relationships, and thus effective problem-solving. Indeed, organizations have invested a great deal of time and money in various diversity, equity, and inclusion (DEI) initiatives to maximize the benefits and minimize the costs of a diverse workforce. Surprisingly, however, these initiatives frequently fail to include effective conflict management strategies.
+
+Here we review the current status of organizational conflict literature, conflict management strategies, and their role (or lack thereof) in diversity initiatives. We conclude by providing evidence-based recommendations for the integration of effective conflict management strategies in diversity initiatives and training.
+
+![Poster presented at the 2021 Society for the Psychological Study of Social Issues conference](images/Leveraging DEI Policies and Training to Navigate Conflict in Organizations.jpg){fig-align="center"}

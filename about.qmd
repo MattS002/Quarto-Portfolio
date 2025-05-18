@@ -13,9 +13,9 @@ fontsize: 20px
 ![](images/Matt%20Teaching%202.jpg){width="493"}
 :::
 
-I'm an IO psychologist who has spent the past 7 years gaining knowledge and expertise in the areas of organizational effectiveness, data analysis, DEI, and statistical methodology. My current stream of research centers on organizational conflict management, addressing systems of racial disparity in higher education, and promoting employee authenticity.\
+I'm an IO psychologist who has spent the past decade expanding my expertise in the areas of organizational effectiveness, data analysis, training evaluation, DEI, and statistical and research methodology. My current stream of research centers on organizational conflict management, multilevel meta-analysis, training evaluation, and promoting employee authenticity.\
 \
-My goal with this website is to showcase my current skill set and provide a platform for others interested in IO psychology and data analytics to hopefully learn something about the field.
+My goal with this website is to showcase some of my skill set and provide a platform for others interested in IO psychology and data analytics to hopefully learn something about the field.
 
 </div>
 
@@ -29,9 +29,11 @@ My goal with this website is to showcase my current skill set and provide a plat
 ![](images/IMG_7604.jpg){width="278"}
 :::
 
-I have worked in both industry and academia and have learned a lot over these years! I've had the pleasure of teaching and supporting graduate level analysis of variance (ANOVA) at the University of Nebraska Omaha using both SAS and R for the past three years. While COVID certainly added barriers to the teaching process, it gave me a great opportunity to learn and teach data analysis in R at the graduate level (hence the Zoom screenshot).
+I have worked in both industry and academia and have learned a lot over these years! I've had the pleasure of teaching and supporting graduate level analysis of variance (ANOVA) at the University of Nebraska Omaha using both SAS and R for three years. While COVID certainly added barriers to the teaching process, it gave me a great opportunity to learn and teach data analysis in R at the graduate level (hence the Zoom screenshot).
 
-Concurrently, I've helped organizations recognize, analyze, and address common issues such as turnover, training effectiveness, and job performance. I have also helped organizations survey and assess the DEI climate of their workforce, worked with selection procedures to determine adverse impact, built statistical models to predict turnover likelihood, worked on developing psychometrically sound assessments, and served as lead on qualitative and quantitative data collection efforts. Additionally, I have served as a guest editor for the Journal of Social Issues and as editor for research conferences and academic awards.
+Concurrently, I have worked with the United States Naval Academy and the Department of the Navy (DON) to evaluate several naval-wide training programs and I helped develop infrastructure to aid in future evaluation efforts across the DON which included data management components such as data pipelines and assessment models. I've helped organizations recognize, analyze, and address common issues such as turnover, training effectiveness, and job performance. I have also helped organizations survey and assess the DEI climate of their workforce, worked with selection procedures to determine adverse impact, built statistical models to predict turnover likelihood, worked on developing psychometrically sound assessments, and served as lead on qualitative and quantitative data collection efforts.
+
+As a contribution to my field, I have served as a guest editor for the Journal of Social Issues and the Journal of Managerial Issues. From 2020 to 2024 I was a member of several review committees, including the review committee for the Midwest Academy of Management conference and the editorial board for the Association for Psychological Science.
 
 In my spare time I love jamming out with my cello!
 
@@ -43,4 +45,4 @@ In my spare time I love jamming out with my cello!
 
 I spent a lot of time working on my dissertation and I would love to share what I found with anyone interested! For my dissertation, I studied how organizational psychological safety (which I experimentally manipulated) influenced perceptions of authenticity at work as well as feelings of well-being and belongingness for both heterosexual and LGBTQ employees. My dissertation was also mixed-methods, so I got to assess the qualitative nuance behind participant's perceptions of psychologically safe and unsafe work experiences!
 
-My dissertation is hosted on [ProQuest](https://www-proquest-com.leo.lib.unomaha.edu/pqdtglobal/docview/2770014140/15D974BD6DE64609PQ/1?accountid=14692). I am currently reworking it for publication so be on the lookout for that article!
+My dissertation is hosted on [ProQuest](https://www-proquest-com.leo.lib.unomaha.edu/pqdtglobal/docview/2770014140/15D974BD6DE64609PQ/1?accountid=14692).

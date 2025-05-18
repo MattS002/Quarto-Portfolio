@@ -18,16 +18,30 @@
       "/Portfolio pages/Engagement and Diversity.html",
       "/Portfolio pages/FactorPower.html",
       "/Portfolio pages/NLPSentiment.html",
+      "/Portfolio pages/MLMAMod.html",
+      "/Portfolio pages/SelfEsteem SEM & IRT.html",
       "/Portfolio pages/FactorialANOVA.html",
+      "/Portfolio pages/MLMAQuad.html",
+      "/Portfolio pages/MLMAEffect.html",
       "/Portfolio pages/MLMEngageTeam.html"
     ]
   },
   {
     "listing": "/index.html",
     "items": [
+      "/Portfolio pages/MLMAEffect.html",
       "/Portfolio pages/NLPSentiment.html",
       "/Portfolio pages/FactorialANOVA.html",
       "/Portfolio pages/MLMEngageTeam.html"
+    ]
+  },
+  {
+    "listing": "/Publications.html",
+    "items": [
+      "/Publication Pages/1-22-2024.html",
+      "/Publication Pages/12-15-2022.html",
+      "/Publication Pages/8-02-2021.html",
+      "/Publication Pages/5-26-2021.html"
     ]
   }
 ]

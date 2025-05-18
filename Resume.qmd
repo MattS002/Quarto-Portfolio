@@ -67,7 +67,7 @@ page-layout: full
 |                                           |                                                                                                                                     |
 |                                           | **Teaching Assistant - University of Nebraska Omaha**                                                                               |
 |                                           |                                                                                                                                     |
-|                                           | -   Developed course content, taught graduate-level R coding, and graded coursework                                                 |
+|                                           | -   Developed course content, taught graduate-level R coding, and graded coursework                                                 |
 |                                           | -   Lectured weekly for graduate-level analysis of variance (ANOVA)                                                                 |
 +-------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
 | ![](images/Mav2.PNG){width="750"}         | **2020 - 2023**                                                                                                                     |
@@ -130,7 +130,7 @@ Stepanek, S., Dueland, L., Folberg, A. M., **Swanson, M. A.,** & Ryan, C. S. (20
 ‍**Swanson, M. A.**(2021). *Essential Meaningful Work: A Multistage Proposal for the Development and Validation of the Essential Meaningful Work Inventory (EMWI).* Poster presented at the annual conference of the Association for Psychological Science, Virtual. 
 
 \
-Crawford, D., **Swanson, M. A.,** Dueland, L. B., Stepanek, S., & Ryan, C. (2021). *A Missing Component of Diversity Training and Diversity Initiatives: Conflict Management Training.* Poster presented at the annual conference for the Society for the Psychological Study of Social Issues, Virtual.
+Crawford, D., **Swanson, M. A.,** Dueland, L. B., Stepanek, S., & Ryan, C. (2021). *Leveraging DEI Policies and Training to Navigate Conflict in Organizations.* Poster presented at the annual conference for the Society for the Psychological Study of Social Issues, Virtual.
 
 *\
 ‍*Dodds, B. L., Ryan, C. S., **Swanson, M. A.** (2021). *The Relationships of Perceived Parental Social Support to Vigilance and Resilience among LGBTQ and Straight Cisgender Adults.* Poster presented at the University of Nebraska Omaha's University Honors Program, Omaha, NE. 

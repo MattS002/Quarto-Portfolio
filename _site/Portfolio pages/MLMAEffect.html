@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Matthew Swanson">
+
+<title>Using Multilevel Meta-Analysis to Better Understand Complex Business Research – Matthew Swanson</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-8dd1961faa9fed8eaeb307954bd3f3df.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-5c82de8d99bcb8f0803f0fff0461afcb.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/Logo.gif" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Matthew Swanson</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../PortMain.html"> 
+<span class="menu-text">Portfolio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../Publications.html"> 
+<span class="menu-text">Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../DataViz.html"> 
+<span class="menu-text">Data Viz Portfolio</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/matthew-swanson-phd-335942137"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:mattswnsn53@gmail.com"> <i class="bi bi-envelope" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../Matthew Austin Swanson CV 2025.pdf"> <i class="bi bi-file-text" role="img">
+</i> 
+<span class="menu-text">CV</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-bi-github" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-bi-github">    
+        <li>
+    <a class="dropdown-item" href="https://github.com/MattS002/Quarto-Portfolio">
+ <span class="dropdown-text">Source Code</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/MattS002/Quarto-Portfolio/issues">
+ <span class="dropdown-text">Report an issue</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#project-goal" id="toc-project-goal" class="nav-link active" data-scroll-target="#project-goal"><strong>Project Goal</strong></a></li>
+  <li><a href="#the-data" id="toc-the-data" class="nav-link" data-scroll-target="#the-data"><strong>The Data</strong></a></li>
+  <li><a href="#multilevel-meta-analysis" id="toc-multilevel-meta-analysis" class="nav-link" data-scroll-target="#multilevel-meta-analysis"><strong>Multilevel Meta Analysis</strong></a></li>
+  <li><a href="#calculating-effect-sizes-for-pre-vs.-post-time-points" id="toc-calculating-effect-sizes-for-pre-vs.-post-time-points" class="nav-link" data-scroll-target="#calculating-effect-sizes-for-pre-vs.-post-time-points"><strong>Calculating Effect Sizes for Pre vs.&nbsp;Post Time Points</strong></a></li>
+  <li><a href="#heterogeneity" id="toc-heterogeneity" class="nav-link" data-scroll-target="#heterogeneity">Heterogeneity</a>
+  <ul class="collapse">
+  <li><a href="#calculate-i2" id="toc-calculate-i2" class="nav-link" data-scroll-target="#calculate-i2">Calculate I<sup>2</sup></a></li>
+  <li><a href="#prediction-interval" id="toc-prediction-interval" class="nav-link" data-scroll-target="#prediction-interval">Prediction Interval</a></li>
+  </ul></li>
+  <li><a href="#testing-for-outliers-and-publication-bias" id="toc-testing-for-outliers-and-publication-bias" class="nav-link" data-scroll-target="#testing-for-outliers-and-publication-bias">Testing for Outliers and Publication Bias</a></li>
+  <li><a href="#pre-vs.-follow-up-time-points" id="toc-pre-vs.-follow-up-time-points" class="nav-link" data-scroll-target="#pre-vs.-follow-up-time-points">Pre vs.&nbsp;Follow-up Time Points</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Using Multilevel Meta-Analysis to Better Understand Complex Business Research</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Multilevel Meta-Analysis</div>
+    <div class="quarto-category">R</div>
+    <div class="quarto-category">Organizational Training</div>
+    <div class="quarto-category">Engagement</div>
+    <div class="quarto-category">Data Science</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Matthew Swanson </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="project-goal" class="level1 text-center">
+<h1><strong>Project Goal</strong></h1>
+</section>
+<p>As practitioners of data science and IO psychology, we are sometimes tasked with understanding the effects of a particular training program or yearly event. In a perfect world, we would begin prepping the organization for evaluation work and would draft up timelines for evaluation and would work with the organization to identify potential samples. We would also identify any relevant data that has already been collected and potentially work that information into the evaluation schedules. Next, and dependent upon the type and length of training to be evaluated, the evaluation schedule would be enacted and data would be collected and analyzed (likely over the course of several training cycles to evaluate longitudinal impacts) and presented to the organization. However, what happens when the organization does not have the time and money to wait for the outcome of the evaluation cycle? For example, imagine a hospital struggling with teamwork among their frontline staff.</p>
+<p>In this example, communication among frontline staff has broken down and become siloed, which has led to several critical errors while admitting patients. The hospital wants to implement team training that targets team cohesion and problem solving/conflict resolution. Currently, there is a very popular training course on the market that claims to target these outcomes that the hospital is considering (the hospital also does not have the time and money to develop their own in-house training). However, the training is expensive so the hospital has hired a consultant to review the literature on this training and present their findings on the effects reported in research conducted on this training course.</p>
+<p>There are a few ways the consultant could go about reviewing and presenting the literature that has been conducted on this teamwork training course. First, the consultant could identify research most relevant to the organization (ex. finding research that evaluates that training course using similar samples) and create summary sheets for each article. These summaries then provide the organization some initial information on the types of research that has been conducted on the training course, the range of effect sizes found, and some common outcomes that training participation has been related to. However, one draw back to this approach is that the consultant cannot speak to the average effect size across these studies and the consultant runs the risk of missing the forest for the trees, especially when there exists a large amount of literature evaluating the training. Additionally, it seems unlikely that the hospital has the time or desire to read summaries of dozens of relevant studies. As such, the consultant may select focal articles to present (which can obfuscate the understanding of the training’s efficacy), or the consultant may look to places where relevant research has been summarized before, typically in the form of a meta-analysis.</p>
+<p>Without going into to much detail, meta-analysis is a statistical approach that combines effect sizes from multiple separate research studies <span class="citation" data-cites="deeks2019">(<a href="#ref-deeks2019" role="doc-biblioref">Deeks, Higgins, and Altman 2019</a>)</span>. Meta-analysis typically takes the form of a fixed-effect model (which assumes that studies share an effect size) or a random-effects model (which assumes a distribution of effect sizes) (see <span class="citation" data-cites="borenstein2010">(<a href="#ref-borenstein2010" role="doc-biblioref">Borenstein et al. 2010</a>)</span> for more details on the common meta-analysis models). However, and pertinent to this example, these models assume independence of effect sizes. In other words, that the effect sizes come from discrete samples or participants. This becomes a challenge for training research that often samples the same participants multiple times (i.e., baseline test, pre-test, post-test, follow-up test). Because of this challenge, researchers will often select a single effect size, average across effect sizes, or they do not conduct meta-analysis with the studies <span class="citation" data-cites="morris2023">(<a href="#ref-morris2023" role="doc-biblioref">Morris 2023</a>)</span>.</p>
+<section id="the-data" class="level1 text-center">
+<h1><strong>The Data</strong></h1>
+</section>
+<p>Typically for training evaluation research, research studies will report the means, standard deviations, and sample sizes for each group at each data collection time point. As it pertains to the goals of this project, I have identified 10 research studies that have evaluated the teamwork training course. Each of these 10 studies evaluated three groups of participants three times: a baseline pre test assessment, a post test assessment that occurred right after the training event was completed, and then a follow-up test that occurred anywhere from 1 to 12 months after the training event. I will discuss the groups of participants when I test for the effect of moderators <a href="../Portfolio pages/MLMAMod.html">here</a>. The means and standard deviations calculated at each time point represents an average training “effectiveness” metric that has been decided upon by the researchers who conducted the research contained in these 10 studies (i.e., it is shared metric of training effectiveness). <em>Note: I created this data set for the purpose of this demonstration.</em> Much greater detail on how to synthesize research and how to locate, code, and describe potential studies can be found in <a href="https://www.russellsage.org/publications/handbook-research-synthesis-and-meta-analysis">The Handbook of Research Synthesis and Mata-Analysis</a> by Cooper, Hedges, and Valentine (2019).</p>
+<p>For the sake of this project, there will be no attrition between time points, but please recognize that this is relatively rare within this type of research. Consultants will have to make decisions over how to treat sample attrition as the analyses require a single sample size for each group.</p>
+<p>In this project, I will demonstrate how to calculate the meta-analytic effects for the differences between the pre and (separately) the post and follow-up time points and illustrate the information that can be gleaned from this approach.</p>
+<p>First, I will load in the data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ez)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>Data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"C:/Users/matts/OneDrive/Desktop/002 Matt Desktop/WebsiteData/Data/MLMA example data.xlsx"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 11
+  Study_ID Effect_ID  Mod1 `Months since follow`     N Mean_pre Mean_post
+     &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;                 &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+1        1         1     1                     2   306     3.5       5.86
+2        1         2     2                     6   248     2.71      5.79
+3        1         3     3                    12   329     2.48      3.3 
+4        2         4     1                     4    82     3.78      4.42
+5        2         5     2                     2   418     3.07      6.4 
+6        2         6     3                     1   309     4.12      6.63
+# ℹ 4 more variables: Mean_follow &lt;dbl&gt;, SD1 &lt;dbl&gt;, SD2 &lt;dbl&gt;, SD3 &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<section id="multilevel-meta-analysis" class="level1 text-center">
+<h1><strong>Multilevel Meta Analysis</strong></h1>
+</section>
+<p>Recent development in meta-analysis has provided an avenue for handling multiple effect sizes from the same group: multilevel meta-analysis (MLMA). The key difference between MLMA and other meta-analyses is that MLMA partitions effect size variation across three levels: within and between study variation (also discussed as heterogeneity), and the individual effect size sampling error. The benefit of implementing MLMA here is that an unbiased estimate of the population effect can be calculated using data from all participants across each time point, which also addresses issues of effect size independence.</p>
+<p>Notation of the formulas underpinning each level of a MLMA is as follows:</p>
+<p><em>Formula for Level 1:</em> <span class="math display">\[
+\hat\theta_{ij} = \theta_{ij} + \epsilon_{ij}
+\]</span></p>
+<p><em>Formula for Level 2:</em> <span class="math display">\[
+\theta_{ij} = \kappa_{j} + \zeta_{(2)ij}
+\]</span></p>
+<p><em>Formula for Level 3:</em> <span class="math display">\[
+\kappa_{j} = \mu + \zeta_{(3)j}
+\]</span></p>
+<p>whereby <span class="math inline">\(\hat\theta_{ij}\)</span> represents an estimation of the true effect <span class="math inline">\(\theta_{ij}\)</span>. This estimation occurs for each effect size, <em>i</em>, nested in group <em>j</em>. <span class="math inline">\(\kappa_{j}\)</span> represents the average effect size within each group and μ represents the average population effect <span class="citation" data-cites="harrer2021">(<a href="#ref-harrer2021" role="doc-biblioref">Harrer et al. 2021</a>)</span>. Lastly, <span class="math inline">\(\zeta_{(2)ij}\)</span> refers to the within-level heterogeneity (level 2) and <span class="math inline">\(\zeta_{(3)j}\)</span> represents the between-level heterogeneity (level 3). As demonstrated by <span class="citation" data-cites="harrer2021">(<a href="#ref-harrer2021" role="doc-biblioref">Harrer et al. 2021</a>)</span>, these three formulas can be combined to form the three-level meta-regression model: <span class="math display">\[
+\hat\theta_{ij} = \mu + \zeta_{(2)ij} + \zeta_{(3)j} + \epsilon_{ij}
+\]</span></p>
+<p>Here, <span class="math inline">\(\mu\)</span> represents the overall average population effect (See <span class="citation" data-cites="cheung2014">Cheung (<a href="#ref-cheung2014" role="doc-biblioref">2014</a>)</span> for more details on the development of MLMA formulas).</p>
+<section id="calculating-effect-sizes-for-pre-vs.-post-time-points" class="level2 text-center">
+<h2 class="anchored" data-anchor-id="calculating-effect-sizes-for-pre-vs.-post-time-points"><strong>Calculating Effect Sizes for Pre vs.&nbsp;Post Time Points</strong></h2>
+</section>
+<p>With this information, standardized mean differences can be calculated for each time point comparison (e.g., pre vs.&nbsp;post time point differences, pre vs.&nbsp;follow-up time point differences). These standardized mean differences are still biased estimates so they will need to be converted to Hedges’ <em>g</em>, which is an unbiased estimate <span class="citation" data-cites="borenstein2019">(<a href="#ref-borenstein2019" role="doc-biblioref">BORENSTEIN and HEDGES 2019</a>)</span>.</p>
+<p>Given that the same group of participants provide data at multiple time points in each study, we will assume a correlation of <em>r</em> = .50, as recommended by <span class="citation" data-cites="morris2002">Morris and DeShon (<a href="#ref-morris2002" role="doc-biblioref">2002</a>)</span>. Note that if the correlation between time points is provided in the studies themselves, OR if access to the raw data is provided, the consultant should calculate the correlations themselves and avoid the assumption of <em>r</em> = .50.</p>
+<p>There is also an important correction factor that has to be calculated as well when calculating calculating Hedges <em>g</em>. This correction factor, <em>J</em>, is applied to the formula and is notated as:</p>
+<p><span class="math display">\[
+J(n-1)= 1-\frac{3}{4_{df}-1}
+\]</span></p>
+<p>where <span class="math inline">\(J(n-1)\)</span> is the number of pairs. <em>J</em> is calculated for each effect and multiplied by the standardized mean difference (SMD), which produces <em>g</em>. We also use these correction factors to calculate an unbiased estimate of variance <span class="citation" data-cites="borenstein2019">(<a href="#ref-borenstein2019" role="doc-biblioref">BORENSTEIN and HEDGES 2019</a>)</span>.</p>
+<p>I will demonstrate with the code below how to calculate these values using the data I have just loaded. I will need to add in a row of data for the correlations between time points (if I could not gather that information from the studies themselves). Reminder: since I am using standardized mean differences in my calculation of the meta effect, decisions have to be made for which comparisons to look at. Of course, all time points can be compared to each other but this becomes tedious and often not informative. Thus, I will note here that pre scores will be compared to both post and follow-up time points (I will touch on quadratic effects later on). Of course, the consultant could evaluate the effect size for post to follow-up time points but as both of these time points occur after the training events, this information is largely irrelevant to the hospital’s goals of understanding the potential effect of this training.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set correlation = .5</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ri <span class="ot">&lt;-</span> .<span class="dv">5</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Data<span class="sc">$</span>ri <span class="ot">&lt;-</span> ri</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Comparing Pre and Post Time Points</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#compute effect size  for pre vs. post</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>Data <span class="ot">&lt;-</span> <span class="fu">escalc</span>(<span class="at">measure =</span> <span class="st">"SMCR"</span>, </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">m1i=</span> Mean_pre, </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">m2i =</span> Mean_post,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">sd1i =</span> SD1, </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">sd2i =</span> SD2, </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">ni =</span> N,</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">ri =</span> ri,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">flip =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">data =</span> Data)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>Data <span class="ot">&lt;-</span> Data <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">df =</span> N <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co">#compute standard error for Cohen's d using sampling variance</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>Data <span class="ot">&lt;-</span> Data <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">std_error_d =</span> <span class="fu">sqrt</span>(vi <span class="sc">/</span> N))</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co">#Need to convert Cohen's d to Hedges' g</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="do">##correction factor J</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>Data <span class="ot">&lt;-</span> Data <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">j =</span>  <span class="dv">1</span> <span class="sc">-</span> (<span class="dv">3</span> <span class="sc">/</span> (<span class="dv">4</span> <span class="sc">*</span> df <span class="sc">-</span> <span class="dv">1</span>)))</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="do">##Hedges' g: effect size</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>Data <span class="ot">&lt;-</span> Data <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">hedges_g =</span>  yi <span class="sc">*</span> j)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="do">##Hedges' g: std error</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>Data <span class="ot">&lt;-</span> Data <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">std_error_g =</span>  std_error_d <span class="sc">*</span> j)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="co">#Hedges' g: variance </span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>Data <span class="ot">&lt;-</span> Data <span class="sc">|&gt;</span>  <span class="fu">mutate</span>(<span class="at">var_g =</span> vi <span class="sc">*</span> j) </span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  Study_ID Effect_ID Mod1 Months.since.follow   N Mean_pre Mean_post 
+1        1         1    1                   2 306     3.50      5.86 
+2        1         2    2                   6 248     2.71      5.79 
+3        1         3    3                  12 329     2.48      3.30 
+4        2         4    1                   4  82     3.78      4.42 
+5        2         5    2                   2 418     3.07      6.40 
+6        2         6    3                   1 309     4.12      6.63 
+  Mean_follow  SD1  SD2  SD3  ri     yi     vi  df std_error_d         j 
+1        4.84 0.43 0.72 1.19 0.5 5.4749 0.0522 305 0.013066610 0.9975390 
+2        3.10 1.06 0.87 1.61 0.5 2.8968 0.0210 247 0.009191252 0.9969605 
+3        2.14 0.71 1.40 0.88 0.5 1.1523 0.0051 328 0.003920716 0.9977117 
+4        3.90 1.49 1.20 0.85 0.5 0.4255 0.0133  81 0.012735244 0.9907121 
+5        5.21 1.55 1.16 1.82 0.5 2.1445 0.0079 417 0.004345570 0.9982004 
+6        3.42 1.56 1.61 1.97 0.5 1.6051 0.0074 308 0.004895294 0.9975630 
+   hedges_g std_error_g       var_g 
+1 5.4613894 0.013034452 0.052116728 
+2 2.8880221 0.009163315 0.020887141 
+3 1.1496496 0.003911744 0.005045819 
+4 0.4215863 0.012616960 0.013175765 
+5 2.1406610 0.004337749 0.007879297 
+6 1.6011411 0.004883364 0.007386799 </code></pre>
+</div>
+</div>
+<p>As you can see from the dataset, we now have calculated Hedge’s <em>g</em> and its accompanying standard error and variance for each pre and post comparison contained in these 10 research studies. For additional information on the choices I make for the code and what each argument entails, I suggest reviewing the CRAN repository for the metafor package. Since I compared pre to post scores, I added the argument “flip = true” so that the effect sizes would be in the expected direction (assuming that the training has some positive effect).</p>
+<p>Now I will run the initial comparison of pre and post scores using the values I just prepared above. I will call this model “Pre_V_Post” in the code.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pre Vs. Post Comparison</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Calculating MLMA effect</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>Pre_v_Post <span class="ot">&lt;-</span> <span class="fu">rma.mv</span>(<span class="at">yi =</span> hedges_g, </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">V =</span> var_g, </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                        <span class="at">test =</span> <span class="st">"knha"</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                        <span class="at">random =</span> <span class="sc">~</span> <span class="dv">1</span> <span class="sc">|</span> Study_ID<span class="sc">/</span>Effect_ID,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>                        <span class="at">data =</span> Data)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Pre_v_Post)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Multivariate Meta-Analysis Model (k = 30; method: REML)
+
+  logLik  Deviance       AIC       BIC      AICc   
+-59.3806  118.7613  124.7613  128.8631  125.7213   
+
+Variance Components:
+
+            estim    sqrt  nlvls  fixed              factor 
+sigma^2.1  0.5260  0.7253     10     no            Study_ID 
+sigma^2.2  2.8925  1.7007     30     no  Study_ID/Effect_ID 
+
+Test for Heterogeneity:
+Q(df = 29) = 3191.6410, p-val &lt; .0001
+
+Model Results:
+
+estimate      se    tval  df    pval   ci.lb   ci.ub    
+  1.0220  0.3971  2.5739  29  0.0154  0.2099  1.8340  * 
+
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint.rma.mv</span>(Pre_v_Post)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+          estimate  ci.lb  ci.ub 
+sigma^2.1   0.5260 0.0000 3.5401 
+sigma.1     0.7253 0.0000 1.8815 
+
+          estimate  ci.lb  ci.ub 
+sigma^2.2   2.8925 1.5943 5.7841 
+sigma.2     1.7007 1.2627 2.4050 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict.rma</span>(Pre_v_Post)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+   pred     se  ci.lb  ci.ub   pi.lb  pi.ub 
+ 1.0220 0.3971 0.2099 1.8340 -2.8457 4.8897 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(Pre_v_Post<span class="sc">$</span>tau2, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Pre_v_Post<span class="sc">$</span>sigma2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5260172 2.8925091</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">funnel</span>(Pre_v_Post, <span class="at">xlab =</span> <span class="st">"Standardized Mean Difference"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="MLMAEffect_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">forest</span>(Pre_v_Post, <span class="at">header =</span> <span class="fu">c</span>(<span class="st">"Effect Number"</span>, <span class="st">"Weight (%)   SMD   [95% CI]"</span>), <span class="at">slab =</span> <span class="fu">paste</span>(Effect_ID), <span class="at">mlab =</span> <span class="st">"Pooled Estimate"</span>,  <span class="at">order =</span> <span class="st">"obs"</span>, <span class="at">xlab =</span> <span class="st">"Standardized Mean Difference (95% CI)"</span>, <span class="at">digits =</span> <span class="dv">2</span>L, <span class="at">cex =</span> <span class="dv">1</span>, <span class="at">shade =</span> <span class="st">"zebra"</span>, <span class="at">showweights =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="MLMAEffect_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Results from this model indicate an overall positive and significant mean effect size, <em>g</em> = 1.02, 95% Confidence Interval (CI)[0.210, 1.834]. Given that the effect is positive, we can conclude that there is meta-analytic evidence that training outcomes improved immediately upon completion of the training. I also presented the SMDs and effect sizes used in this calculation via a funnel plot and as a forest plot. The forest plot visually displays the SMD for each effect size used in this model as well as their 95% CI ranges and the weight each effect contributes to the pooled estimate. Model results also indicate significant heterogeneity, <em>Q</em>(29) = 3191.64, <em>p</em> &lt;.001.</p>
+<section id="heterogeneity" class="level2">
+<h2 class="anchored" data-anchor-id="heterogeneity">Heterogeneity</h2>
+<p>One key benefit to random-effects meta-analyses is that the variability in the average effect size can be quantified by assessing the heterogeneity present in the effect. MLMA builds on this and allows for assessing both the between- and within-level heterogeneity. Heterogeneity has historically been represented by <em>Q</em>, which compares of the observed variance to what is expected due to sampling error <span class="citation" data-cites="morris2023">(<a href="#ref-morris2023" role="doc-biblioref">Morris 2023</a>)</span>. That said, current best practices have moved away from only reporting <em>Q</em> and have instead adopted the I<sup>2</sup> statistic, which denotes the proportion of variance between and within studies attributable to the true heterogeneity of effect size. Additionally, I will report the variance for each level, τ<sup>2</sup>.</p>
+<section id="calculate-i2" class="level3">
+<h3 class="anchored" data-anchor-id="calculate-i2">Calculate I<sup>2</sup></h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>W <span class="ot">&lt;-</span> <span class="fu">diag</span>(<span class="dv">1</span><span class="sc">/</span>Pre_v_Post<span class="sc">$</span>vi)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(Pre_v_Post)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>P <span class="ot">&lt;-</span> W <span class="sc">-</span> W <span class="sc">%*%</span> X <span class="sc">%*%</span> <span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> W <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> W</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="dv">100</span> <span class="sc">*</span> <span class="fu">sum</span>(Pre_v_Post<span class="sc">$</span>sigma2) <span class="sc">/</span> (<span class="fu">sum</span>(Pre_v_Post<span class="sc">$</span>sigma2) <span class="sc">+</span> (Pre_v_Post<span class="sc">$</span>k<span class="sc">-</span>Pre_v_Post<span class="sc">$</span>p)<span class="sc">/</span><span class="fu">sum</span>(<span class="fu">diag</span>(P)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 99.7982</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#variance attribution (between &amp; within)</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="dv">100</span> <span class="sc">*</span> Pre_v_Post<span class="sc">$</span>sigma2 <span class="sc">/</span> (<span class="fu">sum</span>(Pre_v_Post<span class="sc">$</span>sigma2) <span class="sc">+</span> (Pre_v_Post<span class="sc">$</span>k<span class="sc">-</span>Pre_v_Post<span class="sc">$</span>p)<span class="sc">/</span><span class="fu">sum</span>(<span class="fu">diag</span>(P)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 15.3562 84.4420</code></pre>
+</div>
+</div>
+<p>Using the information we just calculated, as well as information provided in the output of the model itself, we can understand quite a bit regarding the variance in the pre vs.&nbsp;post effect. First, and as mentioned above, results from the MLMA indicate significant heterogeneity, <em>Q</em>(29) = 3191.64, <em>p</em> &lt;.001. Using the sigma 2.1 and 2.2 values and matrix multiplication output, I have also identified that both the between-level variance I<sup>2</sup> = 15.36%, τ<sup>2</sup> = 0.526, and at the within-study level, I<sup>2</sup> = 84.44%, τ<sup>2</sup> = 2.893. We can also grab confidence intervals for τ<sup>2</sup> values using the confint.rma.mv function in the metafor package, which I will run in the next chunk of code.</p>
+<p>I also know that approximately 99.80% of the total variance is due to heterogeneity and approximately 0.20% of the total variance is attributable to sampling variance. These results indicate that almost all of the variance in the effect is attributable to heterogeneity, and thus likely dependent on the presence of moderators. Another way to quantify this degree of uncertainty in the pre vs.&nbsp;post effect size is by calculating the prediction interval surrounding this effect.</p>
+</section>
+<section id="prediction-interval" class="level3">
+<h3 class="anchored" data-anchor-id="prediction-interval">Prediction Interval</h3>
+<p>The prediction interval provides an estimate of the range of possible values expected in a population.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint.rma.mv</span>(Pre_v_Post)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+          estimate  ci.lb  ci.ub 
+sigma^2.1   0.5260 0.0000 3.5401 
+sigma.1     0.7253 0.0000 1.8815 
+
+          estimate  ci.lb  ci.ub 
+sigma^2.2   2.8925 1.5943 5.7841 
+sigma.2     1.7007 1.2627 2.4050 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict.rma</span>(Pre_v_Post)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+   pred     se  ci.lb  ci.ub   pi.lb  pi.ub 
+ 1.0220 0.3971 0.2099 1.8340 -2.8457 4.8897 </code></pre>
+</div>
+</div>
+<p>The prediction interval for this SMD effect ranges from -2.846 to 4.890, suggesting that any new study conducted with this sample population could expect to find negative effects (i.e., participants perform worse on training outcomes after engaging in the training), no effects, or positive effects (i.e., participants perform better on training outcomes after engaging in the training). Of course, these SMD values are also exceptionally large, which are questionable at best and likely are driven by error and the high degree of heterogeneity present in this effect <span class="citation" data-cites="borenstein2019">(<a href="#ref-borenstein2019" role="doc-biblioref">BORENSTEIN and HEDGES 2019</a>)</span>.</p>
+</section>
+</section>
+<section id="testing-for-outliers-and-publication-bias" class="level2">
+<h2 class="anchored" data-anchor-id="testing-for-outliers-and-publication-bias">Testing for Outliers and Publication Bias</h2>
+<p>Outliers should also be assessed as well as testing for publication bias.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="do">##outliers -- dfbeta </span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dfbetas.rma.mv</span>(Pre_v_Post) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">influence =</span> <span class="fu">if_else</span>(intrcpt <span class="sc">&gt;</span> .<span class="dv">99</span> <span class="sc">|</span> intrcpt <span class="sc">&lt;</span> <span class="sc">-</span>.<span class="dv">99</span>, <span class="st">'TRUE'</span>, <span class="st">'0'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        intrcpt influence
+1   0.396297256         0
+2   0.143790700         0
+3  -0.076287096         0
+4  -0.070287411         0
+5   0.098341001         0
+6   0.046261655         0
+7  -0.065757147         0
+8   0.090510979         0
+9  -0.094057717         0
+10  0.064823527         0
+11  0.053342867         0
+12 -0.683981975         0
+13  0.222709413         0
+14 -0.173795907         0
+15  0.029814446         0
+16 -0.005786368         0
+17  0.080354135         0
+18 -0.053061603         0
+19  0.182491009         0
+20  0.010184159         0
+21 -0.124972673         0
+22  0.099789483         0
+23 -0.075163499         0
+24  0.041619982         0
+25 -0.060537876         0
+26 -0.019188372         0
+27 -0.031570842         0
+28 -0.032071639         0
+29  0.048275103         0
+30 -0.001980348         0</code></pre>
+</div>
+</div>
+<p>First, I ran the dfbetas.rma.rv function, which tests if the removal of any <em>single</em> effect (there are 30 effects contained in this model) changes the beta value of the intercept by more than <span class="math inline">\(|1|\)</span>. As you can see in the output, the removal of any single effect does not influence the intercept beta by the absolute value of 1, thus all 30 effects can be retained in the model (i.e., no strong evidence that any effects are outliers from the sample).</p>
+<p>Publication bias can occur when the studies that are included in a meta-analysis tend to favor one type of effect (i.e., significant findings), thus potentially obfuscating the “true” effect as significant findings tend to get published over non-significant or uninteresting findings. I will test for publication bias using both a multivariate version of Egger’s test and the three-parameter selection model (3PSM). Egger’s test is typically a linear regression that tests if there is symmetry between effect size and sample size. A significant Egger’s test suggests that effect sizes depend on sample size, which can provide some evidence of selection bias <span class="citation" data-cites="pustejovsky2019">(<a href="#ref-pustejovsky2019" role="doc-biblioref">Pustejovsky and Rodgers 2019</a>)</span>. The 3PSM test estimates three parameters (<span class="math inline">\(\mu\)</span>, τ<sup>2</sup>, and 𝛿<sub>2</sub>) using maximum likelihood estimation. Each 3PSM model has a single cut point at alpha level .025 and a significant likelihood ratio test indicates that non-significant findings are less likely to be published than significant findings. <span class="citation" data-cites="carter2019">Carter et al. (<a href="#ref-carter2019" role="doc-biblioref">2019</a>)</span> provides more information for this test.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#compute adjusted SE for Egger's regression test per Pustejovsky and Rodgers (2019)</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>Data <span class="ot">&lt;-</span> Data <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">se_cor =</span> <span class="fu">sqrt</span>(<span class="dv">4</span><span class="sc">/</span>N))</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Small study effect (Egger's test)</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rma.mv</span>(<span class="at">yi =</span> hedges_g <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> se_cor, </span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">V =</span> var_g,</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">test =</span> <span class="st">"knha"</span>,</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">digits =</span> <span class="dv">3</span>,</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>                   <span class="at">random =</span> <span class="sc">~</span> <span class="dv">1</span> <span class="sc">|</span> Study_ID<span class="sc">/</span>Effect_ID,</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> Data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Multivariate Meta-Analysis Model (k = 30; method: REML)
+
+Variance Components:
+
+           estim   sqrt  nlvls  fixed              factor 
+sigma^2.1  0.337  0.581     10     no            Study_ID 
+sigma^2.2  3.091  1.758     30     no  Study_ID/Effect_ID 
+
+Test for Residual Heterogeneity:
+QE(df = 28) = 3180.178, p-val &lt; .001
+
+Test of Moderators (coefficient 2):
+F(df1 = 1, df2 = 28) = 0.606, p-val = 0.443
+
+Model Results:
+
+         estimate     se    tval  df   pval    ci.lb  ci.ub    
+intrcpt     1.590  0.823   1.931  28  0.064   -0.096  3.277  . 
+se_cor     -3.489  4.482  -0.778  28  0.443  -12.671  5.693    
+
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Selection effects (3PSM)</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="do">###aggregate effects</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>Aggregate_Eff_PrevPost <span class="ot">&lt;-</span> Data <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Study_ID) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">agg_effect =</span> <span class="fu">mean</span>(hedges_g)) <span class="sc">%&gt;%</span> ungroup </span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="do">###compute univariate model</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>Pre_v_Post_Agg <span class="ot">&lt;-</span> <span class="fu">rma</span>(<span class="at">yi =</span> agg_effect, </span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">vi =</span> var_g,</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>                   <span class="at">digits =</span> <span class="dv">3</span>,</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> Aggregate_Eff_PrevPost)</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>Pre_v_Post_Agg  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Random-Effects Model (k = 30; tau^2 estimator: REML)
+
+tau^2 (estimated amount of total heterogeneity): 1.417 (SE = 0.379)
+tau (square root of estimated tau^2 value):      1.190
+I^2 (total heterogeneity / total variability):   99.51%
+H^2 (total variability / sampling variability):  205.97
+
+Test for Heterogeneity:
+Q(df = 29) = 3238.603, p-val &lt; .001
+
+Model Results:
+
+estimate     se   zval   pval  ci.lb  ci.ub      
+   1.019  0.219  4.645  &lt;.001  0.589  1.449  *** 
+
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#3PSM test</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">selmodel</span>(Pre_v_Post_Agg, <span class="at">type=</span><span class="st">"stepfun"</span>, <span class="at">steps=</span><span class="fu">c</span>(.<span class="dv">025</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Random-Effects Model (k = 30; tau^2 estimator: ML)
+
+tau^2 (estimated amount of total heterogeneity): 2.703 (SE = 1.017)
+tau (square root of estimated tau^2 value):      1.644
+
+Test for Heterogeneity:
+LRT(df = 1) = 3067.099, p-val &lt; .001
+
+Model Results:
+
+estimate     se    zval   pval   ci.lb  ci.ub    
+  -0.675  0.887  -0.762  0.446  -2.414  1.063    
+
+Test for Selection Model Parameters:
+LRT(df = 1) = 13.652, p-val &lt; .001
+
+Selection Model Results:
+
+                     k  estimate     se     zval   pval  ci.lb  ci.ub      
+0     &lt; p &lt;= 0.025  27     1.000    ---      ---    ---    ---    ---      
+0.025 &lt; p &lt;= 1       3     0.044  0.043  -22.350  &lt;.001  0.000  0.128  *** 
+
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>Results of the Egger’s test do not indicate non-symmetry, <em>b</em> = 1.590, <em>SE</em> = 0.823, <em>p</em> = .064, however results of the 3PSM selection bias may, in fact, be influencing results of the pre vs.&nbsp;post MLMA model, <em>X</em><sup>2</sup>(1) = 13.652, <em>p</em> &lt; .001. Thus, there is some evidence that publication bias is an issue here (remember that this dataset has been generated) and the validity of these MLMA models is at risk. One additional piece of information from the output I will point out is the adjusted effect size that is calculated alongside these analyses. The effect size decreased from <em>g</em> = 1.022 to <em>g</em> = 1.019 in the adjusted model. A difference of .003 in effect size is considered trivial in the literature <span class="citation" data-cites="borenstein2019">(<a href="#ref-borenstein2019" role="doc-biblioref">BORENSTEIN and HEDGES 2019</a>)</span>, but it is wise to be cautious when interpreting this model. Additional research is needed to build confidence in this effect, especially given the high degree of heterogeneity and wide prediction interval affiliated with this effect.</p>
+</section>
+<section id="pre-vs.-follow-up-time-points" class="level2">
+<h2 class="anchored" data-anchor-id="pre-vs.-follow-up-time-points">Pre vs.&nbsp;Follow-up Time Points</h2>
+<p>Let’s do this again and compare pre to follow-up scores. I will just provide a brief overview of the results as the same information I covered above applies for this model.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Comparing Pre and Follow Time Points</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co">#compute effect size  for pre vs. follow</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>Data2 <span class="ot">&lt;-</span> <span class="fu">escalc</span>(<span class="at">measure =</span> <span class="st">"SMCR"</span>, </span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">m1i=</span> Mean_pre, </span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">m2i =</span> Mean_follow,</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">sd1i =</span> SD1, </span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">sd2i =</span> SD3, </span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">ni =</span> N,</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">ri =</span> ri,</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">flip =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">data =</span> Data)</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>Data2 <span class="ot">&lt;-</span> Data2 <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">df =</span> N <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a><span class="co">#compute standard error for Cohen's d using sampling variance</span></span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>Data2 <span class="ot">&lt;-</span> Data2 <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">std_error_d =</span> <span class="fu">sqrt</span>(vi <span class="sc">/</span> N))</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a><span class="co">#convert Cohen's d to Hedges' g: effect size &amp; standard error &amp; variance</span></span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a><span class="do">##correction factor J</span></span>
+<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a>Data2 <span class="ot">&lt;-</span> Data2 <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">j =</span>  <span class="dv">1</span> <span class="sc">-</span> (<span class="dv">3</span> <span class="sc">/</span> (<span class="dv">4</span> <span class="sc">*</span> df <span class="sc">-</span> <span class="dv">1</span>)))</span>
+<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a><span class="do">##Hedges' g: effect size</span></span>
+<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a>Data2 <span class="ot">&lt;-</span> Data2 <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">hedges_g =</span>  yi <span class="sc">*</span> j)</span>
+<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a><span class="do">##Hedges' g: std error</span></span>
+<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a>Data2 <span class="ot">&lt;-</span> Data2 <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">std_error_g =</span>  std_error_d <span class="sc">*</span> j)</span>
+<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a><span class="co">#Hedges' g: variance </span></span>
+<span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a>Data2 <span class="ot">&lt;-</span> Data2 <span class="sc">|&gt;</span>  <span class="fu">mutate</span>(<span class="at">var_g =</span> vi <span class="sc">*</span> j) </span>
+<span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Data2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  Study_ID Effect_ID Mod1 Months.since.follow   N Mean_pre Mean_post 
+1        1         1    1                   2 306     3.50      5.86 
+2        1         2    2                   6 248     2.71      5.79 
+3        1         3    3                  12 329     2.48      3.30 
+4        2         4    1                   4  82     3.78      4.42 
+5        2         5    2                   2 418     3.07      6.40 
+6        2         6    3                   1 309     4.12      6.63 
+  Mean_follow  SD1  SD2  SD3  ri      yi     vi  df std_error_d         j 
+1        4.84 0.43 0.72 1.19 0.5  3.1086 0.0191 305 0.007891818 0.9975390 
+2        3.10 1.06 0.87 1.61 0.5  0.3668 0.0043 247 0.004165682 0.9969605 
+3        2.14 0.71 1.40 0.88 0.5 -0.4778 0.0034 328 0.003208286 0.9977117 
+4        3.90 1.49 1.20 0.85 0.5  0.0798 0.0122  81 0.012214516 0.9907121 
+5        5.21 1.55 1.16 1.82 0.5  1.3782 0.0047 417 0.003340438 0.9982004 
+6        3.42 1.56 1.61 1.97 0.5 -0.4476 0.0036 308 0.003394487 0.9975630 
+     hedges_g std_error_g       var_g    se_cor 
+1  3.10095836 0.007872396 0.019011020 0.1143324 
+2  0.36569112 0.004153021 0.004290441 0.1270001 
+3 -0.47668397 0.003200945 0.003378681 0.1102636 
+4  0.07904744 0.012101068 0.012120312 0.2208631 
+5  1.37568006 0.003334427 0.004655871 0.0978232 
+6 -0.44653338 0.003386214 0.003551788 0.1137760 </code></pre>
+</div>
+</div>
+<p>All necessary information has now been calculated to do this comparison.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pre vs. follow-Up Comparison</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Calculating MLMA effect</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>Pre_v_Follow <span class="ot">&lt;-</span> <span class="fu">rma.mv</span>(<span class="at">yi =</span> hedges_g, </span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">V =</span> var_g, </span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>                        <span class="at">test =</span> <span class="st">"knha"</span>,</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>                        <span class="at">random =</span> <span class="sc">~</span> <span class="dv">1</span> <span class="sc">|</span> Study_ID<span class="sc">/</span>Effect_ID,</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>                        <span class="at">data =</span> Data2)</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Pre_v_Follow)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Multivariate Meta-Analysis Model (k = 30; method: REML)
+
+  logLik  Deviance       AIC       BIC      AICc   
+-59.5806  119.1613  125.1613  129.2632  126.1213   
+
+Variance Components:
+
+            estim    sqrt  nlvls  fixed              factor 
+sigma^2.1  0.0000  0.0001     10     no            Study_ID 
+sigma^2.2  3.4263  1.8510     30     no  Study_ID/Effect_ID 
+
+Test for Heterogeneity:
+Q(df = 29) = 4071.9106, p-val &lt; .0001
+
+Model Results:
+
+estimate      se    tval  df    pval    ci.lb   ci.ub    
+  0.5502  0.3446  1.5966  29  0.1212  -0.1546  1.2550    
+
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint.rma.mv</span>(Pre_v_Follow)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+          estimate  ci.lb  ci.ub 
+sigma^2.1   0.0000 0.0000 1.9874 
+sigma.1     0.0001 0.0000 1.4098 
+
+          estimate  ci.lb  ci.ub 
+sigma^2.2   3.4263 1.9957 6.1190 
+sigma.2     1.8510 1.4127 2.4737 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict.rma</span>(Pre_v_Follow)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+   pred     se   ci.lb  ci.ub   pi.lb  pi.ub 
+ 0.5502 0.3446 -0.1546 1.2550 -3.3006 4.4010 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(Pre_v_Follow<span class="sc">$</span>tau2, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>Pre_v_Follow<span class="sc">$</span>sigma2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.00000001561201 3.42631262292152</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">funnel</span>(Pre_v_Follow, <span class="at">xlab =</span> <span class="st">"Standardized Mean Difference"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="MLMAEffect_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">forest</span>(Pre_v_Follow, <span class="at">header =</span> <span class="fu">c</span>(<span class="st">"Effect Number"</span>, <span class="st">"Weight (%)   SMD   [95% CI]"</span>), <span class="at">slab =</span> <span class="fu">paste</span>(Effect_ID), <span class="at">mlab =</span> <span class="st">"Pooled Estimate"</span>,  <span class="at">order =</span> <span class="st">"obs"</span>, <span class="at">xlab =</span> <span class="st">"Standardized Mean Difference (95% CI)"</span>, <span class="at">digits =</span> <span class="dv">2</span>L, <span class="at">cex =</span> <span class="dv">1</span>, <span class="at">shade =</span> <span class="st">"zebra"</span>, <span class="at">showweights =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="MLMAEffect_files/figure-html/unnamed-chunk-9-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Results from this model indicate a non-significant effect, <em>g</em> = 0.550, 95% CI [-0.155, 1.255]. I will touch upon adding moderators to MLMA models and testing for quadratic effects (ex. testing for an initial improvement in training outcomes that then decrease over time) in separate projects that can be found on my website.</p>
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-borenstein2019" class="csl-entry" role="listitem">
+BORENSTEIN, MICHAEL, and LARRY V. HEDGES. 2019. <span>“EFFECT SIZES FOR META-ANALYSIS.”</span> In, 207–44. Russell Sage Foundation. <a href="https://doi.org/10.7758/9781610448864.14">https://doi.org/10.7758/9781610448864.14</a>.
+</div>
+<div id="ref-borenstein2010" class="csl-entry" role="listitem">
+Borenstein, Michael, Larry V. Hedges, Julian P. T. Higgins, and Hannah R. Rothstein. 2010. <span>“A Basic Introduction to Fixed-Effect and Random-Effects Models for Meta-Analysis.”</span> <em>Research Synthesis Methods</em> 1 (2): 97–111. <a href="https://doi.org/10.1002/jrsm.12">https://doi.org/10.1002/jrsm.12</a>.
+</div>
+<div id="ref-carter2019" class="csl-entry" role="listitem">
+Carter, Evan C., Felix D. Schönbrodt, Will M. Gervais, and Joseph Hilgard. 2019. <span>“Correcting for Bias in Psychology: A Comparison of Meta-Analytic Methods.”</span> <em>Advances in Methods and Practices in Psychological Science</em> 2 (2): 115–44. <a href="https://doi.org/10.1177/2515245919847196">https://doi.org/10.1177/2515245919847196</a>.
+</div>
+<div id="ref-cheung2014" class="csl-entry" role="listitem">
+Cheung, Mike W.-L. 2014. <span>“Modeling Dependent Effect Sizes with Three-Level Meta-Analyses: A Structural Equation Modeling Approach.”</span> <em>Psychological Methods</em> 19 (2): 211–29. <a href="https://doi.org/10.1037/a0032968">https://doi.org/10.1037/a0032968</a>.
+</div>
+<div id="ref-deeks2019" class="csl-entry" role="listitem">
+Deeks, Jonathan J, Julian PT Higgins, and Douglas G Altman. 2019. <span>“Analysing Data and Undertaking Meta<span>-</span>Analyses.”</span> <em>Cochrane Handbook for Systematic Reviews of Interventions</em>, September, 241–84. <a href="https://doi.org/10.1002/9781119536604.ch10">https://doi.org/10.1002/9781119536604.ch10</a>.
+</div>
+<div id="ref-harrer2021" class="csl-entry" role="listitem">
+Harrer, Mathias, Pim Cuijpers, Toshi A. Furukawa, and David D. Ebert. 2021. <span>“Doing Meta-Analysis with R,”</span> July. <a href="https://doi.org/10.1201/9781003107347">https://doi.org/10.1201/9781003107347</a>.
+</div>
+<div id="ref-morris2023" class="csl-entry" role="listitem">
+Morris, Scott B. 2023. <span>“Meta-Analysis in Organizational Research: A Guide to Methodological Options.”</span> <em>Annual Review of Organizational Psychology and Organizational Behavior</em> 10 (1): 225–59. <a href="https://doi.org/10.1146/annurev-orgpsych-031921-021922">https://doi.org/10.1146/annurev-orgpsych-031921-021922</a>.
+</div>
+<div id="ref-morris2002" class="csl-entry" role="listitem">
+Morris, Scott B., and Richard P. DeShon. 2002. <span>“Combining Effect Size Estimates in Meta-Analysis with Repeated Measures and Independent-Groups Designs.”</span> <em>Psychological Methods</em> 7 (1): 105–25. <a href="https://doi.org/10.1037/1082-989x.7.1.105">https://doi.org/10.1037/1082-989x.7.1.105</a>.
+</div>
+<div id="ref-pustejovsky2019" class="csl-entry" role="listitem">
+Pustejovsky, James E., and Melissa A. Rodgers. 2019. <span>“Testing for Funnel Plot Asymmetry of Standardized Mean Differences.”</span> <em>Research Synthesis Methods</em> 10 (1): 57–71. <a href="https://doi.org/10.1002/jrsm.1332">https://doi.org/10.1002/jrsm.1332</a>.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = true;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/matthew-swanson\.com");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2025, Matthew Swanson. This work is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="https://quarto.org">
+<p>Made with Quarto</p>
+</a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/MattS002">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/matthew-swanson-phd-335942137">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

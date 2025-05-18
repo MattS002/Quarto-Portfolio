@@ -20,7 +20,14 @@
       "Portfolio-Pages/NLPSentiment.qmd",
       "Portfolio pages/NLPSentiment.qmd",
       "Portfolio pages/FactorialANOVA.qmd",
-      "Portfolio pages/MLMEngageTeam.qmd"
+      "Portfolio pages/MLMEngageTeam.qmd",
+      "Portfolio pages/MLMAEffect.qmd"
+    ],
+    "Publications.qmd": [
+      "Publication Pages/1-22-2024.qmd",
+      "Publication Pages/12-15-2022.qmd",
+      "Publication Pages/5-26-2021.qmd",
+      "Publication Pages/8-02-2021.qmd"
     ]
   }
 }

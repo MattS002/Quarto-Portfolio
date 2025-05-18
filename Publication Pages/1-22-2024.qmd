@@ -1,0 +1,25 @@
+---
+title: "Racism underlies seemingly race-neutral conservative criticisms of DEI statements among Black and White people in the United States"
+author: 
+- Abigail M. Folberg
+- Laura Brooks Dueland
+- name: Matthew A. Swanson
+  orcid: 0000-0002-6785-2297
+- Sarah Stepanek
+- Mikki Hebl
+- Carey S. Ryan
+date: '1-22-2024'
+categories: 
+  - Diversity Initiatives
+  - Selection
+  - Political Ideology
+  - Social Dominance Theory
+  
+description: 'DEI Statements'
+---
+
+[{{< fa solid file-lines >}} Publication](https://bpspsychub.onlinelibrary.wiley.com/doi/10.1111/joop.12491){.btn target="_blank"} [{{< fa regular newspaper >}} Bloomberg](https://www.bloomberg.com/opinion/articles/2024-03-28/attacks-on-dei-are-just-racism-in-disguise){.btn target="_blank"} [{{< fa regular newspaper >}} American Psychological Association](https://www.apa.org/monitor/2024/11/racism-discrimination-diversity-research?utm_source=twitter&utm_medium=social&utm_campaign=apa-monitor&utm_content=in-brief-nov-24){.btn target="_blank"}
+
+## Abstract
+
+We examined how potential job candidates react to a hiring organization that requests diversity, equity and inclusion (DEI) statements, which conservatives in the United States and elsewhere have criticized as being unrelated to job function and inappropriately political or ideological. Across three studies (two of which were pre-registered), we compared reactions to requests for DEI (vs. teamwork or conservative values) statements as a function of race (Black vs. White), political conservatism and symbolic racism (Total N = 1108). When a DEI (vs. teamwork or politically conservative values) statement was requested, participants who were more (vs. less) conservative perceived the organization as less just, expressed less interest in the job, and expected poorer person-organization fit, even when a job-related rationale was provided. Further, participants who were more (vs. less) conservative evaluated a request for a statement consistent with conservative values more favourably. Thus, criticisms that DEI statements are overly political are not applied to other statements that might elicit similar concerns. Moreover, an internal meta-analysis suggested that the relationships of conservatism to justice and interest (but not person-organization fit) in response to requests for DEI (vs. teamwork) statements were not independent of racism. Findings were consistent with social dominance theory; racism may underlie seemingly race-neutral backlash to DEI statements.

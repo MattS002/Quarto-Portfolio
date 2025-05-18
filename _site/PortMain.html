@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.333">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Matt’s Portfolio Website - Portfolio Projects</title>
+<title>Portfolio Projects – Matthew Swanson</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -36,19 +36,25 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-8dd1961faa9fed8eaeb307954bd3f3df.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-5c82de8d99bcb8f0803f0fff0461afcb.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -57,8 +63,10 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <script>
@@ -91,8 +99,35 @@ ul.task-list li input[type="checkbox"] {
   })
   </script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -101,62 +136,72 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
     <img src="./images/Logo.gif" alt="" class="navbar-logo">
     </a>
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Matt’s Portfolio Website</span>
+    <span class="navbar-title">Matthew Swanson</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html" rel="" target="">
- <span class="menu-text">About</span></a>
+    <a class="nav-link active" href="./PortMain.html" aria-current="page"> 
+<span class="menu-text">Portfolio</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./Resume.html" rel="" target="">
- <span class="menu-text">Resume/CV</span></a>
+    <a class="nav-link" href="./Publications.html"> 
+<span class="menu-text">Publications</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./PortMain.html" rel="" target="" aria-current="page">
- <span class="menu-text">Portfolio</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./Mainblog.html" rel="" target="">
- <span class="menu-text">Personal Blog</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./DataViz.html" rel="" target="">
- <span class="menu-text">Data Viz Portfolio</span></a>
+    <a class="nav-link" href="./DataViz.html"> 
+<span class="menu-text">Data Viz Portfolio</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/matthew-swanson-phd-335942137" rel="" target=""><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/matthew-swanson-phd-335942137"> <i class="bi bi-linkedin" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/MattS002" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="mailto:mattswnsn53@gmail.com"> <i class="bi bi-envelope" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="mailto:mattswnsn53@gmail.com" rel="" target=""><i class="bi bi-envelope" role="img">
+  <li class="nav-item">
+    <a class="nav-link" href="./Matthew Austin Swanson CV 2025.pdf"> <i class="bi bi-file-text" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text">CV</span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-bi-github" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-bi-github">    
+        <li>
+    <a class="dropdown-item" href="https://github.com/MattS002/Quarto-Portfolio">
+ <span class="dropdown-text">Source Code</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/MattS002/Quarto-Portfolio/issues">
+ <span class="dropdown-text">Report an issue</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
@@ -165,7 +210,6 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </a>
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -181,7 +225,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#check-out-my-portfolio-and-research-projects" id="toc-check-out-my-portfolio-and-research-projects" class="nav-link active" data-scroll-target="#check-out-my-portfolio-and-research-projects">Check out my portfolio and research projects!</a></li>
   </ul>
 </nav>
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(8)</span></div><div class="category" data-category="Clinical Trial Data">Clinical Trial Data <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Confirmatory Factor Analysis">Confirmatory Factor Analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Constrast Coding">Constrast Coding <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Data Conversion">Data Conversion <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Diversity">Diversity <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Effect Size">Effect Size <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Emmeans">Emmeans <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Engagement">Engagement <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Factorial ANOVA">Factorial ANOVA <span class="quarto-category-count">(2)</span></div><div class="category" data-category="ICC1 &amp; 2">ICC1 &amp; 2 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Inter-rater Reliability">Inter-rater Reliability <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Multilevel Modeling">Multilevel Modeling <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Natural Language Processing">Natural Language Processing <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Power Analysis">Power Analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(8)</span></div><div class="category" data-category="Religion">Religion <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Repeated Measures ANOVA">Repeated Measures ANOVA <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Sentiment Analysis">Sentiment Analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Simple Slopes">Simple Slopes <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Survival Analysis">Survival Analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Team Cohesion">Team Cohesion <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Tokenization">Tokenization <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Turnover">Turnover <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Visualizations">Visualizations <span class="quarto-category-count">(3)</span></div><div class="category" data-category="emmeans">emmeans <span class="quarto-category-count">(1)</span></div><div class="category" data-category="lavaan">lavaan <span class="quarto-category-count">(1)</span></div><div class="category" data-category="phia">phia <span class="quarto-category-count">(1)</span></div><div class="category" data-category="survminer">survminer <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(12)</span></div><div class="category" data-category="Q2xpbmljYWwlMjBUcmlhbCUyMERhdGE=">Clinical Trial Data <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q29uZmlybWF0b3J5JTIwRmFjdG9yJTIwQW5hbHlzaXM=">Confirmatory Factor Analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q29uc3RyYXN0JTIwQ29kaW5n">Constrast Coding <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGF0YSUyMENvbnZlcnNpb24=">Data Conversion <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGF0YSUyMFNjaWVuY2U=">Data Science <span class="quarto-category-count">(3)</span></div><div class="category" data-category="RGl2ZXJzaXR5">Diversity <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RWZmZWN0JTIwU2l6ZQ==">Effect Size <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RW1tZWFucw==">Emmeans <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RW5nYWdlbWVudA==">Engagement <span class="quarto-category-count">(5)</span></div><div class="category" data-category="RmFjdG9yaWFsJTIwQU5PVkE=">Factorial ANOVA <span class="quarto-category-count">(2)</span></div><div class="category" data-category="SUNDMSUyMCUyNiUyMDI=">ICC1 &amp; 2 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SW50ZXItcmF0ZXIlMjBSZWxpYWJpbGl0eQ==">Inter-rater Reliability <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SXRlbSUyMFJlc3BvbnNlJTIwVGhlb3J5">Item Response Theory <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TW9kZXJhdGlvbg==">Moderation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TXVsdGlsZXZlbCUyME1ldGEtQW5hbHlzaXM=">Multilevel Meta-Analysis <span class="quarto-category-count">(3)</span></div><div class="category" data-category="TXVsdGlsZXZlbCUyME1vZGVsaW5n">Multilevel Modeling <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TmF0dXJhbCUyMExhbmd1YWdlJTIwUHJvY2Vzc2luZw==">Natural Language Processing <span class="quarto-category-count">(1)</span></div><div class="category" data-category="T3JnYW5pemF0aW9uYWwlMjBUcmFpbmluZw==">Organizational Training <span class="quarto-category-count">(3)</span></div><div class="category" data-category="UG93ZXIlMjBBbmFseXNpcw==">Power Analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UXVhZHJhdGljJTIwRWZmZWN0cw==">Quadratic Effects <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(12)</span></div><div class="category" data-category="UmVsaWdpb24=">Religion <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmVwZWF0ZWQlMjBNZWFzdXJlcyUyMEFOT1ZB">Repeated Measures ANOVA <span class="quarto-category-count">(2)</span></div><div class="category" data-category="U2VudGltZW50JTIwQW5hbHlzaXM=">Sentiment Analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U2ltcGxlJTIwU2xvcGVz">Simple Slopes <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U3RydWN0dXJhbCUyMEVxdWF0aW9uJTIwTW9kZWxpbmc=">Structural Equation Modeling <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U3Vydml2YWwlMjBBbmFseXNpcw==">Survival Analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VGVhbSUyMENvaGVzaW9u">Team Cohesion <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VG9rZW5pemF0aW9u">Tokenization <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VHVybm92ZXI=">Turnover <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VmlzdWFsaXphdGlvbnM=">Visualizations <span class="quarto-category-count">(3)</span></div><div class="category" data-category="ZW1tZWFucw==">emmeans <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bGF2YWFu">lavaan <span class="quarto-category-count">(2)</span></div><div class="category" data-category="cGhpYQ==">phia <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c3Vydm1pbmVy">survminer <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -200,7 +244,9 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
+
 </header>
+
 
 <section id="check-out-my-portfolio-and-research-projects" class="level1">
 <h1>Check out my portfolio and research projects!</h1>
@@ -211,7 +257,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="Repeated Measures ANOVA,R,Emmeans" data-listing-file-modified-sort="1682448465210" data-listing-reading-time-sort="3">
+<div class="g-col-1" data-index="0" data-categories="UmVwZWF0ZWQlMjBNZWFzdXJlcyUyMEFOT1ZBJTJDUiUyQ0VtbWVhbnM=" data-listing-file-modified-sort="1742410184371" data-listing-reading-time-sort="3" data-listing-word-count-sort="545">
 <a href="./Portfolio pages/BWRepeart.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="Portfolio pages\BWRepeart_files\figure-html\unnamed-chunk-3-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
@@ -223,13 +269,13 @@ Between and Within Repeated Measures ANOVA in R
 3 min
 </div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Repeated Measures ANOVA'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('UmVwZWF0ZWQlMjBNZWFzdXJlcyUyMEFOT1ZB'); return false;">
 Repeated Measures ANOVA
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">
 R
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Emmeans'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('RW1tZWFucw=='); return false;">
 Emmeans
 </div>
 </div>
@@ -245,7 +291,7 @@ Matthew Swanson
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="1" data-categories="Repeated Measures ANOVA,R,emmeans,Data Conversion" data-listing-file-modified-sort="1682449066870" data-listing-reading-time-sort="4">
+<div class="g-col-1" data-index="1" data-categories="UmVwZWF0ZWQlMjBNZWFzdXJlcyUyMEFOT1ZBJTJDUiUyQ2VtbWVhbnMlMkNEYXRhJTIwQ29udmVyc2lvbg==" data-listing-file-modified-sort="1747584162695" data-listing-reading-time-sort="4" data-listing-word-count-sort="772">
 <a href="./Portfolio pages/Repeated Measures.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="images\computers.jpeg" style="height: 150px;"  class="thumbnail-image card-img"/></p>
@@ -257,21 +303,21 @@ Does Birth Order Impact SAT Scores?
 4 min
 </div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Repeated Measures ANOVA'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('UmVwZWF0ZWQlMjBNZWFzdXJlcyUyMEFOT1ZB'); return false;">
 Repeated Measures ANOVA
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">
 R
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('emmeans'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('ZW1tZWFucw=='); return false;">
 emmeans
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Data Conversion'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMENvbnZlcnNpb24='); return false;">
 Data Conversion
 </div>
 </div>
 <div class="card-text listing-description">
-The overarching goal of this project…
+The overarching goal of this project is to teach readers how to run a repeated measures ANOVA in R. I will walk through the code below but readers should be familiar with R…
 </div>
 <div class="card-attribution card-text-small start">
 <div class="listing-author">
@@ -282,7 +328,7 @@ Matthew Swanson
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="2" data-categories="Survival Analysis,Turnover,R,Visualizations,survminer" data-listing-file-modified-sort="1682449537723" data-listing-reading-time-sort="7">
+<div class="g-col-1" data-index="2" data-categories="U3Vydml2YWwlMjBBbmFseXNpcyUyQ1R1cm5vdmVyJTJDUiUyQ1Zpc3VhbGl6YXRpb25zJTJDc3Vydm1pbmVy" data-listing-file-modified-sort="1747584246164" data-listing-reading-time-sort="7" data-listing-word-count-sort="1371">
 <a href="./Portfolio pages/Turnover.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="Portfolio pages\Turnover_files\figure-html\unnamed-chunk-4-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
@@ -294,24 +340,24 @@ Employee Turnover: A Survival Analysis
 7 min
 </div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Survival Analysis'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('U3Vydml2YWwlMjBBbmFseXNpcw=='); return false;">
 Survival Analysis
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Turnover'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('VHVybm92ZXI='); return false;">
 Turnover
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">
 R
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Visualizations'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('VmlzdWFsaXphdGlvbnM='); return false;">
 Visualizations
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('survminer'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('c3Vydm1pbmVy'); return false;">
 survminer
 </div>
 </div>
 <div class="card-text listing-description">
-Employees choose to leave organizations for many reasons. Thus, it is sometimes important for Human…
+Employees choose to leave organizations for many reasons. Thus, it is sometimes important for Human Resources and People Analytic departments to identify variables that may…
 </div>
 <div class="card-attribution card-text-small start">
 <div class="listing-author">
@@ -322,7 +368,7 @@ Matthew Swanson
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="3" data-categories="Engagement,Diversity,R,Visualizations,Confirmatory Factor Analysis" data-listing-file-modified-sort="1682450220953" data-listing-reading-time-sort="12">
+<div class="g-col-1" data-index="3" data-categories="RW5nYWdlbWVudCUyQ0RpdmVyc2l0eSUyQ1IlMkNWaXN1YWxpemF0aW9ucyUyQ0NvbmZpcm1hdG9yeSUyMEZhY3RvciUyMEFuYWx5c2lz" data-listing-file-modified-sort="1742410275876" data-listing-reading-time-sort="12" data-listing-word-count-sort="2229">
 <a href="./Portfolio pages/Engagement and Diversity.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="Portfolio pages\Engagement-and-Diversity_files\figure-html\unnamed-chunk-3-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
@@ -334,19 +380,19 @@ Engagement and Diversity
 12 min
 </div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Engagement'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('RW5nYWdlbWVudA=='); return false;">
 Engagement
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Diversity'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('RGl2ZXJzaXR5'); return false;">
 Diversity
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">
 R
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Visualizations'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('VmlzdWFsaXphdGlvbnM='); return false;">
 Visualizations
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Confirmatory Factor Analysis'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('Q29uZmlybWF0b3J5JTIwRmFjdG9yJTIwQW5hbHlzaXM='); return false;">
 Confirmatory Factor Analysis
 </div>
 </div>
@@ -362,7 +408,7 @@ Matthew Swanson
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="4" data-categories="Factorial ANOVA,R,Power Analysis,Effect Size,Clinical Trial Data" data-listing-file-modified-sort="1682450836975" data-listing-reading-time-sort="5">
+<div class="g-col-1" data-index="4" data-categories="RmFjdG9yaWFsJTIwQU5PVkElMkNSJTJDUG93ZXIlMjBBbmFseXNpcyUyQ0VmZmVjdCUyMFNpemUlMkNDbGluaWNhbCUyMFRyaWFsJTIwRGF0YQ==" data-listing-file-modified-sort="1682450838000" data-listing-reading-time-sort="5" data-listing-word-count-sort="937">
 <a href="./Portfolio pages/FactorPower.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="Portfolio pages\FactorPower_files\figure-html\unnamed-chunk-8-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
@@ -374,24 +420,24 @@ Factorial Anova and Power Analysis in R
 5 min
 </div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Factorial ANOVA'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('RmFjdG9yaWFsJTIwQU5PVkE='); return false;">
 Factorial ANOVA
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">
 R
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Power Analysis'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('UG93ZXIlMjBBbmFseXNpcw=='); return false;">
 Power Analysis
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Effect Size'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('RWZmZWN0JTIwU2l6ZQ=='); return false;">
 Effect Size
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Clinical Trial Data'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('Q2xpbmljYWwlMjBUcmlhbCUyMERhdGE='); return false;">
 Clinical Trial Data
 </div>
 </div>
 <div class="card-text listing-description">
-It is of interest to a client to analyze data from a clinical trial on tooth growth. It is of particular interest to…
+It is of interest to a client to analyze data from a clinical trial on tooth growth. It is of particular interest to ascertain how different dosage amounts and types of…
 </div>
 <div class="card-attribution card-text-small start">
 <div class="listing-author">
@@ -402,7 +448,7 @@ Matthew Swanson
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="5" data-categories="Natural Language Processing,Sentiment Analysis,R,Visualizations,Tokenization" data-listing-file-modified-sort="1682451597595" data-listing-reading-time-sort="9">
+<div class="g-col-1" data-index="5" data-categories="TmF0dXJhbCUyMExhbmd1YWdlJTIwUHJvY2Vzc2luZyUyQ1NlbnRpbWVudCUyMEFuYWx5c2lzJTJDUiUyQ1Zpc3VhbGl6YXRpb25zJTJDVG9rZW5pemF0aW9u" data-listing-file-modified-sort="1747584515374" data-listing-reading-time-sort="9" data-listing-word-count-sort="1635">
 <a href="./Portfolio pages/NLPSentiment.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="Portfolio pages\NLPSentiment_files\figure-html\unnamed-chunk-4-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
@@ -414,19 +460,19 @@ NLP Sentiment Analysis
 9 min
 </div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Natural Language Processing'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('TmF0dXJhbCUyMExhbmd1YWdlJTIwUHJvY2Vzc2luZw=='); return false;">
 Natural Language Processing
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Sentiment Analysis'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('U2VudGltZW50JTIwQW5hbHlzaXM='); return false;">
 Sentiment Analysis
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">
 R
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Visualizations'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('VmlzdWFsaXphdGlvbnM='); return false;">
 Visualizations
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Tokenization'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('VG9rZW5pemF0aW9u'); return false;">
 Tokenization
 </div>
 </div>
@@ -442,7 +488,87 @@ Matthew Swanson
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="6" data-categories="Factorial ANOVA,R,Religion,Constrast Coding,phia" data-listing-file-modified-sort="1682451358412" data-listing-reading-time-sort="12">
+<div class="g-col-1" data-index="6" data-categories="TXVsdGlsZXZlbCUyME1ldGEtQW5hbHlzaXMlMkNSJTJDT3JnYW5pemF0aW9uYWwlMjBUcmFpbmluZyUyQ01vZGVyYXRpb24lMkNFbmdhZ2VtZW50JTJDRGF0YSUyMFNjaWVuY2U=" data-listing-file-modified-sort="1747584028422" data-listing-reading-time-sort="4" data-listing-word-count-sort="665">
+<a href="./Portfolio pages/MLMAMod.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top"><img src="Portfolio pages\images\EmployeeGroup1.jpg" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Performing Moderation Analysis Within Multilevel Meta-Analysis
+</h5>
+<div class="listing-reading-time card-text text-muted">
+4 min
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('TXVsdGlsZXZlbCUyME1ldGEtQW5hbHlzaXM='); return false;">
+Multilevel Meta-Analysis
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">
+R
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('T3JnYW5pemF0aW9uYWwlMjBUcmFpbmluZw=='); return false;">
+Organizational Training
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('TW9kZXJhdGlvbg=='); return false;">
+Moderation
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('RW5nYWdlbWVudA=='); return false;">
+Engagement
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMFNjaWVuY2U='); return false;">
+Data Science
+</div>
+</div>
+<div class="card-text listing-description">
+Continuing the evaluation of teamwork training effects as discussed in my project on multilevel meta-analysis (MLMA), which can be found here, I consider how these MLMA…<em></em>
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Matthew Swanson
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="7" data-categories="U3RydWN0dXJhbCUyMEVxdWF0aW9uJTIwTW9kZWxpbmclMkNJdGVtJTIwUmVzcG9uc2UlMjBUaGVvcnklMkNSJTJDbGF2YWFu" data-listing-file-modified-sort="1747584924097" data-listing-reading-time-sort="7" data-listing-word-count-sort="1384">
+<a href="./Portfolio pages/SelfEsteem SEM &amp; IRT.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top"><img src="Portfolio pages\SelfEsteem-SEM---IRT_files\figure-html\unnamed-chunk-4-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Psychometric Properties of Self Esteem via SEM and IRT
+</h5>
+<div class="listing-reading-time card-text text-muted">
+7 min
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('U3RydWN0dXJhbCUyMEVxdWF0aW9uJTIwTW9kZWxpbmc='); return false;">
+Structural Equation Modeling
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('SXRlbSUyMFJlc3BvbnNlJTIwVGhlb3J5'); return false;">
+Item Response Theory
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">
+R
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('bGF2YWFu'); return false;">
+lavaan
+</div>
+</div>
+<div class="card-text listing-description">
+The data for this project was downloaded from Kaggle here and originally housed on OpenPsychometrics.org. The data set contains approximately 48,000 participants who took…
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Matthew Swanson
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="8" data-categories="RmFjdG9yaWFsJTIwQU5PVkElMkNSJTJDUmVsaWdpb24lMkNDb25zdHJhc3QlMjBDb2RpbmclMkNwaGlh" data-listing-file-modified-sort="1742414358832" data-listing-reading-time-sort="12" data-listing-word-count-sort="2339">
 <a href="./Portfolio pages/FactorialANOVA.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="images\religpic.jpeg" style="height: 150px;"  class="thumbnail-image card-img"/></p>
@@ -454,19 +580,19 @@ Religion and Politics Factorial ANOVA in R
 12 min
 </div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Factorial ANOVA'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('RmFjdG9yaWFsJTIwQU5PVkE='); return false;">
 Factorial ANOVA
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">
 R
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Religion'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('UmVsaWdpb24='); return false;">
 Religion
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Constrast Coding'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('Q29uc3RyYXN0JTIwQ29kaW5n'); return false;">
 Constrast Coding
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('phia'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('cGhpYQ=='); return false;">
 phia
 </div>
 </div>
@@ -482,7 +608,90 @@ Matthew Swanson
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="7" data-categories="Multilevel Modeling,R,lavaan,ICC1 &amp; 2,Engagement,Team Cohesion,Inter-rater Reliability,Simple Slopes" data-listing-file-modified-sort="1682451474687" data-listing-reading-time-sort="6">
+<div class="g-col-1" data-index="9" data-categories="TXVsdGlsZXZlbCUyME1ldGEtQW5hbHlzaXMlMkNSJTJDUXVhZHJhdGljJTIwRWZmZWN0cyUyQ09yZ2FuaXphdGlvbmFsJTIwVHJhaW5pbmclMkNFbmdhZ2VtZW50JTJDRGF0YSUyMFNjaWVuY2U=" data-listing-file-modified-sort="1747583916184" data-listing-reading-time-sort="5" data-listing-word-count-sort="994">
+<a href="./Portfolio pages/MLMAQuad.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top"><img src="Portfolio pages\MLMAQuad_files\figure-html\unnamed-chunk-3-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Testing for Quadratic Effects in Multilevel Meta-Analysis
+</h5>
+<div class="listing-reading-time card-text text-muted">
+5 min
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('TXVsdGlsZXZlbCUyME1ldGEtQW5hbHlzaXM='); return false;">
+Multilevel Meta-Analysis
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">
+R
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UXVhZHJhdGljJTIwRWZmZWN0cw=='); return false;">
+Quadratic Effects
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('T3JnYW5pemF0aW9uYWwlMjBUcmFpbmluZw=='); return false;">
+Organizational Training
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('RW5nYWdlbWVudA=='); return false;">
+Engagement
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMFNjaWVuY2U='); return false;">
+Data Science
+</div>
+</div>
+<div class="card-text listing-description">
+As described in the overall goal of this project, the hospital is interested in understanding what the effect they could reasonably expect to have when implementing a new…
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Matthew Swanson
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="10" data-categories="TXVsdGlsZXZlbCUyME1ldGEtQW5hbHlzaXMlMkNSJTJDT3JnYW5pemF0aW9uYWwlMjBUcmFpbmluZyUyQ0VuZ2FnZW1lbnQlMkNEYXRhJTIwU2NpZW5jZQ==" data-listing-file-modified-sort="1747584034473" data-listing-reading-time-sort="19" data-listing-word-count-sort="3610">
+<a href="./Portfolio pages/MLMAEffect.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top"><img src="Portfolio pages\MLMAEffect_files\figure-html\unnamed-chunk-3-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Using Multilevel Meta-Analysis to Better Understand Complex Business Research
+</h5>
+<div class="listing-reading-time card-text text-muted">
+19 min
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('TXVsdGlsZXZlbCUyME1ldGEtQW5hbHlzaXM='); return false;">
+Multilevel Meta-Analysis
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">
+R
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('T3JnYW5pemF0aW9uYWwlMjBUcmFpbmluZw=='); return false;">
+Organizational Training
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('RW5nYWdlbWVudA=='); return false;">
+Engagement
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMFNjaWVuY2U='); return false;">
+Data Science
+</div>
+</div>
+<div class="card-text listing-description">
+As practitioners of data science and IO psychology, we are sometimes tasked with understanding the effects of a particular training program or yearly event. In a perfect…
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Matthew Swanson
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="11" data-categories="TXVsdGlsZXZlbCUyME1vZGVsaW5nJTJDUiUyQ2xhdmFhbiUyQ0lDQzElMjAlMjYlMjAyJTJDRW5nYWdlbWVudCUyQ1RlYW0lMjBDb2hlc2lvbiUyQ0ludGVyLXJhdGVyJTIwUmVsaWFiaWxpdHklMkNTaW1wbGUlMjBTbG9wZXM=" data-listing-file-modified-sort="1747585058894" data-listing-reading-time-sort="6" data-listing-word-count-sort="1071">
 <a href="./Portfolio pages/MLMEngageTeam.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="Portfolio pages\MLMEngageTeam_files\figure-html\unnamed-chunk-3-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
@@ -494,28 +703,28 @@ Using Multilevel Modeling To Understand Engagement, Autonomy, and Team Cohesion
 6 min
 </div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Multilevel Modeling'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('TXVsdGlsZXZlbCUyME1vZGVsaW5n'); return false;">
 Multilevel Modeling
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">
 R
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('lavaan'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('bGF2YWFu'); return false;">
 lavaan
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('ICC1 &amp; 2'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('SUNDMSUyMCUyNiUyMDI='); return false;">
 ICC1 &amp; 2
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Engagement'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('RW5nYWdlbWVudA=='); return false;">
 Engagement
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Team Cohesion'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('VGVhbSUyMENvaGVzaW9u'); return false;">
 Team Cohesion
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Inter-rater Reliability'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('SW50ZXItcmF0ZXIlMjBSZWxpYWJpbGl0eQ=='); return false;">
 Inter-rater Reliability
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Simple Slopes'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('U2ltcGxlJTIwU2xvcGVz'); return false;">
 Simple Slopes
 </div>
 </div>
@@ -577,6 +786,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       } else {
         el.classList.add('notransition');
       }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
     }
   }
   const toggleColorMode = (alternate) => {
@@ -645,13 +881,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  const darkModeDefault = true;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -686,18 +924,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -729,11 +956,48 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/matthew-swanson\.com");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -743,8 +1007,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -756,7 +1029,129 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -800,6 +1195,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -825,6 +1221,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -887,14 +1309,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">© 2023, Matthew Swanson</div>   
+    <div class="nav-footer-left">
+<p>© 2025, Matthew Swanson. This work is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+</div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
- Made using Quarto
+    <a class="nav-link" href="https://quarto.org">
+<p>Made with Quarto</p>
+</a>
   </li>  
     <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/MattS002">
@@ -912,6 +1338,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+
 
 
 

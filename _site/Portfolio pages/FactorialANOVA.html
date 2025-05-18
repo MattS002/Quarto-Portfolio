@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.333">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Matthew Swanson">
 
-<title>Matt’s Portfolio Website - Religion and Politics Factorial ANOVA in R</title>
+<title>Religion and Politics Factorial ANOVA in R – Matthew Swanson</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,7 +23,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -34,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -69,19 +69,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-8dd1961faa9fed8eaeb307954bd3f3df.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-5c82de8d99bcb8f0803f0fff0461afcb.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -90,8 +96,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -103,62 +111,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a href="../index.html" class="navbar-brand navbar-brand-logo">
     <img src="../images/Logo.gif" alt="" class="navbar-logo">
     </a>
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Matt’s Portfolio Website</span>
+    <span class="navbar-title">Matthew Swanson</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html" rel="" target="">
- <span class="menu-text">About</span></a>
+    <a class="nav-link" href="../PortMain.html"> 
+<span class="menu-text">Portfolio</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../Resume.html" rel="" target="">
- <span class="menu-text">Resume/CV</span></a>
+    <a class="nav-link" href="../Publications.html"> 
+<span class="menu-text">Publications</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../PortMain.html" rel="" target="">
- <span class="menu-text">Portfolio</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../Mainblog.html" rel="" target="">
- <span class="menu-text">Personal Blog</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../DataViz.html" rel="" target="">
- <span class="menu-text">Data Viz Portfolio</span></a>
+    <a class="nav-link" href="../DataViz.html"> 
+<span class="menu-text">Data Viz Portfolio</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/matthew-swanson-phd-335942137" rel="" target=""><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/matthew-swanson-phd-335942137"> <i class="bi bi-linkedin" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/MattS002" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="mailto:mattswnsn53@gmail.com"> <i class="bi bi-envelope" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="mailto:mattswnsn53@gmail.com" rel="" target=""><i class="bi bi-envelope" role="img">
+  <li class="nav-item">
+    <a class="nav-link" href="../Matthew Austin Swanson CV 2025.pdf"> <i class="bi bi-file-text" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text">CV</span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-bi-github" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-bi-github">    
+        <li>
+    <a class="dropdown-item" href="https://github.com/MattS002/Quarto-Portfolio">
+ <span class="dropdown-text">Source Code</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/MattS002/Quarto-Portfolio/issues">
+ <span class="dropdown-text">Report an issue</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
@@ -167,7 +185,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </a>
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -217,14 +234,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <section id="project-goal" class="level1 text-center">
 <h1><strong>Project Goal</strong></h1>
 </section>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="..\images/religpic.jpeg" class="img-fluid figure-img"></p>
+<p><img src="..\images/religpic.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 <p>A client requested to better understand the religious attendance of their constituents and how both their constituent’s race and political identity shape religious attendance (with higher scores indicating greater attendance to religious gatherings/events). Additionally, the client specifically requested to compare White, Black, and Hispanic constituents. Thus, the goal of this project was to clean the data and understand how identity shapes religious attendance.</p>
@@ -312,12 +331,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
  Other    Democratic   3.44 0.541 785    2.377     4.50
  White    Republican   4.44 0.173 785    4.104     4.78
  Black    Republican   4.83 0.782 785    3.299     6.37
- Hispanic Republican   5.00 1.914 785    1.242     8.76
+ Hispanic Republican   5.00 1.910 785    1.242     8.76
  Other    Republican   4.44 0.902 785    2.673     6.22
  White    Other        2.60 0.365 785    1.883     3.32
  Black    Other        2.50 0.957 785    0.621     4.38
- Hispanic Other        1.33 1.563 785   -1.735     4.40
- Other    Other        4.50 1.354 785    1.843     7.16
+ Hispanic Other        1.33 1.560 785   -1.735     4.40
+ Other    Other        4.50 1.350 785    1.843     7.16
 
 Confidence level used: 0.95 </code></pre>
 </div>
@@ -356,12 +375,12 @@ Confidence level used: 0.95 </code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>F Test: 
 P-value adjustment method: bonferroni
-          PARTYID1 PARTYID2  Df Sum of Sq       F    Pr(&gt;F)    
-   White    0.1540   1.8431   2     401.3 27.3745 1.287e-11 ***
-   Black    2.3773   2.3333   2      43.1  2.9430    0.2132    
-Hispanic    3.2576   3.6667   2      29.2  1.9917    0.5486    
-   Other   -1.0600  -0.0556   2       8.9  0.6093    1.0000    
-Residuals                   785    5754.5                      
+          PARTYID1 PARTYID2    SE1    SE2 Df Sum of Sq       F    Pr(&gt;F)    
+   White    0.1540   1.8431   0.40    0.4  2    401.34 27.3745 1.287e-11 ***
+   Black    2.3773   2.3333   0.98    1.2  2     43.15  2.9430    0.2132    
+Hispanic    3.2576   3.6667   1.67    2.5  2     29.20  1.9917    0.5486    
+   Other   -1.0600  -0.0556   1.46    1.6  2      8.93  0.6093    1.0000    
+Residuals                   785.00 5754.5                                   
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
@@ -370,11 +389,16 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>F Test: 
 P-value adjustment method: bonferroni
-           RACECEN11 RACECEN12 RACECEN13  Df Sum of Sq       F    Pr(&gt;F)    
-Democratic  -0.68597   1.43730    1.1509   3     465.1 21.1483 1.052e-12 ***
-Republican  -0.00136   0.38889    0.5556   3       2.3  0.1056         1    
-     Other  -1.90000  -2.00000   -3.1667   3      19.2  0.8733         1    
-Residuals                                785    5754.5                      
+           RACECEN11 RACECEN12 RACECEN13    SE1    SE2     SE3 Df Sum of Sq
+Democratic  -0.68597   1.43730    1.1509   0.57    0.6 0.79147  3    465.09
+Republican  -0.00136   0.38889    0.5556   0.92    1.2 2.11655  3      2.32
+     Other  -1.90000  -2.00000   -3.1667   1.40    1.7 2.06789  3     19.20
+Residuals                                785.00 5754.5                     
+                 F    Pr(&gt;F)    
+Democratic 21.1483 1.052e-12 ***
+Republican  0.1056         1    
+     Other  0.8733         1    
+Residuals                       
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
@@ -386,26 +410,46 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>F Test: 
 P-value adjustment method: bonferroni
-                              Value  Df Sum of Sq       F    Pr(&gt;F)    
-   White-Black : Democratic -2.1233   1     443.4 60.4882 4.189e-13 ***
-White-Hispanic : Democratic -1.8369   1      68.2  9.3011   0.04261 *  
-   White-Other : Democratic -0.6860   1      10.7  1.4578   1.00000    
-Black-Hispanic : Democratic  0.2864   1       1.6  0.2169   1.00000    
-   Black-Other : Democratic  1.4373   1      44.8  6.1084   0.24597    
-Hispanic-Other : Democratic  1.1509   1      15.5  2.1145   1.00000    
-   White-Black : Republican -0.3902   1       1.7  0.2377   1.00000    
-White-Hispanic : Republican -0.5569   1       0.6  0.0839   1.00000    
-   White-Other : Republican -0.0014   1       0.0  0.0000   1.00000    
-Black-Hispanic : Republican -0.1667   1       0.0  0.0065   1.00000    
-   Black-Other : Republican  0.3889   1       0.8  0.1061   1.00000    
-Hispanic-Other : Republican  0.5556   1       0.5  0.0689   1.00000    
-   White-Black :      Other  0.1000   1       0.1  0.0095   1.00000    
-White-Hispanic :      Other  1.2667   1       4.6  0.6227   1.00000    
-   White-Other :      Other -1.9000   1      13.5  1.8363   1.00000    
-Black-Hispanic :      Other  1.1667   1       3.0  0.4051   1.00000    
-   Black-Other :      Other -2.0000   1      10.7  1.4551   1.00000    
-Hispanic-Other :      Other -3.1667   1      17.2  2.3450   1.00000    
-Residuals                           785    5754.5                      
+                              Value     SE     Df Sum of Sq       F    Pr(&gt;F)
+   White-Black : Democratic -2.1233   0.27    1.0    443.41 60.4882 4.189e-13
+White-Hispanic : Democratic -1.8369   0.60    1.0     68.18  9.3011   0.04261
+   White-Other : Democratic -0.6860   0.57    1.0     10.69  1.4578   1.00000
+Black-Hispanic : Democratic  0.2864   0.61    1.0      1.59  0.2169   1.00000
+   Black-Other : Democratic  1.4373   0.58    1.0     44.78  6.1084   0.24597
+Hispanic-Other : Democratic  1.1509   0.79    1.0     15.50  2.1145   1.00000
+   White-Black : Republican -0.3902   0.80    1.0      1.74  0.2377   1.00000
+White-Hispanic : Republican -0.5569   1.92    1.0      0.62  0.0839   1.00000
+   White-Other : Republican -0.0014   0.92    1.0      0.00  0.0000   1.00000
+Black-Hispanic : Republican -0.1667   2.07    1.0      0.05  0.0065   1.00000
+   Black-Other : Republican  0.3889   1.19    1.0      0.78  0.1061   1.00000
+Hispanic-Other : Republican  0.5556   2.12    1.0      0.51  0.0689   1.00000
+   White-Black :      Other  0.1000   1.02    1.0      0.07  0.0095   1.00000
+White-Hispanic :      Other  1.2667   1.61    1.0      4.56  0.6227   1.00000
+   White-Other :      Other -1.9000   1.40    1.0     13.46  1.8363   1.00000
+Black-Hispanic :      Other  1.1667   1.83    1.0      2.97  0.4051   1.00000
+   Black-Other :      Other -2.0000   1.66    1.0     10.67  1.4551   1.00000
+Hispanic-Other :      Other -3.1667   2.07    1.0     17.19  2.3450   1.00000
+Residuals                           785.00 5754.5                            
+                               
+   White-Black : Democratic ***
+White-Hispanic : Democratic *  
+   White-Other : Democratic    
+Black-Hispanic : Democratic    
+   Black-Other : Democratic    
+Hispanic-Other : Democratic    
+   White-Black : Republican    
+White-Hispanic : Republican    
+   White-Other : Republican    
+Black-Hispanic : Republican    
+   Black-Other : Republican    
+Hispanic-Other : Republican    
+   White-Black :      Other    
+White-Hispanic :      Other    
+   White-Other :      Other    
+Black-Hispanic :      Other    
+   Black-Other :      Other    
+Hispanic-Other :      Other    
+Residuals                      
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
@@ -524,6 +568,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
   }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
   const toggleColorMode = (alternate) => {
     // Switch the stylesheets
     const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
@@ -590,13 +661,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  const darkModeDefault = true;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -631,18 +704,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -674,11 +736,48 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/matthew-swanson\.com");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -688,8 +787,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -701,7 +809,129 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -745,6 +975,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -770,6 +1001,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -832,14 +1089,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">© 2023, Matthew Swanson</div>   
+    <div class="nav-footer-left">
+<p>© 2025, Matthew Swanson. This work is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+</div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
- Made using Quarto
+    <a class="nav-link" href="https://quarto.org">
+<p>Made with Quarto</p>
+</a>
   </li>  
     <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/MattS002">
@@ -857,6 +1118,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+
 
 
 
