@@ -2,40 +2,42 @@ project:
   type: website
 
 website:
-  title: "Matt's Portfolio Website"
+  title: "Matthew Swanson"
   site-url: https://matthew-swanson.com
   description: "This is Matthew Swanson's personal portfolio and blog."
   reader-mode: true
-  google-analytics: "G-N8XM3M8B8C"
   navbar:
     logo: "/images/Logo.gif"
-    background: dark
     search: true
     pinned: true
     right:
       - text: "Home"
         href: index.qmd
-      - text: "About"
-        href: about.qmd
-      - text: "Resume/CV"
-        href: Resume.qmd
       - text: "Portfolio"
         href: PortMain.qmd
-      - text: "Personal Blog"
-        href: Mainblog.qmd
+      - text: "Publications"
+        href: Publications.qmd
       - text: "Data Viz Portfolio"
         href: DataViz.qmd
       - icon: linkedin
         href: https://www.linkedin.com/in/matthew-swanson-phd-335942137
-      - icon: github
-        href: https://github.com/MattS002
       - icon: envelope
-        href: "mailto:mattswnsn53@gmail.com" 
+        href: "mailto:mattswnsn53@gmail.com"
+      - text: CV
+        icon: file-text
+        href: Matthew Austin Swanson CV 2025.pdf
+      - icon: github
+        menu: 
+          - text: Source Code
+            href: https://github.com/MattS002/Quarto-Portfolio
+          - text: Report an issue
+            href: https://github.com/MattS002/Quarto-Portfolio/issues
   page-footer:
     background: dark
-    left: " © 2023, Matthew Swanson" 
+    left: " © 2025, Matthew Swanson. This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/)." 
     right: 
-      - text: "Made using Quarto"
+      - text: Made with Quarto
+        href: https://quarto.org
       - icon: github
         href: https://github.com/MattS002
       - icon: linkedin 
@@ -44,8 +46,7 @@ website:
 format:
   html:
     theme:
-      light: minty
-      dark: solar
+      dark: Superhero
     css: styles.css
     toc: true
 
