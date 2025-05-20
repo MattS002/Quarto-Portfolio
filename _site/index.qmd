@@ -1,0 +1,127 @@
+---
+title: "Matthew Swanson, Ph.D."
+subtitle: "Industrial Organizational Psychologist | People Analytics | Data Analyst | DEI Practitioner"
+image: images/About pic.jpg
+listing:
+  id: project-listing
+  contents:
+    - "Portfolio pages/MLMAEffect.qmd"  
+    - "Portfolio pages/NLPSentiment.qmd"
+    - "Portfolio pages/FactorialANOVA.qmd"
+    - "Portfolio pages/MLMEngageTeam.qmd"
+  sort: "date desc"
+  type: grid
+  grid-columns: 2
+  fields: [image, date, title, author, description, reading-time, categories]
+format: 
+  html: 
+    page-layout: full
+about:
+  template: trestles
+  image-shape: rounded
+  image-width: 11em
+  id: Welcome
+  links:
+    - text: '{{< iconify fa6-solid:square-envelope >}} Email'
+      href: "mailto:mattswnsn53@gmail.com"
+      aria-label: "Envelope logo for email"
+    - text: '{{< iconify fa6-brands:orcid>}} ORCID'
+      href: "https://orcid.org/0000-0002-6785-2297"
+    - text: '{{< iconify fa6-brands:linkedin>}} LinkedIn'
+      href: "https://www.linkedin.com/in/matthew-swanson-phd-335942137"
+    - text: '{{< iconify octicon:mark-github-16>}} Github'
+      href: "https://github.com/MattS002"
+    - text: '{{< iconify academicons:osf>}} OSF'
+      href: "https://osf.io/vpa3t/"
+---
+
+::: {#Welcome}
+# Welcome!
+
+Hello and welcome to my portfolio! My name is Matt Swanson and I am an Industrial Organizational Psychologist who has spent the past decade expanding my expertise in the areas of organizational effectiveness, data analysis, training evaluation, DEI, and statistical and research methodology.
+
+I am excited to present my portfolio showcasing my academic and professional accomplishments. This portfolio reflects my expertise in research design, data analysis, consulting, as well as my commitment to continuous learning and self-development. My goal with this website is to showcase some of my skill set and provide a platform for others interested in IO psychology and data analytics to hopefully learn something about the field. Step into the world of IO psychology with me, where the science of human behavior and performance in the workplace meets the art of creating meaningful and impactful change.
+:::
+
+::::: columns
+::: {.column width="70%"}
+## Education
+
+Ph.D. in Industrial Organizational Psychology \| *2022* \| University of Nebraska, Omaha
+
+M.A. in Industrial Organizational Psychology \| *2018* \| University of Akron
+
+B.S. in Psychology \| *2016* \| Kent State University
+:::
+
+::: {.column width="30%"}
+## Research Interests
+
+-   Data Analysis
+-   Statistical Methodology
+-   Diversity, Equity, and Inclusion (DEI)
+-   Meaningful Work
+-   Training Evaluation
+-   Authentic Self-Expression
+:::
+:::::
+
+::: text-center
+# My Career Thus Far
+:::
+
+<div>
+
+I have worked in both industry and academia and have learned a lot over these years! I've had the pleasure of teaching and supporting graduate level analysis of variance (ANOVA) at the University of Nebraska Omaha using both SAS and R. While COVID certainly added barriers to the teaching process, it gave me a great opportunity to learn and teach data analysis in R at the graduate level.
+
+Concurrently, I have worked with the United States Naval Academy and the Department of the Navy (DON) to evaluate several naval-wide training programs and I helped develop infrastructure to aid in future evaluation efforts across the DON which included data management components such as data pipelines and assessment models. I've helped organizations recognize, analyze, and address common issues such as turnover, training effectiveness, and job performance. I have also helped organizations survey and assess the DEI climate of their workforce, worked with selection procedures to determine adverse impact, built statistical models to predict turnover likelihood, worked on developing psychometrically sound assessments, and served as lead on qualitative and quantitative data collection efforts.
+
+As a contribution to my field, I have served as a guest editor for the Journal of Social Issues and the Journal of Managerial Issues. From 2020 to 2024 I served on several academic committees, including the review committee for the Midwest Academy of Management conference and the editorial board for the Association for Psychological Science.
+
+In my spare time I love jamming out with my cello!
+
+For a complete overview of my professional experience, publications, and skillset, please view my CV [here](Matthew%20Austin%20Swanson%20CV%202025.pdf) or by clicking the link located in the header of this page.
+
+</div>
+
+::: text-center
+# Dissertation
+:::
+
+I spent a lot of time working on my dissertation and I would love to share what I found! For my dissertation, I studied how organizational psychological safety (which I experimentally manipulated) influenced perceptions of authenticity at work as well as feelings of well-being and belongingness for both heterosexual and LGBTQ employees. My dissertation was also mixed-methods, so I got to assess the qualitative nuance behind participant's perceptions of psychologically safe and unsafe work experiences!
+
+My dissertation is hosted on [ProQuest](https://www-proquest-com.leo.lib.unomaha.edu/pqdtglobal/docview/2770014140/15D974BD6DE64609PQ/1?accountid=14692).
+
+::: text-center
+# Selected Articles
+:::
+
+Folberg, A. M., Dueland, L. B., Swanson, M., Stepanek, S., Hebl, M., & Ryan, C. S. (2024). **Racism underlies seemingly race‐neutral conservative criticisms of DEI statements among Black and White people in the United States. Journal of Occupational and Organizational Psychology**, 97(3), 791–816. <https://doi.org/10.1111/joop.12491>
+
+:::::: columns
+::: {.column width="30%"}
+**Check out my articles at [IOATWORK](https://www.ioatwork.com/):**
+:::
+
+::: {.column width="10%"}
+:::
+
+::: {.column width="60%"}
+-   [Why Allyship Is Important For Transgender Employees](https://www.ioatwork.com/why-allyship-is-important-for-transgender-employees/)
+
+-   [When Will Employees Speak Up In Response to Abusive Leadership?](https://www.ioatwork.com/when-will-employees-speak-up-in-response-to-abusive-leadership/)
+
+-   [Threats of Discrimination May Lead Employees to Behave Badly](https://www.ioatwork.com/threats-of-discrimination-may-lead-employees-to-behave-badly/)
+
+-   [Employees Who Are Treated Poorly May Adopt Bad Behavior Themselves](https://www.ioatwork.com/employees-who-are-treated-poorly-may-adopt-bad-behavior-themselves/)
+:::
+::::::
+
+**See more [here](/Publications.qmd).**
+
+::: text-center
+## Featured Projects
+:::
+
+::: {#project-listing}
+:::
